@@ -119,6 +119,48 @@ M.~Turan, Y.~Almalioglu, H.~Araujo, E.~Konukoglu, and M.~Sitti, ``Deep endovo:
   approach for endoscopic capsule robots,'' \emph{Neurocomputing}, vol. 275,
   pp. 1861--1870, 2018.
 
+\bibitem{jung2011indoor}
+J.~Jung and H.~Myung, ``Indoor localization using particle filter and map-based
+  nlos ranging model,'' in \emph{Robotics and Automation (ICRA), 2011 IEEE
+  International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
+  2011, pp. 5185--5190.
+
+\bibitem{chenna2004state}
+S.~K. Chenna, Y.~K. Jain, H.~Kapoor, R.~S. Bapi, N.~Yadaiah, A.~Negi, V.~S.
+  Rao, and B.~L. Deekshatulu, ``State estimation and tracking problems: A
+  comparison between kalman filter and recurrent neural networks,'' in
+  \emph{International Conference on Neural Information Processing}.\hskip 1em
+  plus 0.5em minus 0.4em\relax Springer, 2004, pp. 275--281.
+
+\bibitem{shareef2008localization}
+A.~Shareef, Y.~Zhu, and M.~Musavi, ``Localization using neural networks in
+  wireless sensor networks,'' in \emph{Proceedings of the 1st international
+  conference on MOBILe Wireless MiddleWARE, Operating Systems, and
+  Applications}.\hskip 1em plus 0.5em minus 0.4em\relax ICST (Institute for
+  Computer Sciences, Social-Informatics and~…, 2008, p.~4.
+
+\bibitem{rahman2009localization}
+M.~S. Rahman, Y.~Park, and K.-D. Kim, ``Localization of wireless sensor network
+  using artificial neural network,'' in \emph{Communications and Information
+  Technology, 2009. ISCIT 2009. 9th International Symposium on}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2009, pp. 639--642.
+
+\bibitem{singh2013tdoa}
+P.~Singh and S.~Agrawal, ``Tdoa based node localization in wsn using neural
+  networks,'' in \emph{Communication Systems and Network Technologies (CSNT),
+  2013 International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2013, pp. 400--404.
+
+\bibitem{abdelhadi2013efficient}
+M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
+  localization algorithm for wireless sensor networks,'' \emph{Journal of
+  Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
+
+\bibitem{olson2006robust}
+E.~Olson, J.~J. Leonard, and S.~Teller, ``Robust range-only beacon
+  localization,'' \emph{IEEE Journal of Oceanic Engineering}, vol.~31, no.~4,
+  pp. 949--958, 2006.
+
 \bibitem{djugash2006range}
 J.~Djugash, S.~Singh, G.~Kantor, and W.~Zhang, ``Range-only slam for robots
   operating cooperatively with sensor networks,'' in \emph{Robotics and

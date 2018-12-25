@@ -21,7 +21,7 @@
 \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
 \doi{10.1109/ACCESS.2017.DOI}
 
-\title{RO-Net: Multimodal Stacked Bidirectional LSTM with Attentions for Indoor Localization using Range-only Measurements}
+\title{WSNNet: Multimodal Stacked Bidirectional LSTM with Attentions for Indoor Localization of Wireless Sensor Network}
 \author{\uppercase{HYUNGTAE LIM}\authorrefmark{1}, \IEEEmembership{Student Member, IEEE},
 	\uppercase{CHANGGYU PARK}\authorrefmark{1}, \IEEEmembership{Student Member, IEEE},
 	\uppercase{, and Hyun Myung}.\authorrefmark{1},
@@ -38,9 +38,12 @@
 
 \begin{abstract}
 	
-Empty.
+
+As verified experimentally, this new proposal represents a significant improvement in accuracy, computation time, and robustness against outliers.
 
 \end{abstract}
+
+
 
 \begin{keywords}
 Enter key words or phrases in alphabetical 
@@ -55,21 +58,58 @@ e-mail to keywords@ieee.org or visit \underline
 
 \section{Introduction}
 \label{sec:introduction}
+
 \PARstart{S}{imultaneous} Localization and Mapping(SLAM) is widely used in autonomous vehicles, drones, intelligence field robots, and mobile phone applications. Thus, according to the smart city development plan, several technologies are required in such a way that the demand and the necessity of SLAM increase together. Various kinds of sensors are utilized to SLAM, such as GPS, LiDAR, ultrasonic-based sensor, camera and distance sensor. Especially, trilateration algorithm has been widely incorporated into robotics fields, especially utilized in the indoor environment to estimate the position of an object by distance measurements obtained from range sensors such as UWB, ultrasonic, laser-based beacon sensors \cite{thomas2005revisiting, cho2010mobile,raghavan2010accurate} due to the convenience of trilateration that estimates the position of a receiver of range sensors if one only knows range measurement. For that reasons, range-only Simultaneous Localization and Mapping(RO-SLAM) methods are utilized popularly, which not only estimate the position of the receiver of range sensors, but also localize the position of range sensors regarded as features on a map, and studies have been conducted continuously in terms of probability-based approach\cite{blanco2008pure,blanco2008efficient,fabresse2013undelayed, shetty2018particle}.
+
+%확률적으로 접근했따
 
 In the meantime, as deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for many tasks related to robotics field, such as detection\cite{lenz2015deep,cai2016unified, smith2018object}, navigation\cite{zhu2017target, hamandi2018deepmotion}, pose estimation\cite{walch2017image}, and so on. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized such as not only speech recognition, but also pose estimation and localization\cite{walch2017image, gladh2016deep, wang2017deepvo, kendall2015posenet, turan2018deep}. 
 
 In this paper, we propose a deep learning-based SLAM method by multimodal stacked bidirectional Long Short-Term Memory(multimodal stacked Bi-LSTM) for more accurate localization of the robot. Using deep learning, our structure directly learns the end-to-end mapping between range measurements and robot position. This operation non-linearly maps the relationship not only considering the long-range dependence of sequential distance data by the LSTM, but also using the correlation of the backward information and the forward information of the sequence of each time step by virtue of its bidirectional architecture. \textcolor{red}{Existing RO SLAM needs calibration before filtering, and then, range measurement undergoes outlier rejection, prediction and correction processes are needed.	Furthermorme, it uses low dimensional data to perform localization, there is a disadvantage that estimation is difficult even if the value deviates slightly from the model.} \textcolor{green}{Therefore, we solve this complex algorithm with end-to-end based deep learning. This system overview is shown in the figure below.}
 
+ Various kinds of sensors have been utilized to localize a object using range measurement sensors, such as GPS, ultrasonic-based sensors. ultra-wideband(UWB) sensors. However, almost distance measured by range measurement sensors are based on Time of Flight(TOF), Time of Arriaval(TOA)\cite{jung2011indoor}, or Time of Differential Arrival(TDOA) in such a way as to consist of the 1-D data composed by the distance between landmarks and robot. This is the main issue dealing with range measurments, called \textit{rank-dificiency} problems. Besides, only mangitudes could represent the range measurement, deflection, reflection, and refraction and ic  Because range measurements consist of    
+
+
+In contrast to other SLAM, RO SLAM suffer from “rank deficiency problem”, which means range measurement is 1D data so it is too deficient to describe position or orientation as you guys knows, it only has magnitude. As this figure shown, in 3D, posiibility of location of sensor is distributed over sphere / since range measurement doesn’t contain direction information!
+To solve this problem, various type of RO SLAM has been studied. RO SLAM is generally divided into two approaches; PF RO SLAM and KF based RO SLAM
+
+%실험했다 얘기할 떄
+. We also provide statistical analysis from simulations demonstrating that
+our new approach can cope with highly noisy sensors and
+reduces in one order of magnitude the average errors of the
+method proposed
+
+The rest of the paper is organized as follows. Section 2 describes relevant localization methods. Section 3 introduces
+principals of neural networks. The experiments by which
+these methods will be compared are given in Section 4. The
+results will be discussed in Section 5, and concluding comments will be made in Section 6
 
 \section{Related Works}
 
-In this section, we briefly survey previous researches closely focused on localization using range measurements and case study on utilizing deep learning for localization, especially about applications of Recurrent Neural Networks(RNNs). Fianlly, we examine how the attention is introduced in the deep learning architectures. 
-
-\subsection{Localization using range measurements}
-
- Various kinds of sensors have been utilized to localize a object using range measurement sensors, such as GPS, ultrasonic-based sensors. ultra-wideband(UWB) sensors. However, almost distance measured by range measurement sensors are based on Time of Flight(TOF), Time of Arriaval(TOA)\cite{jung2011indoor}, or Time of Differential Arrival(TDOA).  
+ To localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties using neural networks, several fascinating works have been studied. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} do\cite{shareef2008localization} and conduct their experiment in the real-world. They conlcude Multi-Layer Perceptron(MLP) may be the best option among the suggested Kalman filter models and RNN. Similarly, many researchers also had achived considerable improvement to localize position of mobile node by exploiting MLP\cite{rahman2009localization, singh2013tdoa, abdelhadi2013efficient}. Note that their In case of \cite{shareef2008localization}. They let MLP learn the relationships between range measurement and position of mobile node, yet MLP could not learn sequential modeling. MLP just learn the relationship like generating finger print map. 
  
+ %Localization Using Neural Networks in Wireless Sensor Networks \cite{shareef2008localization} - 변화되는 위치에 대응되는 걸 학습한 게 아니라 x,y,z에 대한 3개의 beacon의 l을 finger print map 방식으로 학습한거지! x,y만 추정  grid를 나눠서 모든 공간에 대한 거리에 대한 위치를 finger print 기법
+ 
+ %Localization of Wireless Sensor Network using artificial neural network \cite{rahman2009localization}
+ %TDOA Based Node Localization in WSN using Neural Networks \cite{singh2013tdoa} 2D simulation sequential x MLP ,RBF
+ %Efficient Artificial Intelligent-based Localization Algorithm for Wireless Sensor Networks \cite{abdelhadi2013efficient} : 3D random하게 뿌리지만 simulation sequential modeling을 하지 않음! MLP
+ 
+ %Blanco \textit{et al.} suggest two methods: one method is to employee Rao-blackwellized particle filter(RBPF), which divide one hidden state into the state of landmarks and the state of robot so that variance could be reduced \cite{blanco2008pure}, and the other is to e exploiting the conditional independence between the position distributions of  each beacon within a Rao-Blackwellized Particle Filter (RBPF)  for maintaining independent Sum of Gaussians (SOGs) for  each beacon \cite{blanco2008efficient}  
+ 
+ 
+
+  
+ First, In case of particle filter based RO SLAM, it is more robust than kalman filter based approach, As figure illustrated, you can observe how the Kalman filter based approach performs poorly / when the uncertainty in the beacon position becomes excessively large. And In PF filter based RO SLAM, they exploit Rao-Blackwellization. Rao-blackwellization is a mathematical method. By dividing one hidden states into two variable, it proves that variance can be reduced. 
+ 
+ So they utilize rao-blackwellized particle filter, called RBPF, so many authors separate all states / into states of landmarks and state of robot. But in many cases, they just consider almost annular ambiguity or projected spherical ambiguity, not spherical ambiguity!. 
+ 
+ 
+ On the other hand, kalman filter based approach is steadily studied, and they make efforts to reduce the number of hidden state variables. In case of 3D RO SLAM, there are two angles to be estimated, one is the azimuth angle that indicates angle on horizontal plane, and the other is elevation angle which indicates amount of elevation literally. On state of the art paper about 3D RO SLAM based on EFK, they dramatically reduce the number of hidden states by expressing the hypothesis as multiplication of probability about azimuth angle and elevation angle as this figure shown. 
+ 
+ 
+ Besides, not only for the indoor environment, also on the underwater environment, Olson \textit{et al.} suggest a method for localize a autonomous underwater vehicle(AUV) using extended Kalman Filter(EKF)\cite{olson2006robust}.
+ 
+ Especially, deep learning-based approaches are also implemented to reduce noise of the san
  
  First, it’s very noisy, so it can occur errors easily. Second, the measurement is very ambiguous because each measurement is defined as the probability density of the sensor’s potential position. The last problem is that the landmark location estimations may converge to multi-modal densities.
  Especially, trilateration algorithm has been widely incorporated into robotics fields, especially utilized in the indoor environment to estimate the position of an object by distance measurements obtained from range sensors such as UWB, ultrasonic, laser-based beacon sensors \cite{thomas2005revisiting, cho2010mobile,raghavan2010accurate} due to the convenience of trilateration that estimates the position of a receiver of range sensors if one only knows range measurement. For that reasons, range-only Simultaneous Localization and Mapping(RO-SLAM) methods are utilized popularly, which not only estimate the position of the receiver of range sensors, but also localize the position of range sensors regarded as features on a map, and studies have been conducted continuously in terms of probability-based approach\cite{blanco2008pure,blanco2008efficient,fabresse2013undelayed, shetty2018particle}.
@@ -186,7 +226,7 @@ kilogram, H $=$ henry.}
 \end{table}
 
 
-\section{RO Net}
+\section{WSN Net}
 
 \subsubsection{LSTM}
 
@@ -265,7 +305,7 @@ A safe option when finalizing your figures is to strip out the fonts before
 you save the files, creating ``outline'' type. This converts fonts to 
 artwork what will appear uniformly on any screen.
 
-\subsection{Using Labels Within Figures}
+\section{Experiments}
 
 \subsubsection{Figure Axis labels }
 Figure axis labels are often a source of confusion. Use words rather than 
