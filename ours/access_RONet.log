@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.29)  2 JAN 2019 13:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.29)  2 JAN 2019 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -800,12 +800,9 @@ Package xcolor Warning: Incompatible color definition on input line 162.
 
 Package xcolor Warning: Incompatible color definition on input line 167.
 
-
-Package xcolor Warning: Incompatible color definition on input line 172.
-
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 175.
+Package pdftex.def Info: notaglineLogo.png  used on input line 171.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -823,6 +820,9 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [3]
+
+Package xcolor Warning: Incompatible color definition on input line 172.
+
 
 Package xcolor Warning: Incompatible color definition on input line 176.
 
@@ -866,12 +866,9 @@ Package xcolor Warning: Incompatible color definition on input line 293.
 
 Package xcolor Warning: Incompatible color definition on input line 299.
 
-
-Package xcolor Warning: Incompatible color definition on input line 305.
-
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 305.
+Package pdftex.def Info: notaglineLogo.png  used on input line 304.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -889,6 +886,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [4]
+
+Package xcolor Warning: Incompatible color definition on input line 305.
+
+
 Underfull \hbox (badness 1946) in paragraph at lines 312--317
 \T1/ptm/n/n/10 color space. Grayscale im-ages should be sub-mit-ted in
  []
@@ -931,7 +932,7 @@ Package xcolor Warning: Incompatible color definition on input line 386.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 403.
+Package pdftex.def Info: notaglineLogo.png  used on input line 394.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -982,15 +983,9 @@ Package xcolor Warning: Incompatible color definition on input line 454.
 
 Package xcolor Warning: Incompatible color definition on input line 464.
 
-
-Package xcolor Warning: Incompatible color definition on input line 473.
-
-
-Package xcolor Warning: Incompatible color definition on input line 475.
-
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 475.
+Package pdftex.def Info: notaglineLogo.png  used on input line 472.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1009,6 +1004,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [6 <./image/anchor_tag_nodes.png (PNG copy)> <./image/paths.png (PNG copy)> <./
 image/dataset_process.png (PNG copy)>]
+
+Package xcolor Warning: Incompatible color definition on input line 473.
+
+
+Package xcolor Warning: Incompatible color definition on input line 475.
+
 
 LaTeX Warning: Citation `b3' on page 7 undefined on input line 481.
 
@@ -1068,7 +1069,7 @@ Package xcolor Warning: Incompatible color definition on input line 563.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 579.
+Package pdftex.def Info: notaglineLogo.png  used on input line 573.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1136,7 +1137,7 @@ Package xcolor Warning: Incompatible color definition on input line 1.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 116.
+Package pdftex.def Info: notaglineLogo.png  used on input line 104.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1183,18 +1184,9 @@ Underfull \hbox (badness 2189) in paragraph at lines 659--677
 \T1/ptm/n/it/8 lottesville, in 2001 and the Ph.D. de-gree in
  []
 
-<a3.png, id=63, 72.27pt x 90.3375pt>
-File: a3.png Graphic file (type png)
-<use a3.png>
-Package pdftex.def Info: a3.png  used on input line 679.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-File: a3.png Graphic file (type png)
-<use a3.png>
-Package pdftex.def Info: a3.png  used on input line 679.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 696.
+Package pdftex.def Info: notaglineLogo.png  used on input line 679.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1212,6 +1204,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [9 <./a1.png> <./a2.png>]
+<a3.png, id=68, 72.27pt x 90.3375pt>
+File: a3.png Graphic file (type png)
+<use a3.png>
+Package pdftex.def Info: a3.png  used on input line 679.
+(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
+File: a3.png Graphic file (type png)
+<use a3.png>
+Package pdftex.def Info: a3.png  used on input line 679.
+(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: bullet.png Graphic file (type png)
 <use bullet.png>
 Package pdftex.def Info: bullet.png  used on input line 698.
@@ -1251,11 +1252,11 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  6836 strings out of 492649
  104166 string characters out of 6129622
- 192130 words of memory out of 5000000
+ 193130 words of memory out of 5000000
  10538 multiletter control sequences out of 15000+600000
  104772 words of font info for 146 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,13n,94p,1740b,525s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,13n,94p,1740b,541s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1277,7 +1278,7 @@ lvetic/uhvr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/helvetic/
 uhvro8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/times/utmb8a.pf
 b></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/lo
 cal/texlive/2018/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on access_RONet.pdf (10 pages, 1202203 bytes).
+Output written on access_RONet.pdf (10 pages, 1202355 bytes).
 PDF statistics:
  142 PDF objects out of 1000 (max. 8388607)
  93 compressed objects within 1 object stream

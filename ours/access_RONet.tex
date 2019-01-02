@@ -148,13 +148,13 @@ c_{t} & =f_{t}\cdot c_{t-1}+i_{t}\cdot\tilde{c}_{t}\\
 o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+W_{co}\cdot c_{t}+b_{o}\big)\\
 h_{t} & =o_{t}\cdot \tanh\big(c_{t}\big)
 \end{align}
-where $\sigma$ is the sigmoid function, $i$,$f$,$o$ and $c$ are respectively the input, forget, output gates, and cell activation vectors.
+where $\sigma$ is the sigmoid function, $i_{t}$,$f_{t}$ and $o_{t}$ are respectively the input, forget, output gates, and $c_{t}$ is cell states. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
 \begin{align}
 h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
 h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
 y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
 \end{align}
-$\mathcal{H}$ is Hidden layer activation function
+$\mathcal{H}$ is Hidden layer activation function. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$.
 
 \section{Guidelines for Graphics Preparation and Submission}
 \label{sec:guidelines}
