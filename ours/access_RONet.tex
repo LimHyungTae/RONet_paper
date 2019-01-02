@@ -1,6 +1,6 @@
 \documentclass{ieeeaccess}
 \usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
@@ -8,6 +8,7 @@
 \usepackage{subcaption}
 \usepackage{xcolor}
 \usepackage{color, soul}
+\usepackage{amsmath}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \graphicspath{{image/}}
@@ -17,6 +18,7 @@
 
 }
 \makeatother
+
 
 \begin{document}
 \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
@@ -135,6 +137,24 @@ There are many variations of LSTM architecture. As studies of deep learning are 
 \subsection{Attention}
 
 \textit{Attention} is powerful module nowadays and mostly improves performance of neural network. Originally neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
+
+\section{LSTM equation}
+
+\begin{align}
+i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+W_{ci}\cdot c_{t-1}+b_{i}\big)\\
+f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+W_{cf}\cdot c_{t-1}+b_{f}\big)\\
+\tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\\
+c_{t} & =f_{t}\cdot c_{t-1}+i_{t}\cdot\tilde{c}_{t}\\
+o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+W_{co}\cdot c_{t}+b_{o}\big)\\
+h_{t} & =o_{t}\cdot \tanh\big(c_{t}\big)
+\end{align}
+where $\sigma$ is the sigmoid function, $i$,$f$,$o$ and $c$ are respectively the input, forget, output gates, and cell activation vectors.
+\begin{align}
+h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
+h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
+y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
+\end{align}
+$\mathcal{H}$ is Hidden layer activation function
 
 \section{Guidelines for Graphics Preparation and Submission}
 \label{sec:guidelines}
