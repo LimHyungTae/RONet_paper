@@ -156,6 +156,16 @@ M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
   localization algorithm for wireless sensor networks,'' \emph{Journal of
   Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
 
+\bibitem{ordonez2016deep}
+F.~J. Ord{\'o}{\~n}ez and D.~Roggen, ``Deep convolutional and lstm recurrent
+  neural networks for multimodal wearable activity recognition,''
+  \emph{Sensors}, vol.~16, no.~1, p. 115, 2016.
+
+\bibitem{clark2017vinet}
+R.~Clark, S.~Wang, H.~Wen, A.~Markham, and N.~Trigoni, ``Vinet: Visual-inertial
+  odometry as a sequence-to-sequence learning problem.'' in \emph{AAAI}, 2017,
+  pp. 3995--4001.
+
 \bibitem{olson2006robust}
 E.~Olson, J.~J. Leonard, and S.~Teller, ``Robust range-only beacon
   localization,'' \emph{IEEE Journal of Oceanic Engineering}, vol.~31, no.~4,
@@ -183,16 +193,6 @@ K.~Tateno, F.~Tombari, I.~Laina, and N.~Navab, ``Cnn-slam: Real-time dense
   monocular slam with learned depth prediction,'' in \emph{Proceedings of the
   IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, vol.~2,
   2017.
-
-\bibitem{clark2017vinet}
-R.~Clark, S.~Wang, H.~Wen, A.~Markham, and N.~Trigoni, ``Vinet: Visual-inertial
-  odometry as a sequence-to-sequence learning problem.'' in \emph{AAAI}, 2017,
-  pp. 3995--4001.
-
-\bibitem{ordonez2016deep}
-F.~J. Ord{\'o}{\~n}ez and D.~Roggen, ``Deep convolutional and lstm recurrent
-  neural networks for multimodal wearable activity recognition,''
-  \emph{Sensors}, vol.~16, no.~1, p. 115, 2016.
 
 \bibitem{luong2015effective}
 M.-T. Luong, H.~Pham, and C.~D. Manning, ``Effective approaches to
