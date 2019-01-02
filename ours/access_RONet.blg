@@ -15,45 +15,45 @@ Warning--I didn't find a database entry for "b3"
 Warning--empty journal in smith2018object
 
 Done.
-You've used 52 entries,
+You've used 50 entries,
             3975 wiz_defined-function locations,
-            1092 strings with 17546 characters,
-and the built_in function-call counts, 43775 in all, are:
-= -- 3512
-> -- 1040
-< -- 426
-+ -- 590
-- -- 163
-* -- 2090
-:= -- 6292
-add.period$ -- 121
-call.type$ -- 52
-change.case$ -- 52
-chr.to.int$ -- 1026
-cite$ -- 53
-duplicate$ -- 3087
-empty$ -- 3535
-format.name$ -- 209
-if$ -- 10210
+            1081 strings with 17316 characters,
+and the built_in function-call counts, 42401 in all, are:
+= -- 3394
+> -- 1012
+< -- 413
++ -- 574
+- -- 159
+* -- 2026
+:= -- 6078
+add.period$ -- 117
+call.type$ -- 50
+change.case$ -- 50
+chr.to.int$ -- 996
+cite$ -- 51
+duplicate$ -- 2985
+empty$ -- 3431
+format.name$ -- 203
+if$ -- 9897
 int.to.chr$ -- 0
-int.to.str$ -- 52
-missing$ -- 502
-newline$ -- 176
-num.names$ -- 52
-pop$ -- 1155
+int.to.str$ -- 50
+missing$ -- 487
+newline$ -- 170
+num.names$ -- 50
+pop$ -- 1123
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3424
+skip$ -- 3314
 stack$ -- 0
-substring$ -- 2470
-swap$ -- 2608
-text.length$ -- 84
+substring$ -- 2398
+swap$ -- 2525
+text.length$ -- 81
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
 warning$ -- 1
-while$ -- 212
-width$ -- 54
-write$ -- 519
+while$ -- 206
+width$ -- 52
+write$ -- 500
 (There were 2 warnings)

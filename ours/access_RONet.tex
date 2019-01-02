@@ -156,7 +156,7 @@ Similarly, many researchers also have achived considerable improvement to locali
 Descent (GD), to find optimal way to train neural networks with the best accuracy. Recently, \cite{banihashemian2018new} have proposed the neural networks with novel training technique, called Particle Swarm Optimization(PSO) and prove thire nerwork, called LPSONN, has better localization accuracy than previous machine learning method, soft computing method, and previously proposed network.
 
 The contributions of this paper can be summarized as
-follow:m
+follow:
 
 The paper is divided into five sections. Besides this introductory section, the section II develops the VLC system
 model deployed in the AoA and RSS estimators which are
@@ -268,10 +268,8 @@ in this objective function, we consider both of average error of estimated posit
 beacons and the maximum error of estimated positions among beacons. The optimized
 neural network model is sent to the network and is used for localizing the non-anchor
 nodes.
-
++++
 %analogous: 유사한
-
-
 
 Note that their In case of \cite{shareef2008localization}. They let MLP learn the relationships between range measurement and position of mobile node, yet MLP could not learn sequential modeling. MLP just learn the relationship like generating finger print map. 
 
@@ -333,21 +331,21 @@ There have been many approaches combining Simultaneous Localization and Mapping 
 
 One of the popular SLAM techniques with deep learning is CNN-SLAM \cite{tateno2017cnn} which takes Convolutional Neural Networks (CNNs) to precisely predict the depth from a single image without any scene-based assumptions or geometric constraints, allowing them to recover the absolute scale of reconstruction. Another approach using deep learning for localization is Deep VO \cite{clark2017vinet} In this method, Recurrent Convolutional Neural Networks (RCNNs) is utilized. Specifically, feature representation is learned by Convolutional Neural Networks and Sequential information and motion dynamics are obtained by deep Recurrent Neural Networks without using any module in the classic VO pipeline.
 
-\subsection{Applications of LSTMs}
-
-There are many variations of LSTM architecture. As studies of deep learning are getting popular, various modified architectures of LSTM have been proposed for many tasks in a wide area of science and engineering. Because LSTM is powerful when dealing with sequential data and infering output by using previous inputs, LSTM is utilized to estimate pose by being attached to the end part of deep learning architecture \cite{wang2017deepvo, kendall2015posenet, turan2018deep}  as a stacked form of LSTM. In addition, LSTM takes many various data as input; LSTM is exploited for sequential modeling using LiDAR scan data \cite{gladh2016deep}, images \cite{walch2017image, wang2017deepvo}, IMU \cite{ordonez2016deep}, a fusion of IMU and images \cite{clark2017vinet}. \textcolor{red}{Since existing RO-SLAM performs localization using low-dimensional data, it is difficult to estimate even if the value deviates slightly from the model. In addition, LSTM has the advantage of being able to solve long-term dependence problem of traditional RNN, and it is possible to model it by non-linear mapping through analyzing the current situation without modeling data characteristics separately. Therefore, we propose RO SLAM technology using deep learning based SLAM which applies the advantages of LSTM and deep learning to solve the disadvantages of RO SLAM.}
-
-
 \section{WSN Net}
 
-
-In this chapter, we introduce our proposed neural network model which is used for estimating the robot’s pose and Landmarks’ position when only the range sensor data is given from each distance sensor. Firstly, the overall network architecture \textcolor{red}{is} provided. Then, the details of each part \textcolor{red}{are} explained.  
-
-
-
-As it is illustrated in Fig. 2, our proposed stacked Bi-LSTM \textcolor{red}{can be divided} into 3 parts: (1) Input part, which accepts and \textcolor{red}{preprocesses} the sequences of the \textcolor{red}{sensors} with multiple bidirectional LSTM layers. (2) Hidden layer part consisting of attention modules and bidirectional LSTM layer (3) Output part where a fully-connected output layer gives Robot’s pose and \textcolor{red}{positions} of landmarks as \textcolor{green}{the network's final} results. 
+In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in \textcolor{red}{Fig. 2}. 
+In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and the describe the reason why we let the neural network infer in three-dimensional space even though experiment is conducted on the mobile robot. Finally, we explain how to set the loss function of our neural network and then compare to those of other previous works.
 
 \subsection{long short-Term Memory}
+
+Recurrent Neural Networks(RNN) is a special artificial neural networks in the way that it has a loop, so that RNN can deal with temporal information for sequential modeling. It originally used in the natural language processing, speech recognition, and image captioning area. By virtue of a loop, RNN can remember past data and past situation and respond appropriately to the present situation based on these past information. 
+
+But unfortunately, as the time-sequential gap grows, RNNs become unable to learn the relationship of these sequential information. This issue is called the problem of \textit{Long-Term Dependency},which fail to propagate the previous matter into present tasks so that long-term dependency lead to a failure of learning. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture is introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual
+understandings. Recently, LSTM are also widely used in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
+
+
+Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates: forget gate, input gate, and output gate and eqations of those are as follws:
+
 
 \begin{align}
 i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+W_{ci}\cdot c_{t-1}+b_{i}\big)\\
@@ -357,26 +355,15 @@ c_{t} & =f_{t}\cdot c_{t-1}+i_{t}\cdot\tilde{c}_{t}\\
 o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+W_{co}\cdot c_{t}+b_{o}\big)\\
 h_{t} & =o_{t}\cdot \tanh\big(c_{t}\big)
 \end{align}
+
 where $\sigma$ is the sigmoid function, $i_{t}$,$f_{t}$ and $o_{t}$ are respectively the input, forget, output gates, and $c_{t}$ is cell states. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=.9\linewidth]{bidirectional}
-	\label{fig:bidirectional} 	
-	\caption{Bidirectional LSTM}
-\end{figure}
-\begin{align}
-h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
-h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
-y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
-\end{align}
-$\mathcal{H}$ is Hidden layer activation function. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$.
 
-
-LSTM is a type of Recurrent Neural Networks(RNNs) that has loops so that infer output based on not only the input data, but also the internal state formed by previous information. In other words, while the RNN deals with sequential data, the network has remembered the previous state generated by past inputs and might be able to output the present time step via internal state and input, which is very similar to filtering algorithms.
-
-However, RNNs often have a \textit{vanishing gradient problem},i.e., RNNs fail to propagate the previous matter into present tasks as time step gap grows by. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture was introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual understandings\cite{hochreiter1997long}.
-By virtue of the LSTM architecture that has memory gates and units that enable learning of long-term dependencies\cite{zaremba2014learning}, LSTM are widely used in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
+Forget gate layer: decide how much information to forget
+Input gate layer: decide how much information to embrace
+Output gate layer
+Cell state layer: update new cell state based on forget gate output, input gate output, and previous cell state
+Output gate layer: determine how to output
 
 
 \subsection{Applications of LSTMs}
@@ -391,12 +378,32 @@ There are many variations of LSTM architecture. As studies of deep learning are 
 
 \subsection{Bidirectional LSTM}
 
+It has one forward LSTM and one backward LSTM running in reverse time/ and their features are concatenated at the output layer,/ bidirectional LSTM can produce correct output considering both past and future at the same time
+
 As traditional RO-SLAM \cite{blanco2008pure,blanco2008efficient} takes an odometry which is an accumulated data from the beginning to the present point, our network takes sensor data for the time period l. So, if the current time stamp is t, the input layers take the sensor data obtained from timestamp \textcolor{green}{t-l+1} to t. \textcolor{green}{For dealing with such sequential information, LSTM network which is one of the most appropriate network for sequential data is applied to our network and each LSTM layer is designed to have l cells.} Furthermore, to take \textcolor{red}{an} advantage from the bidirectional time flow, normal time order and reverse time order, we \textcolor{green}{place the bidirectional LSTM layers in the three different locations. Each bidirectional LSTM layer} consists of 2 independent LSTM layers corresponding to normal and reverse time order repectively. Individual LSTM layers play a different role. The LSTM layers of input part take and preprocess the sequence of sensor data. LSTM layer placed between input and output layer takes a spatial information from a previous spatial attention layer and send it to another temporal Attention layer. Lastly, \textcolor{green}{the LSTM layer at the end outputs the positions of robot and landmars.}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.9\linewidth]{bidirectional}
+	\label{fig:bidirectional} 	
+	\caption{Bidirectional LSTM}
+\end{figure}
+\begin{align}
+h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
+h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
+y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
+\end{align}
+
+$\mathcal{H}$ denotes the hidden layer activation function, e.g., $\tanh$ or $\sigma$. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$.
 
 
 \subsection{Stacked Architecture}
 
 In deep learning, the number of layers stacked is getting large, intending to increase the non-linearity and correspondingly to improve the performance. Likewise, the multiple LSTM layers can be stacked as well \cite{dyer2015transition}, enabling more complex representation and higher performance. In stacked Bi-LSTM, total 3 LSTM layers are stacked in the series. 
+
+
+And stacked bidirectional LSTM comes from the idea that the deeper networks, the better the performance of the networks as the complexity of networks increases. 
 
 
 \subsection{Attention layer}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  3 JAN 2019 00:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  3 JAN 2019 01:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -832,7 +832,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 315.
+Package pdftex.def Info: notaglineLogo.png  used on input line 313.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -851,14 +851,25 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [4]
 
-Package xcolor Warning: Incompatible color definition on input line 331.
+Package xcolor Warning: Incompatible color definition on input line 329.
 
 
-Package xcolor Warning: Incompatible color definition on input line 336.
+Package xcolor Warning: Incompatible color definition on input line 334.
+
+
+Underfull \hbox (badness 1377) in paragraph at lines 336--338
+\T1/ptm/n/n/10 In this chap-ter, we ex-plain how our pro-posed resid-ual
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 339.
+
+
+Underfull \vbox (badness 5105) has occurred while \output is active []
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 339.
+Package pdftex.def Info: notaglineLogo.png  used on input line 342.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -877,25 +888,28 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 341.
+Package xcolor Warning: Incompatible color definition on input line 369.
 
 
-Package xcolor Warning: Incompatible color definition on input line 350.
+Package xcolor Warning: Incompatible color definition on input line 375.
+
+
+Package xcolor Warning: Incompatible color definition on input line 379.
 
 <image/bidirectional.png, id=42, 767.5074pt x 554.5518pt>
 File: image/bidirectional.png Graphic file (type png)
 <use image/bidirectional.png>
-Package pdftex.def Info: image/bidirectional.png  used on input line 364.
+Package pdftex.def Info: image/bidirectional.png  used on input line 388.
 (pdftex.def)             Requested size: 218.40471pt x 157.80351pt.
 
-Package xcolor Warning: Incompatible color definition on input line 382.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Package xcolor Warning: Incompatible color definition on input line 388.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 391.
+Package pdftex.def Info: notaglineLogo.png  used on input line 396.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -912,21 +926,18 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[6 <./image/bidirectional.png>]
+[6]
 
-Package xcolor Warning: Incompatible color definition on input line 392.
-
-
-Package xcolor Warning: Incompatible color definition on input line 397.
+Package xcolor Warning: Incompatible color definition on input line 401.
 
 
-Package xcolor Warning: Incompatible color definition on input line 402.
+Package xcolor Warning: Incompatible color definition on input line 409.
 
 
-Package xcolor Warning: Incompatible color definition on input line 408.
+Package xcolor Warning: Incompatible color definition on input line 415.
 
 
-Overfull \hbox (56.90869pt too wide) detected at line 420
+Overfull \hbox (56.90869pt too wide) detected at line 427
 \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Y[]\OMS/cmsy/m/n/10 j\OML/c
 mm/m/it/10 X[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 ((\OML/cmm/
 m/it/10 x[]; y[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 (\OML/cmm/m/
@@ -936,13 +947,13 @@ cmm/m/it/10 l[]; :::; l[]\OT1/cmr/m/n/10 )[]\OML/cmm/m/it/10 :::; \OT1/cmr/m/n/
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 426.
+Package xcolor Warning: Incompatible color definition on input line 433.
 
 
-Package xcolor Warning: Incompatible color definition on input line 427.
+Package xcolor Warning: Incompatible color definition on input line 434.
 
 
-Overfull \hbox (17.40814pt too wide) detected at line 443
+Overfull \hbox (17.40814pt too wide) detected at line 450
 \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[
 ]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + 2(\OML/cmm/m/it/10 y[] \
 OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 y \OT
@@ -952,7 +963,17 @@ y/m/n/10 ^^@ \OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 )
  []
 
 
-Overfull \hbox (17.40814pt too wide) detected at line 446
+Overfull \hbox (17.40814pt too wide) detected at line 453
+\OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[
+]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + 2(\OML/cmm/m/it/10 y[] \
+OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 y \OT
+1/cmr/m/n/10 = ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/1
+0 ^^@ \OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 ) \OMS/cms
+y/m/n/10 ^^@ \OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 )
+ []
+
+
+Overfull \hbox (17.40814pt too wide) detected at line 456
 \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[
 ]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + 2(\OML/cmm/m/it/10 y[] \
 OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 y \OT
@@ -963,7 +984,7 @@ y/m/n/10 ^^@ \OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 )
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 446.
+Package pdftex.def Info: notaglineLogo.png  used on input line 459.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -980,21 +1001,12 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[7]
-Overfull \hbox (17.40814pt too wide) detected at line 449
-\OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[
-]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + 2(\OML/cmm/m/it/10 y[] \
-OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 y \OT
-1/cmr/m/n/10 = ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/1
-0 ^^@ \OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 ) \OMS/cms
-y/m/n/10 ^^@ \OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 )
- []
+[7 <./image/bidirectional.png>]
+
+Package xcolor Warning: Incompatible color definition on input line 478.
 
 
-Package xcolor Warning: Incompatible color definition on input line 471.
-
-
-Overfull \hbox (119.68404pt too wide) detected at line 491
+Overfull \hbox (119.68404pt too wide) detected at line 498
 \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[
 ]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + 2(\OML/cmm/m/it/10 y[] \
 OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 y \OT
@@ -1007,7 +1019,7 @@ cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 ([][
  []
 
 
-Overfull \hbox (119.68404pt too wide) detected at line 495
+Overfull \hbox (119.68404pt too wide) detected at line 502
 \OT1/cmr/m/n/10 2(\OML/cmm/m/it/10 x[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 x[
 ]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 + 2(\OML/cmm/m/it/10 y[] \
 OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 y[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 y \OT
@@ -1020,46 +1032,46 @@ cmsy/m/n/10 ^^@ [][]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 ([][
  []
 
 
-Overfull \hbox (50.73302pt too wide) detected at line 501
+Overfull \hbox (50.73302pt too wide) detected at line 508
 []
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 529.
+Package xcolor Warning: Incompatible color definition on input line 536.
 
 
-Package xcolor Warning: Incompatible color definition on input line 530.
+Package xcolor Warning: Incompatible color definition on input line 537.
 
 <image/anchor_tag_nodes.png, id=54, 320.397pt x 236.082pt>
 File: image/anchor_tag_nodes.png Graphic file (type png)
 <use image/anchor_tag_nodes.png>
-Package pdftex.def Info: image/anchor_tag_nodes.png  used on input line 536.
+Package pdftex.def Info: image/anchor_tag_nodes.png  used on input line 543.
 (pdftex.def)             Requested size: 113.65161pt x 83.74304pt.
 <image/paths.png, id=56, 512.1534pt x 451.9284pt>
 File: image/paths.png Graphic file (type png)
 <use image/paths.png>
-Package pdftex.def Info: image/paths.png  used on input line 542.
+Package pdftex.def Info: image/paths.png  used on input line 549.
 (pdftex.def)             Requested size: 113.65161pt x 100.28653pt.
 <image/dataset_process.png, id=57, 444.7014pt x 239.9364pt>
 File: image/dataset_process.png Graphic file (type png)
 <use image/dataset_process.png>
-Package pdftex.def Info: image/dataset_process.png  used on input line 548.
+Package pdftex.def Info: image/dataset_process.png  used on input line 555.
 (pdftex.def)             Requested size: 227.30324pt x 122.64052pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Package xcolor Warning: Incompatible color definition on input line 567.
+Package xcolor Warning: Incompatible color definition on input line 574.
 
 
-Package xcolor Warning: Incompatible color definition on input line 568.
+Package xcolor Warning: Incompatible color definition on input line 575.
 
 
-Package xcolor Warning: Incompatible color definition on input line 571.
+Package xcolor Warning: Incompatible color definition on input line 578.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 574.
+Package pdftex.def Info: notaglineLogo.png  used on input line 581.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1078,31 +1090,31 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [8]
 
-LaTeX Warning: Reference `fig:trajectory' on page 9 undefined on input line 575
+LaTeX Warning: Reference `fig:trajectory' on page 9 undefined on input line 582
 .
 
 
-Package xcolor Warning: Incompatible color definition on input line 597.
+Package xcolor Warning: Incompatible color definition on input line 604.
 
 
-Package xcolor Warning: Incompatible color definition on input line 609.
+Package xcolor Warning: Incompatible color definition on input line 616.
 
 
-Package xcolor Warning: Incompatible color definition on input line 618.
+Package xcolor Warning: Incompatible color definition on input line 625.
 
 
-Package xcolor Warning: Incompatible color definition on input line 620.
+Package xcolor Warning: Incompatible color definition on input line 627.
 
 
-LaTeX Warning: Citation `b3' on page 9 undefined on input line 626.
+LaTeX Warning: Citation `b3' on page 9 undefined on input line 633.
 
 
 LaTeX Font Warning: Font shape `T1/ptm/n/it' undefined
-(Font)              using `T1/ptm/n/n' instead on input line 627.
+(Font)              using `T1/ptm/n/n' instead on input line 634.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 643.
+Package pdftex.def Info: notaglineLogo.png  used on input line 650.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1122,26 +1134,26 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [9 <./image/anchor_tag_nodes.png> <./image/paths.png> <./image/dataset_process.
 png>]
 
-Package xcolor Warning: Incompatible color definition on input line 652.
+Package xcolor Warning: Incompatible color definition on input line 659.
 
 
-LaTeX Warning: Reference `table' on page 10 undefined on input line 658.
+LaTeX Warning: Reference `table' on page 10 undefined on input line 665.
 
 
-Package xcolor Warning: Incompatible color definition on input line 660.
+Package xcolor Warning: Incompatible color definition on input line 667.
 
 
-Package xcolor Warning: Incompatible color definition on input line 662.
+Package xcolor Warning: Incompatible color definition on input line 669.
 
 
-Package xcolor Warning: Incompatible color definition on input line 677.
+Package xcolor Warning: Incompatible color definition on input line 684.
 
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 677.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 684.
 
 (c:/texlive/2018/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 680.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 687.
 
 
 (c:/texlive/2018/texmf-dist/tex/latex/psnfss/ts1ptm.fd
@@ -1150,86 +1162,86 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 LaTeX Font Warning: Font shape `TS1/ptm/n/n' undefined
 (Font)              using `TS1/ptm/m/n' instead
-(Font)              for symbol `textregistered' on input line 680.
+(Font)              for symbol `textregistered' on input line 687.
 
 
-Underfull \hbox (badness 4779) in paragraph at lines 678--686
+Underfull \hbox (badness 4779) in paragraph at lines 685--693
 \T1/ptm/n/it/10 Contributions to the Trans-ac-tions, Jour-nals, and Let-
  []
 
 
-Underfull \hbox (badness 4940) in paragraph at lines 678--686
+Underfull \hbox (badness 4940) in paragraph at lines 685--693
 \T1/ptm/n/it/10 ters may be sub-mit-ted elec-tron-i-cally on IEEE's on-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 678--686
+Underfull \hbox (badness 10000) in paragraph at lines 685--693
 \T1/ptm/n/it/10 line manuscript sub-mis-sion and peer-review sys-tem,
  []
 
 
-Underfull \hbox (badness 4886) in paragraph at lines 678--686
+Underfull \hbox (badness 4886) in paragraph at lines 685--693
 \T1/ptm/n/it/10 Schol-arOne\TS1/ptm/m/n/10 ® \T1/ptm/n/it/10 Manuscripts. You c
 an get a list-ing of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 678--686
+Underfull \hbox (badness 10000) in paragraph at lines 685--693
 \T1/ptm/n/it/10 the pub-li-ca-tions that par-tic-i-pate in Schol-arOne at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 678--686
+Underfull \hbox (badness 10000) in paragraph at lines 685--693
 []$
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 708.
+Package xcolor Warning: Incompatible color definition on input line 715.
 
 
-Package xcolor Warning: Incompatible color definition on input line 725.
+Package xcolor Warning: Incompatible color definition on input line 732.
 
 
-Underfull \hbox (badness 7397) in paragraph at lines 726--733
+Underfull \hbox (badness 7397) in paragraph at lines 733--740
 \T1/ptm/n/it/10 Authors must sub-mit an elec-tronic IEEE Copy-right
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--733
+Underfull \hbox (badness 10000) in paragraph at lines 733--740
 \T1/ptm/n/it/10 Form (eCF) upon sub-mit-ting their fi-nal manuscript
  []
 
 
-Underfull \hbox (badness 4242) in paragraph at lines 726--733
+Underfull \hbox (badness 4242) in paragraph at lines 733--740
 \T1/ptm/n/it/10 files. You can ac-cess the eCF sys-tem through your
  []
 
 
-Underfull \hbox (badness 3872) in paragraph at lines 726--733
+Underfull \hbox (badness 3872) in paragraph at lines 733--740
 \T1/ptm/n/it/10 manuscript sub-mis-sion sys-tem or through the Au-thor
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 726--733
+Underfull \hbox (badness 3189) in paragraph at lines 733--740
 \T1/ptm/n/it/10 Gate-way. You are re-spon-si-ble for ob-tain-ing any nec-
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 726--733
+Underfull \hbox (badness 3189) in paragraph at lines 733--740
 \T1/ptm/n/it/10 es-sary ap-provals and/or se-cu-rity clear-ances. For ad-di-
  []
 
 
-Underfull \hbox (badness 3492) in paragraph at lines 726--733
+Underfull \hbox (badness 3492) in paragraph at lines 733--740
 \T1/ptm/n/it/10 at $[]$
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 734.
+Package xcolor Warning: Incompatible color definition on input line 741.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 734.
+Package pdftex.def Info: notaglineLogo.png  used on input line 741.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1248,7 +1260,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 [10]
 
-Package xcolor Warning: Incompatible color definition on input line 751.
+Package xcolor Warning: Incompatible color definition on input line 758.
 
 (./access_RONet.bbl
 
@@ -1277,7 +1289,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 274--277
+Underfull \hbox (badness 10000) in paragraph at lines 266--269
 \T1/ptm/m/n/7.61 to attention-based neu-ral ma-chine trans-la-tion,'' arXiv pre
 print
  []
@@ -1286,29 +1298,29 @@ print
 <a1.png, id=74, 72.27pt x 90.3375pt>
 File: a1.png Graphic file (type png)
 <use a1.png>
-Package pdftex.def Info: a1.png  used on input line 778.
+Package pdftex.def Info: a1.png  used on input line 785.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: a1.png Graphic file (type png)
 <use a1.png>
-Package pdftex.def Info: a1.png  used on input line 778.
+Package pdftex.def Info: a1.png  used on input line 785.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 <a2.png, id=77, 72.27pt x 90.3375pt>
 File: a2.png Graphic file (type png)
 <use a2.png>
-Package pdftex.def Info: a2.png  used on input line 804.
+Package pdftex.def Info: a2.png  used on input line 811.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: a2.png Graphic file (type png)
 <use a2.png>
-Package pdftex.def Info: a2.png  used on input line 804.
+Package pdftex.def Info: a2.png  used on input line 811.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 
-Underfull \hbox (badness 2189) in paragraph at lines 804--822
+Underfull \hbox (badness 2189) in paragraph at lines 811--829
 \T1/ptm/n/it/8 lottesville, in 2001 and the Ph.D. de-gree in
  []
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 822.
+Package pdftex.def Info: notaglineLogo.png  used on input line 829.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1329,22 +1341,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 <a3.png, id=84, 72.27pt x 90.3375pt>
 File: a3.png Graphic file (type png)
 <use a3.png>
-Package pdftex.def Info: a3.png  used on input line 824.
+Package pdftex.def Info: a3.png  used on input line 831.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: a3.png Graphic file (type png)
 <use a3.png>
-Package pdftex.def Info: a3.png  used on input line 824.
+Package pdftex.def Info: a3.png  used on input line 831.
 (pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: bullet.png Graphic file (type png)
 <use bullet.png>
-Package pdftex.def Info: bullet.png  used on input line 843.
+Package pdftex.def Info: bullet.png  used on input line 850.
 (pdftex.def)             Requested size: 5.0pt x 14.6871pt.
 \Changes@OutFile=\write3
 \openout3 = `access_RONet.soc'.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 845.
+Package pdftex.def Info: notaglineLogo.png  used on input line 852.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1375,10 +1387,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6902 strings out of 494587
- 104327 string characters out of 6177953
- 185943 words of memory out of 5000000
- 10341 multiletter control sequences out of 15000+600000
+ 6900 strings out of 494587
+ 104286 string characters out of 6177953
+ 185935 words of memory out of 5000000
+ 10339 multiletter control sequences out of 15000+600000
  107575 words of font info for 148 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  59i,13n,94p,1740b,546s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1398,7 +1410,7 @@ ic/uhvbo8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 18/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2018/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on access_RONet.pdf (13 pages, 1637696 bytes).
+Output written on access_RONet.pdf (13 pages, 1637173 bytes).
 PDF statistics:
  148 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream

@@ -257,14 +257,6 @@ K.~Tateno, F.~Tombari, I.~Laina, and N.~Navab, ``Cnn-slam: Real-time dense
   IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, vol.~2,
   2017.
 
-\bibitem{hochreiter1997long}
-S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
-  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
-
-\bibitem{zaremba2014learning}
-W.~Zaremba and I.~Sutskever, ``Learning to execute,'' \emph{arXiv preprint
-  arXiv:1410.4615}, 2014.
-
 \bibitem{dyer2015transition}
 C.~Dyer, M.~Ballesteros, W.~Ling, A.~Matthews, and N.~A. Smith,
   ``Transition-based dependency parsing with stack long short-term memory,''
