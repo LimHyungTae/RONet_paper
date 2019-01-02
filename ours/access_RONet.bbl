@@ -125,6 +125,49 @@ J.~Jung and H.~Myung, ``Indoor localization using particle filter and map-based
   International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
   2011, pp. 5185--5190.
 
+\bibitem{tran2008localization}
+D.~A. Tran and T.~Nguyen, ``Localization in wireless sensor networks based on
+  support vector machines,'' \emph{IEEE Transactions on Parallel and
+  Distributed Systems}, vol.~19, no.~7, pp. 981--994, 2008.
+
+\bibitem{huan2010three}
+R.~Huan, Q.~Chen, K.~Mao, and Y.~Pan, ``A three-dimension localization
+  algorithm for wireless sensor network nodes based on svm,'' in \emph{Green
+  Circuits and Systems (ICGCS), 2010 International Conference on}.\hskip 1em
+  plus 0.5em minus 0.4em\relax IEEE, 2010, pp. 651--654.
+
+\bibitem{feng2012determination}
+V.-s. Feng and S.~Y. Chang, ``Determination of wireless networks parameters
+  through parallel hierarchical support vector machines,'' \emph{IEEE
+  Transactions on Parallel and Distributed Systems}, vol.~23, no.~3, pp.
+  505--512, 2012.
+
+\bibitem{afzal2014localization}
+S.~Afzal and H.~Beigy, ``A localization algorithm for large scale mobile
+  wireless sensor networks: a learning approach,'' \emph{The Journal of
+  Supercomputing}, vol.~69, no.~1, pp. 98--120, 2014.
+
+\bibitem{lee2013new}
+J.~Lee, W.~Chung, and E.~Kim, ``A new kernelized approach to wireless sensor
+  network localization,'' \emph{Information Sciences}, vol. 243, pp. 20--38,
+  2013.
+
+\bibitem{lee2013novel}
+J.~Lee, B.~Choi, and E.~Kim, ``Novel range-free localization based on
+  multidimensional support vector regression trained in the primal space,''
+  \emph{IEEE transactions on neural networks and learning systems}, vol.~24,
+  no.~7, pp. 1099--1113, 2013.
+
+\bibitem{chatterjee2010fletcher}
+A.~Chatterjee, ``A fletcher--reeves conjugate gradient neural-network-based
+  localization algorithm for wireless sensor networks,'' \emph{IEEE
+  transactions on vehicular technology}, vol.~59, no.~2, pp. 823--830, 2010.
+
+\bibitem{samadian2011probabilistic}
+R.~Samadian and S.~M. Noorhosseini, ``Probabilistic support vector machine
+  localization in wireless sensor networks,'' \emph{ETRI Journal}, vol.~33,
+  no.~6, pp. 924--934, 2011.
+
 \bibitem{chenna2004state}
 S.~K. Chenna, Y.~K. Jain, H.~Kapoor, R.~S. Bapi, N.~Yadaiah, A.~Negi, V.~S.
   Rao, and B.~L. Deekshatulu, ``State estimation and tracking problems: A
@@ -155,6 +198,26 @@ P.~Singh and S.~Agrawal, ``Tdoa based node localization in wsn using neural
 M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
   localization algorithm for wireless sensor networks,'' \emph{Journal of
   Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
+
+\bibitem{kumar2016localization}
+S.~Kumar, R.~Sharma, and E.~Vans, ``Localization for wireless sensor networks:
+  A neural network approach,'' \emph{arXiv preprint arXiv:1610.04494}, 2016.
+
+\bibitem{banihashemian2018new}
+S.~S. Banihashemian, F.~Adibnia, and M.~A. Sarram, ``A new range-free and
+  storage-efficient localization algorithm using neural networks in wireless
+  sensor networks,'' \emph{Wireless Personal Communications}, vol.~98, no.~1,
+  pp. 1547--1568, 2018.
+
+\bibitem{bernas2015fully}
+M.~Bernas and B.~P{\l}aczek, ``Fully connected neural networks ensemble with
+  signal strength clustering for indoor localization in wireless sensor
+  networks,'' \emph{International Journal of Distributed Sensor Networks},
+  vol.~11, no.~12, p. 403242, 2015.
+
+\bibitem{jain2010data}
+A.~K. Jain, ``Data clustering: 50 years beyond k-means,'' \emph{Pattern
+  recognition letters}, vol.~31, no.~8, pp. 651--666, 2010.
 
 \bibitem{ordonez2016deep}
 F.~J. Ord{\'o}{\~n}ez and D.~Roggen, ``Deep convolutional and lstm recurrent
@@ -194,6 +257,19 @@ K.~Tateno, F.~Tombari, I.~Laina, and N.~Navab, ``Cnn-slam: Real-time dense
   IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, vol.~2,
   2017.
 
+\bibitem{hochreiter1997long}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
+  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
+
+\bibitem{zaremba2014learning}
+W.~Zaremba and I.~Sutskever, ``Learning to execute,'' \emph{arXiv preprint
+  arXiv:1410.4615}, 2014.
+
+\bibitem{dyer2015transition}
+C.~Dyer, M.~Ballesteros, W.~Ling, A.~Matthews, and N.~A. Smith,
+  ``Transition-based dependency parsing with stack long short-term memory,''
+  \emph{arXiv preprint arXiv:1505.08075}, 2015.
+
 \bibitem{luong2015effective}
 M.-T. Luong, H.~Pham, and C.~D. Manning, ``Effective approaches to
   attention-based neural machine translation,'' \emph{arXiv preprint
@@ -219,13 +295,5 @@ J.~Xu, T.~Yao, Y.~Zhang, and T.~Mei, ``Learning multimodal attention lstm
   networks for video captioning,'' in \emph{Proceedings of the 2017 ACM on
   Multimedia Conference}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2017, pp.
   537--545.
-
-\bibitem{hochreiter1997long}
-S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
-  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
-
-\bibitem{zaremba2014learning}
-W.~Zaremba and I.~Sutskever, ``Learning to execute,'' \emph{arXiv preprint
-  arXiv:1410.4615}, 2014.
 
 \end{thebibliography}

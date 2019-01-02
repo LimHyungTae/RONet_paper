@@ -8,18 +8,6 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ./Access_RObib.bib
-Warning--I didn't find a database entry for "tran2008localization"
-Warning--I didn't find a database entry for "huan2010three"
-Warning--I didn't find a database entry for "feng2012determination"
-Warning--I didn't find a database entry for "afzal2014localization"
-Warning--I didn't find a database entry for "lee2013new"
-Warning--I didn't find a database entry for "lee2013novel"
-Warning--I didn't find a database entry for "chatterjee2010fletcher"
-Warning--I didn't find a database entry for "samadian2011probabilistic"
-Warning--I didn't find a database entry for "kumar2016localization"
-Warning--I didn't find a database entry for "banihashemian2018new"
-Warning--I didn't find a database entry for "bernas2015fully"
-Warning--I didn't find a database entry for "jain2010data"
 Warning--I didn't find a database entry for "b3"
 -- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
@@ -27,45 +15,45 @@ Warning--I didn't find a database entry for "b3"
 Warning--empty journal in smith2018object
 
 Done.
-You've used 39 entries,
+You've used 52 entries,
             3975 wiz_defined-function locations,
-            1032 strings with 15277 characters,
-and the built_in function-call counts, 33183 in all, are:
-= -- 2596
-> -- 816
-< -- 315
-+ -- 463
-- -- 130
-* -- 1580
-:= -- 4691
-add.period$ -- 94
-call.type$ -- 39
-change.case$ -- 39
-chr.to.int$ -- 783
-cite$ -- 40
-duplicate$ -- 2328
-empty$ -- 2760
-format.name$ -- 165
-if$ -- 7768
+            1092 strings with 17546 characters,
+and the built_in function-call counts, 43775 in all, are:
+= -- 3512
+> -- 1040
+< -- 426
++ -- 590
+- -- 163
+* -- 2090
+:= -- 6292
+add.period$ -- 121
+call.type$ -- 52
+change.case$ -- 52
+chr.to.int$ -- 1026
+cite$ -- 53
+duplicate$ -- 3087
+empty$ -- 3535
+format.name$ -- 209
+if$ -- 10210
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 385
-newline$ -- 137
-num.names$ -- 39
-pop$ -- 927
+int.to.str$ -- 52
+missing$ -- 502
+newline$ -- 176
+num.names$ -- 52
+pop$ -- 1155
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2580
+skip$ -- 3424
 stack$ -- 0
-substring$ -- 1879
-swap$ -- 1943
-text.length$ -- 54
+substring$ -- 2470
+swap$ -- 2608
+text.length$ -- 84
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
 warning$ -- 1
-while$ -- 158
-width$ -- 41
-write$ -- 385
-(There were 14 warnings)
+while$ -- 212
+width$ -- 54
+write$ -- 519
+(There were 2 warnings)

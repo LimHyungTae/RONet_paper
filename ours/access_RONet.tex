@@ -24,10 +24,10 @@
 \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
 \doi{10.1109/ACCESS.2017.DOI}
 
-\title{WSNNet: Stacked Bidirectional LSTM with Residual Attention for Indoor Localization of Wireless Sensor Network}
+\title{WSNNet: Bidirectional LSTM with Residual Attention for Indoor Localization of Wireless Sensor Network}
 \author{\uppercase{HYUNGTAE LIM}\authorrefmark{1}, \IEEEmembership{Student Member, IEEE},
 	\uppercase{CHANGGYU PARK}\authorrefmark{1}, \IEEEmembership{Student Member, IEEE},
-	\uppercase{, and Hyun Myung}.\authorrefmark{1},
+	\uppercase{ and Hyun Myung}.\authorrefmark{1},
 	\IEEEmembership{Senior Member, IEEE}}
 \address[1]{Urban Robotics Laboratory, Korea Advanced Institute of Science and Technology, Daejeon 34141, South Korea.}
 
@@ -45,8 +45,6 @@
 As verified experimentally, this new proposal represents a significant improvement in accuracy, computation time, and robustness against outliers.
 
 \end{abstract}
-
-
 
 \begin{keywords}
 Enter key words or phrases in alphabetical 
@@ -137,6 +135,16 @@ for wireless sensor networks that is robust against the anisotropic
 signal attenuation
 
 ++++++
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.5\textwidth]{image/Access_overview_figure_1}
+	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
+	\label{fig:experiment}
+\end{figure}
+
+\section{Related Works}
+
 
 In the past few years, some researchers have conducted the studies for wireless sensor networks to improve the performance of their algorithms by reducing computational complexity or localizing a mobile node more precisely. Also, many machine learning techniques have been introduced: one authors utilized support vector machine(SVM) for localizaiton, \cite{tran2008localization, huan2010three, feng2012determination, afzal2014localization}, other author developed method support vector regression(SVR) for localiztion\cite{lee2013new, lee2013novel}. In \cite{tran2008localization}, authors suggested two SVMs for localization, called LSVMs, one LSVM infers x-dimension and the other LSVM infers y-dimension. To employeeing LSVMs, they divide the field into \textit{M-l} x-classes and \textit{M-l} y-classes, like grid, and this deployment has had an impact on succeeding studies\cite{chatterjee2010fletcher, feng2012determination, afzal2014localization}. Samadian \textit{et al.}\cite{samadian2011probabilistic} introduced probablistic support vector machine for localization and they showed that probablistic vector machine has better performance than LSVM. In terms of SVR, Lee \textit{et al.} suggested various types of SVR for localization\cite{lee2013new, lee2013novel}  
 
@@ -263,6 +271,8 @@ nodes.
 
 %analogous: 유사한
 
+
+
 Note that their In case of \cite{shareef2008localization}. They let MLP learn the relationships between range measurement and position of mobile node, yet MLP could not learn sequential modeling. MLP just learn the relationship like generating finger print map. 
 
 In traditionally connected ANNs, such as the MLP or
@@ -313,6 +323,105 @@ Especially, trilateration algorithm has been widely incorporated into robotics f
 In robotics fields, Blanco SLAM is a technique for building the map information while localizing the position of the robot while moving. Localization of the SLAM predicts the current position of the robot using the landmark measured by the sensor, and mapping locates the terrain object based on the pose of the robot. Research on this technology has been actively carried out, and researches and techniques have been summarized. In 2006, the \textcolor{blue}{ad hoc} sensor network consisting of range detection beacon was applied to SLAM technology for various ranges. This technology integrates node-to-node measurements to reduce drift and expedite node-map convergence \cite{djugash2006range} In 2008, the technique to consistently combine the observation information considering the uncertainty was studied through comparing the experimental data with the actual robot and simulation using Ultra Wide-Band (UWB) devices and Rao-Balckwellized Particle Filter (RBPF) \cite{blanco2008pure}.  In 2012, a simple and efficient algorithm for position recognition with high accuracy and low computational complexity was researched with ultrasonic sensors \cite{yang2012efficient}. In recent years, 3-dimensional-based SLAM has also been under active research and development. In 2013, a localization mapping approach of a wireless sensor network (WSN) node was studied through a centralized EKF-SLAM-based optimization research \cite{fabresse2013undelayed}. In addition, in 2014, a method of minimizing noise and localizing Unmanned Aerial Vehicle (UAV) by using  range-only measurement while simultaneously mapping the position of the wireless range sensors were proposed \cite{fabresse2014robust}. 
 SLAM based on range measurement has been continuously researched and developed then applied to various fields. In this paper, we propose a novel technology that applying deep-learning to range-only SLAM that derives accurate range and robot position measurement through in-depth learning. 
 
+
+
+%Ideal case에서 배치를 같은 높이에 두었을 때는 수식이 A는 full rank가 아니어서  역행렬이 존재하지 않는다. 하지만 real-world에서는 미세한 error가 발생하기 때문에, 
+%만약 full rank 여서 역행렬이 존재한다고 하면 역행렬을 구하는 과정에서 A-1의 값이 엄청 커지게 됨!
+
+\subsection{Deep Learning for Localization}
+There have been many approaches combining Simultaneous Localization and Mapping (SLAM) with deep learning, aiming to overcome the limitations on SLAM only technique such as difficulty on tuning the proper parameters in different environments and recovering an exact scale. Actually, those researches are showing the superior performance to the traditional SLAM approaches.
+
+One of the popular SLAM techniques with deep learning is CNN-SLAM \cite{tateno2017cnn} which takes Convolutional Neural Networks (CNNs) to precisely predict the depth from a single image without any scene-based assumptions or geometric constraints, allowing them to recover the absolute scale of reconstruction. Another approach using deep learning for localization is Deep VO \cite{clark2017vinet} In this method, Recurrent Convolutional Neural Networks (RCNNs) is utilized. Specifically, feature representation is learned by Convolutional Neural Networks and Sequential information and motion dynamics are obtained by deep Recurrent Neural Networks without using any module in the classic VO pipeline.
+
+\subsection{Applications of LSTMs}
+
+There are many variations of LSTM architecture. As studies of deep learning are getting popular, various modified architectures of LSTM have been proposed for many tasks in a wide area of science and engineering. Because LSTM is powerful when dealing with sequential data and infering output by using previous inputs, LSTM is utilized to estimate pose by being attached to the end part of deep learning architecture \cite{wang2017deepvo, kendall2015posenet, turan2018deep}  as a stacked form of LSTM. In addition, LSTM takes many various data as input; LSTM is exploited for sequential modeling using LiDAR scan data \cite{gladh2016deep}, images \cite{walch2017image, wang2017deepvo}, IMU \cite{ordonez2016deep}, a fusion of IMU and images \cite{clark2017vinet}. \textcolor{red}{Since existing RO-SLAM performs localization using low-dimensional data, it is difficult to estimate even if the value deviates slightly from the model. In addition, LSTM has the advantage of being able to solve long-term dependence problem of traditional RNN, and it is possible to model it by non-linear mapping through analyzing the current situation without modeling data characteristics separately. Therefore, we propose RO SLAM technology using deep learning based SLAM which applies the advantages of LSTM and deep learning to solve the disadvantages of RO SLAM.}
+
+
+\section{WSN Net}
+
+
+In this chapter, we introduce our proposed neural network model which is used for estimating the robot’s pose and Landmarks’ position when only the range sensor data is given from each distance sensor. Firstly, the overall network architecture \textcolor{red}{is} provided. Then, the details of each part \textcolor{red}{are} explained.  
+
+
+
+As it is illustrated in Fig. 2, our proposed stacked Bi-LSTM \textcolor{red}{can be divided} into 3 parts: (1) Input part, which accepts and \textcolor{red}{preprocesses} the sequences of the \textcolor{red}{sensors} with multiple bidirectional LSTM layers. (2) Hidden layer part consisting of attention modules and bidirectional LSTM layer (3) Output part where a fully-connected output layer gives Robot’s pose and \textcolor{red}{positions} of landmarks as \textcolor{green}{the network's final} results. 
+
+\subsection{long short-Term Memory}
+
+\begin{align}
+i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+W_{ci}\cdot c_{t-1}+b_{i}\big)\\
+f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+W_{cf}\cdot c_{t-1}+b_{f}\big)\\
+\tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\\
+c_{t} & =f_{t}\cdot c_{t-1}+i_{t}\cdot\tilde{c}_{t}\\
+o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+W_{co}\cdot c_{t}+b_{o}\big)\\
+h_{t} & =o_{t}\cdot \tanh\big(c_{t}\big)
+\end{align}
+where $\sigma$ is the sigmoid function, $i_{t}$,$f_{t}$ and $o_{t}$ are respectively the input, forget, output gates, and $c_{t}$ is cell states. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.9\linewidth]{bidirectional}
+	\label{fig:bidirectional} 	
+	\caption{Bidirectional LSTM}
+\end{figure}
+\begin{align}
+h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
+h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
+y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
+\end{align}
+$\mathcal{H}$ is Hidden layer activation function. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$.
+
+
+LSTM is a type of Recurrent Neural Networks(RNNs) that has loops so that infer output based on not only the input data, but also the internal state formed by previous information. In other words, while the RNN deals with sequential data, the network has remembered the previous state generated by past inputs and might be able to output the present time step via internal state and input, which is very similar to filtering algorithms.
+
+However, RNNs often have a \textit{vanishing gradient problem},i.e., RNNs fail to propagate the previous matter into present tasks as time step gap grows by. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture was introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual understandings\cite{hochreiter1997long}.
+By virtue of the LSTM architecture that has memory gates and units that enable learning of long-term dependencies\cite{zaremba2014learning}, LSTM are widely used in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
+
+
+\subsection{Applications of LSTMs}
+
+There are many variations of LSTM architecture. As studies of deep learning are getting popular, various modified architectures of LSTM have been proposed for many tasks in a wide area of science and engineering. Because LSTM is powerful when dealing with sequential data and infering output by using previous inputs, LSTM is utilized to estimate pose by being attached to the end part of deep learning architecture \cite{wang2017deepvo, kendall2015posenet, turan2018deep}  as a stacked form of LSTM. In addition, LSTM takes many various data as input; LSTM is exploited for sequential modeling using LiDAR scan data \cite{gladh2016deep}, images \cite{walch2017image, wang2017deepvo}, IMU \cite{ordonez2016deep}, a fusion of IMU and images \cite{clark2017vinet}. \textcolor{red}{Since existing RO-SLAM performs localization using low-dimensional data, it is difficult to estimate even if the value deviates slightly from the model. In addition, LSTM has the advantage of being able to solve long-term dependence problem of traditional RNN, and it is possible to model it by non-linear mapping through analyzing the current situation without modeling data characteristics separately. Therefore, we propose RO SLAM technology using deep learning based SLAM which applies the advantages of LSTM and deep learning to solve the disadvantages of RO SLAM.}
+
+
+
+\subsection{Multimodal LSTM}
+
+\textcolor{green}{To} effectively accept the \textcolor{red}{inputs} collected from the multiple sensors, instead of \textcolor{green}{using a single layer} as an input layer, we use \textcolor{green}{several} LSTM layers, thinking that each single sensor represents a different modality. Each layer corresponds to the input of each distance sensor. In other words, if N sensors are used for measuring the distance of the robot, the number of input layers also would be N. \textcolor{green}{And,} the MTh layer accepts an input from the MTh sensor. \textcolor{green}{So, the network is able to represent total N modalities.} By doing so, we can further expect that the input layers \textcolor{green}{can} act as the sensor calibration process in traditional RO-SLAM, allowing the sensors to be tuned respectively with the input layer’s parameters.
+
+\subsection{Bidirectional LSTM}
+
+As traditional RO-SLAM \cite{blanco2008pure,blanco2008efficient} takes an odometry which is an accumulated data from the beginning to the present point, our network takes sensor data for the time period l. So, if the current time stamp is t, the input layers take the sensor data obtained from timestamp \textcolor{green}{t-l+1} to t. \textcolor{green}{For dealing with such sequential information, LSTM network which is one of the most appropriate network for sequential data is applied to our network and each LSTM layer is designed to have l cells.} Furthermore, to take \textcolor{red}{an} advantage from the bidirectional time flow, normal time order and reverse time order, we \textcolor{green}{place the bidirectional LSTM layers in the three different locations. Each bidirectional LSTM layer} consists of 2 independent LSTM layers corresponding to normal and reverse time order repectively. Individual LSTM layers play a different role. The LSTM layers of input part take and preprocess the sequence of sensor data. LSTM layer placed between input and output layer takes a spatial information from a previous spatial attention layer and send it to another temporal Attention layer. Lastly, \textcolor{green}{the LSTM layer at the end outputs the positions of robot and landmars.}
+
+
+\subsection{Stacked Architecture}
+
+In deep learning, the number of layers stacked is getting large, intending to increase the non-linearity and correspondingly to improve the performance. Likewise, the multiple LSTM layers can be stacked as well \cite{dyer2015transition}, enabling more complex representation and higher performance. In stacked Bi-LSTM, total 3 LSTM layers are stacked in the series. 
+
+
+\subsection{Attention layer}
+
+\textit{Attention} is powerful module nowadays and mostly improves performance of neural network. Originally neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
+
+To precisely estimate the Robot’s pose and landmarks’ position, it is important for the network to distinguish which is more meaningful information and which is less \textcolor{green}{for preventing} to focus on less significant information. So, we add the two different types of attention modules \cite{luong2015effective} which extract something more important and related to the task information \textcolor{green}{by making the network to focus on different part of input sequence}. \textcolor{green}{The first attention modules placed between the input LSTM layers and the second LSTM layer are called “Spatial attention modules“. The spatial attention modules are represented as blue blocks in Fig. 2.} These attention modules can judge \textcolor{green}{which sensor has more spatial information.} The second attention \textcolor{red}{modules} corresponding to the red blocks in Fig. 2 \textcolor{red}{are} the \textcolor{green}{"Temporal attention modules". These temporal attention modules can determine which time stamp has more useful information about time,} allowing the network to attend that time stamp more.  
+
+\subsection{Training loss}
+
+ Unlike existing RO-SLAM methods that localize a robot by probability-based approach or filtering method like Kalman filter, etc., our approach localize  robot's position by letting the networks be trained by distance data and ground truth of the robot's position. We express the problem statement for the localization of the robot using range measurements. The training input data set is formulated as follows: 
+\begin{equation}
+%$L = \left\{(X_t, Y_t)\right \}$ 
+L = {(X_t, Y_t)} 
+\end{equation}
+where $X_t = \left\{(l_1, l_2... , l_m)_t, m = 1,...,M \right \}$ denotes input range data from range sensors and $M$ is the number of UWB sensors at time $t$. Ground truth of the robot's 2D position is denoted as $Y_t = \left\{(x_t, y_t)\right \}$.
+
+Let $\Theta$ be the parameters of a RNN model and assume that the trained RNN model could be expressed as conditional probability as follows:
+\begin{equation}
+P(Y_t|X_t) = p((x_t, y_t)|(l_1,..., l_m)_{t-T+1},(l_1,..., l_m)_{t-T+2}..., (l_1,..., l_m)_t)
+\end{equation}  
+where $T$ indicates sequential length of input to LSTM. Then, our final goal is to find optimal parameters $\Theta^{*}$ for localization by minimizing mean square error(MSE) of Euclidean distance between ground truth position $Y_k$ and estimated position $\hat{Y_k}$ as follows:
+\begin{equation}
+\Theta^{*} = \underset{\Theta}{\mathrm{argmin}} \frac{1}{N} \sum_{k=1}^N \parallel Y_k - \hat{Y_k} \parallel^{2}
+\end{equation}  
 
 \subsection{Why on three-dimensional?}
 \subsubsection{2D}
@@ -385,8 +494,10 @@ b_{2D} = \left[ {\begin{array}{c}
 ({d_1}^2-{d_3}^2)-({x_1}^2-{x_3}^2)-({y_1}^2-{y_3}^2)-({z_1}^2-{z_3}^2)
 \end{equation}
 \begin{equation}
-2(x_4-x_1)x+2(y_4-y_1)y+2(z_4-z_1)z=
-({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)-({z_1}^2-{z_4}^2)
+\substack{
+	2(x_4-x_1)x+2(y_4-y_1)y+2(z_4-z_1)z=
+	({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)-({z_1}^2-{z_4}^2)
+}
 \end{equation}
 \begin{equation}
 A_{3D}X_{3D}=b_{3D}
@@ -403,226 +514,17 @@ A_{3D} =\left[ {\begin{array}{ccc}
 \end{equation}
 \begin{equation}
 b_{3D} = \left[ {\begin{array}{c}
-	({d_1}^2-{d_2}^2)-({x_1}^2-{x_2}^2)-({y_1}^2-{y_2}^2)-({z_1}^2-{z_2}^2)\\
-	({d_1}^2-{d_3}^2)-({x_1}^2-{x_3}^2)-({y_1}^2-{y_3}^2)-({z_1}^2-{z_3}^2)\\
-	({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)-({z_1}^2-{z_4}^2)\\
+	\substack{
+		({d_1}^2-{d_2}^2)-({x_1}^2-{x_2}^2)-({y_1}^2-{y_2}^2)-({z_1}^2-{z_2}^2)\\
+		({d_1}^2-{d_3}^2)-({x_1}^2-{x_3}^2)-({y_1}^2-{y_3}^2)-({z_1}^2-{z_3}^2)\\
+		({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)-({z_1}^2-{z_4}^2)\\
+	}
 	\end{array} } \right]
 \end{equation}
 
 Unlike the case of 2D, $A_{3D}$ consists of $z$ components on the third column. Let $a_{3D}^{ij}$ be the $i^{th}$ row and $j^{th}$ component of $A_{3D}$. In ideal case the anchor nodes are placed to square position with equal height, then $a_{3D}^{12}$, $a_{3D}^{31}$, and elements of the third colums are equal to zero. This cause the rank dificiency, however that terms could not be the zero even though the anchor nodes are placed carefully. in real-world, it is hard to put the anchor nodes with exactly same position. As a result, $z_1\approx z_2\approx z_3\approx z_4$ $A_{3D}$  
 
 
-%Ideal case에서 배치를 같은 높이에 두었을 때는 수식이 A는 full rank가 아니어서  역행렬이 존재하지 않는다. 하지만 real-world에서는 미세한 error가 발생하기 때문에, 
-%만약 full rank 여서 역행렬이 존재한다고 하면 역행렬을 구하는 과정에서 A-1의 값이 엄청 커지게 됨!
-
-\subsection{Deep Learning for Localization}
-There have been many approaches combining Simultaneous Localization and Mapping (SLAM) with deep learning, aiming to overcome the limitations on SLAM only technique such as difficulty on tuning the proper parameters in different environments and recovering an exact scale. Actually, those researches are showing the superior performance to the traditional SLAM approaches.
-
-One of the popular SLAM techniques with deep learning is CNN-SLAM \cite{tateno2017cnn} which takes Convolutional Neural Networks (CNNs) to precisely predict the depth from a single image without any scene-based assumptions or geometric constraints, allowing them to recover the absolute scale of reconstruction. Another approach using deep learning for localization is Deep VO \cite{clark2017vinet} In this method, Recurrent Convolutional Neural Networks (RCNNs) is utilized. Specifically, feature representation is learned by Convolutional Neural Networks and Sequential information and motion dynamics are obtained by deep Recurrent Neural Networks without using any module in the classic VO pipeline.
-
-\subsection{Applications of LSTMs}
-
-There are many variations of LSTM architecture. As studies of deep learning are getting popular, various modified architectures of LSTM have been proposed for many tasks in a wide area of science and engineering. Because LSTM is powerful when dealing with sequential data and infering output by using previous inputs, LSTM is utilized to estimate pose by being attached to the end part of deep learning architecture \cite{wang2017deepvo, kendall2015posenet, turan2018deep}  as a stacked form of LSTM. In addition, LSTM takes many various data as input; LSTM is exploited for sequential modeling using LiDAR scan data \cite{gladh2016deep}, images \cite{walch2017image, wang2017deepvo}, IMU \cite{ordonez2016deep}, a fusion of IMU and images \cite{clark2017vinet}. \textcolor{red}{Since existing RO-SLAM performs localization using low-dimensional data, it is difficult to estimate even if the value deviates slightly from the model. In addition, LSTM has the advantage of being able to solve long-term dependence problem of traditional RNN, and it is possible to model it by non-linear mapping through analyzing the current situation without modeling data characteristics separately. Therefore, we propose RO SLAM technology using deep learning based SLAM which applies the advantages of LSTM and deep learning to solve the disadvantages of RO SLAM.}
-
-\subsection{Attention}
-
-\textit{Attention} is powerful module nowadays and mostly improves performance of neural network. Originally neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
-
-\section{LSTM equation}
-
-\begin{align}
-i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+W_{ci}\cdot c_{t-1}+b_{i}\big)\\
-f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+W_{cf}\cdot c_{t-1}+b_{f}\big)\\
-\tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\\
-c_{t} & =f_{t}\cdot c_{t-1}+i_{t}\cdot\tilde{c}_{t}\\
-o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+W_{co}\cdot c_{t}+b_{o}\big)\\
-h_{t} & =o_{t}\cdot \tanh\big(c_{t}\big)
-\end{align}
-where $\sigma$ is the sigmoid function, $i_{t}$,$f_{t}$ and $o_{t}$ are respectively the input, forget, output gates, and $c_{t}$ is cell states. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=.9\linewidth]{bidirectional}
-	\label{fig:bidirectional} 	
-	\caption{Bidirectional LSTM}
-\end{figure}
-\begin{align}
-h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
-h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
-y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
-\end{align}
-$\mathcal{H}$ is Hidden layer activation function. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$.
-
-
-\section{Guidelines for Graphics Preparation and Submission}
-\label{sec:guidelines}
-
-\subsection{Types of Graphics}
-The following list outlines the different types of graphics published in 
-IEEE journals. They are categorized based on their construction, and use of 
-color/shades of gray:
-
-\subsubsection{Color/Grayscale figures}
-{Figures that are meant to appear in color, or shades of black/gray. Such 
-figures may include photographs, illustrations, multicolor graphs, and 
-flowcharts.}
-
-\subsubsection{Line Art figures}
-{Figures that are composed of only black lines and shapes. These figures 
-should have no shades or half-tones of gray, only black and white.}
-
-\subsubsection{Author photos}
-{Head and shoulders shots of authors that appear at the end of our papers. }
-
-\subsubsection{Tables}
-{Data charts which are typically black and white, but sometimes include 
-color.}
-
-\begin{table}
-\caption{Units for Magnetic Properties}
-\label{table}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{|p{25pt}|p{75pt}|p{115pt}|}
-\hline
-Symbol& 
-Quantity& 
-Conversion from Gaussian and \par CGS EMU to SI $^{\mathrm{a}}$ \\
-\hline
-$\Phi $& 
-magnetic flux& 
-1 Mx $\to  10^{-8}$ Wb $= 10^{-8}$ V$\cdot $s \\
-$B$& 
-magnetic flux density, \par magnetic induction& 
-1 G $\to  10^{-4}$ T $= 10^{-4}$ Wb/m$^{2}$ \\
-$H$& 
-magnetic field strength& 
-1 Oe $\to  10^{3}/(4\pi )$ A/m \\
-$m$& 
-magnetic moment& 
-1 erg/G $=$ 1 emu \par $\to 10^{-3}$ A$\cdot $m$^{2} = 10^{-3}$ J/T \\
-$M$& 
-magnetization& 
-1 erg/(G$\cdot $cm$^{3}) =$ 1 emu/cm$^{3}$ \par $\to 10^{3}$ A/m \\
-4$\pi M$& 
-magnetization& 
-1 G $\to  10^{3}/(4\pi )$ A/m \\
-$\sigma $& 
-specific magnetization& 
-1 erg/(G$\cdot $g) $=$ 1 emu/g $\to $ 1 A$\cdot $m$^{2}$/kg \\
-$j$& 
-magnetic dipole \par moment& 
-1 erg/G $=$ 1 emu \par $\to 4\pi \times  10^{-10}$ Wb$\cdot $m \\
-$J$& 
-magnetic polarization& 
-1 erg/(G$\cdot $cm$^{3}) =$ 1 emu/cm$^{3}$ \par $\to 4\pi \times  10^{-4}$ T \\
-$\chi , \kappa $& 
-susceptibility& 
-1 $\to  4\pi $ \\
-$\chi_{\rho }$& 
-mass susceptibility& 
-1 cm$^{3}$/g $\to  4\pi \times  10^{-3}$ m$^{3}$/kg \\
-$\mu $& 
-permeability& 
-1 $\to  4\pi \times  10^{-7}$ H/m \par $= 4\pi \times  10^{-7}$ Wb/(A$\cdot $m) \\
-$\mu_{r}$& 
-relative permeability& 
-$\mu \to \mu_{r}$ \\
-$w, W$& 
-energy density& 
-1 erg/cm$^{3} \to  10^{-1}$ J/m$^{3}$ \\
-$N, D$& 
-demagnetizing factor& 
-1 $\to  1/(4\pi )$ \\
-\hline
-\multicolumn{3}{p{251pt}}{Vertical lines are optional in tables. Statements that serve as captions for 
-the entire table do not need footnote letters. }\\
-\multicolumn{3}{p{251pt}}{$^{\mathrm{a}}$Gaussian units are the same as cg emu for magnetostatics; Mx 
-$=$ maxwell, G $=$ gauss, Oe $=$ oersted; Wb $=$ weber, V $=$ volt, s $=$ 
-second, T $=$ tesla, m $=$ meter, A $=$ ampere, J $=$ joule, kg $=$ 
-kilogram, H $=$ henry.}
-\end{tabular}
-\label{tab1}
-\end{table}
-
-
-\section{WSN Net}
-
-\subsubsection{LSTM}
-
-LSTM is a type of Recurrent Neural Networks(RNNs) that has loops so that infer output based on not only the input data, but also the internal state formed by previous information. In other words, while the RNN deals with sequential data, the network has remembered the previous state generated by past inputs and might be able to output the present time step via internal state and input, which is very similar to filtering algorithms.
-
-However, RNNs often have a \textit{vanishing gradient problem},i.e., RNNs fail to propagate the previous matter into present tasks as time step gap grows by. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture was introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual understandings\cite{hochreiter1997long}.
-By virtue of the LSTM architecture that has memory gates and units that enable learning of long-term dependencies\cite{zaremba2014learning}, LSTM are widely used in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
-
-\subsection{Multipart figures}
-Figures compiled of more than one sub-figure presented side-by-side, or 
-stacked. If a multipart figure is made up of multiple figure
-types (one part is lineart, and another is grayscale or color) the figure 
-should meet the stricter guidelines.
-
-\subsection{File Formats For Graphics}\label{formats}
-Format and save your graphics using a suitable graphics processing program 
-that will allow you to create the images as PostScript (PS), Encapsulated 
-PostScript (.EPS), Tagged Image File Format (.TIFF), Portable Document 
-Format (.PDF), Portable Network Graphics (.PNG), or Metapost (.MPS), sizes them, and adjusts 
-the resolution settings. When 
-submitting your final paper, your graphics should all be submitted 
-individually in one of these formats along with the manuscript.
-
-\subsection{Sizing of Graphics}
-Most charts, graphs, and tables are one column wide (3.5 inches/88 
-millimeters/21 picas) or page wide (7.16 inches/181 millimeters/43 
-picas). The maximum depth a graphic can be is 8.5 inches (216 millimeters/54
-picas). When choosing the depth of a graphic, please allow space for a 
-caption. Figures can be sized between column and page widths if the author 
-chooses, however it is recommended that figures are not sized less than 
-column width unless when necessary. 
-
-There is currently one publication with column measurements that do not 
-coincide with those listed above. Proceedings of the IEEE has a column 
-measurement of 3.25 inches (82.5 millimeters/19.5 picas). 
-
-The final printed size of author photographs is exactly
-1 inch wide by 1.25 inches tall (25.4 millimeters$\,\times\,$31.75 millimeters/6 
-picas$\,\times\,$7.5 picas). Author photos printed in editorials measure 1.59 inches 
-wide by 2 inches tall (40 millimeters$\,\times\,$50 millimeters/9.5 picas$\,\times\,$12 
-picas).
-
-\subsection{Resolution }
-The proper resolution of your figures will depend on the type of figure it 
-is as defined in the ``Types of Figures'' section. Author photographs, 
-color, and grayscale figures should be at least 300dpi. Line art, including 
-tables should be a minimum of 600dpi.
-
-\subsection{Vector Art}
-In order to preserve the figures' integrity across multiple computer 
-platforms, we accept files in the following formats: .EPS/.PDF/.PS. All 
-fonts must be embedded or text converted to outlines in order to achieve the 
-best-quality results.
-
-\subsection{Color Space}
-The term color space refers to the entire sum of colors that can be 
-represented within the said medium. For our purposes, the three main color 
-spaces are Grayscale, RGB (red/green/blue) and CMYK 
-(cyan/magenta/yellow/black). RGB is generally used with on-screen graphics, 
-whereas CMYK is used for printing purposes.
-
-All color figures should be generated in RGB or CMYK color space. Grayscale 
-images should be submitted in Grayscale color space. Line art may be 
-provided in grayscale OR bitmap colorspace. Note that ``bitmap colorspace'' 
-and ``bitmap file format'' are not the same thing. When bitmap color space 
-is selected, .TIF/.TIFF/.PNG are the recommended file formats.
-
-\subsection{Accepted Fonts Within Figures}
-When preparing your graphics IEEE suggests that you use of one of the 
-following Open Type fonts: Times New Roman, Helvetica, Arial, Cambria, and 
-Symbol. If you are supplying EPS, PS, or PDF files all fonts must be 
-embedded. Some fonts may only be native to your operating system; without 
-the fonts embedded, parts of the graphic may be distorted or missing.
-
-A safe option when finalizing your figures is to strip out the fonts before 
-you save the files, creating ``outline'' type. This converts fonts to 
-artwork what will appear uniformly on any screen.
 
 \section{Experiments}
 \subsection{Experimental environment}
@@ -662,98 +564,43 @@ The UWB tag is attached to mobile robot that has a small compact computer. The U
 
 During the robot is going on, the data is saved in the computer. The distance data used for input data is measured by the UWB sensors. The global position data used for ground truth is measured by the motion capture system. These two kinds of data are paired in a dataset. The computer receives these two kinds of data respectively and syncronizes these by time. To synchronize, we make an independent thread that concatenates and saves these data at the same time. The data is saved at 20Hz frequency. Each trajectory becomes one dataset. All the trajectories are different. Fig. \ref{fig:experiment}(c) shows this process. After collecting whole datasets, we separate the entire dataset to two types, some are the training datasets and others are test datasets.
 
-\subsubsection{Figure Axis labels }
-Figure axis labels are often a source of confusion. Use words rather than 
-symbols. As an example, write the quantity ``Magnetization,'' or 
-``Magnetization M,'' not just ``M.'' Put units in parentheses. Do not label 
-axes only with units. As in Fig. 1, for example, write ``Magnetization 
-(A/m)'' or ``Magnetization (A$\cdot$m$^{-1}$),'' not just ``A/m.'' Do not label axes with a ratio of quantities and 
-units. For example, write ``Temperature (K),'' not ``Temperature/K.'' 
+\subsection{Data syncronization for Train/Test data}
+\subsection{Training the Networks}
 
-Multipliers can be especially confusing. Write ``Magnetization (kA/m)'' or 
-``Magnetization (10$^{3}$ A/m).'' Do not write ``Magnetization 
-(A/m)$\,\times\,$1000'' because the reader would not know whether the top 
-axis label in Fig. 1 meant 16000 A/m or 0.016 A/m. Figure labels should be 
-legible, approximately 8 to 10 point type.
 
-\subsubsection{Subfigure Labels in Multipart Figures and Tables}
-Multipart figures should be combined and labeled before final submission. 
-Labels should appear centered below each subfigure in 8 point Times New 
-Roman font in the format of (a) (b) (c). 
+\section{Results}
 
-\subsection{File Naming}
-Figures (line artwork or photographs) should be named starting with the 
-first 5 letters of the author's last name. The next characters in the 
-filename should be the number that represents the sequential 
-location of this image in your article. For example, in author 
-``Anderson's'' paper, the first three figures would be named ander1.tif, 
-ander2.tif, and ander3.ps.
+\textcolor{green}{To verify our proposal that RNNs can estimate the robot's position through varying range data, we trained our RNN-based multimodal architecture. Plus, to compare to previous traditional SLAM algorithm, we also estimate robot's position by particle filter(PF) based algorithm.}
 
-Tables should contain only the body of the table (not the caption) and 
-should be named similarly to figures, except that `.t' is inserted 
-in-between the author's name and the table number. For example, author 
-Anderson's first three tables would be named ander.t1.tif, ander.t2.ps, 
-ander.t3.eps.
+As illustrated in Experiment session, train data are our own data gathered by UWB sensors and motion capture camera, so neural networks take range-only measurements as input and output robot's position. Ground truth data is robot's position measured by eagle eye motion capturer, whose error is in mm units. The results of trajectory prediction are shown in Fig. \ref{fig:trajectory} and Root-Mean-Squared Error (RMSE) are shown in Table \ref{table:RMSE_table}. Note that out experiment is conducted on mobile robot, so we can pre-estimates that z position of robot is almost similar while robot is running. 
 
-Author photographs should be named using the first five characters of the 
-pictured author's last name. For example, four author photographs for a 
-paper may be named: oppen.ps, moshc.tif, chen.eps, and duran.pdf.
+We set two test trajectory cases: an square path and zigzag path. an The results shows that it has better performance than established probabilistic-based approach. In both cases, performance of our networks  is better that of particle filter. RMSE of our networks in test1 is 3.928cm and 4.119cm in test2.
 
-If two authors or more have the same last name, their first initial(s) can 
-be substituted for the fifth, fourth, third$\ldots$ letters of their surname 
-until the degree where there is differentiation. For example, two authors 
-Michael and Monica Oppenheimer's photos would be named oppmi.tif, and 
-oppmo.eps.
+We also verified effectiveness of attention layer. It was confirmed that the performance of the networks with the attention layer is improved compared to the networks without the attention layer.
 
-\subsection{Referencing a Figure or Table Within Your Paper}
-When referencing your figures and tables within your paper, use the 
-abbreviation ``Fig.'' even at the beginning of a sentence. Do not abbreviate 
-``Table.'' Tables should be numbered with Roman Numerals.
+\begin{table}[h]
+	\begin{tabular}{lllcc}
+		\hline
+		\multicolumn{5}{c}{The results of RMSE{[}cm{]}}                                                                          \\ \hline
+		\multicolumn{3}{c|}{Model}                                        & \multicolumn{1}{c|}{Test1}          & Test2          \\ \hline
+		\multicolumn{3}{l|}{Particle Filter-based w/o pre-estimates of z} & \multicolumn{1}{c|}{11.253}         & 9.195          \\
+		\multicolumn{3}{l|}{Particle Filter-based}                        & \multicolumn{1}{c|}{5.525}          & 5.258          \\
+		\multicolumn{3}{l|}{Multimodal(Ours)}                                   & \multicolumn{1}{c|}{4.225}          & 4.311          \\
+		\multicolumn{3}{l|}{Multimodal(Ours) + attention}                       & \multicolumn{1}{c|}{\textbf{3.928}} & \textbf{4.119}
+	\end{tabular}
+	\caption{Root mean squared error of each case}
+	\label{table:RMSE_table}
+\end{table}
 
-\subsection{Checking Your Figures: The IEEE Graphics Analyzer}
-The IEEE Graphics Analyzer enables authors to pre-screen their graphics for 
-compliance with IEEE Access standards before submission. 
-The online tool, located at
-\underline{http://graphicsqc.ieee.org/}, allows authors to 
-upload their graphics in order to check that each file is the correct file 
-format, resolution, size and colorspace; that no fonts are missing or 
-corrupt; that figures are not compiled in layers or have transparency, and 
-that they are named according to the IEEE Access naming 
-convention. At the end of this automated process, authors are provided with 
-a detailed report on each graphic within the web applet, as well as by 
-email.
 
-For more information on using the Graphics Analyzer or any other graphics 
-related topic, contact the IEEE Graphics Help Desk by e-mail at 
-graphics@ieee.org.
-
-\subsection{Submitting Your Graphics}
-Because IEEE will do the final formatting of your paper,
-you do not need to position figures and tables at the top and bottom of each 
-column. In fact, all figures, figure captions, and tables can be placed at 
-the end of your paper. In addition to, or even in lieu of submitting figures 
-within your final manuscript, figures should be submitted individually, 
-separate from the manuscript in one of the file formats listed above in 
-Section \ref{formats}. Place figure captions below the figures; place table titles 
-above the tables. Please do not include captions as part of the figures, or 
-put them in ``text boxes'' linked to the figures. Also, do not place borders 
-around the outside of your figures.
-
-\subsection{Color Processing/Printing in IEEE Journals}
-All IEEE Transactions, Journals, and Letters allow an author to publish 
-color figures on IEEE Xplore\textregistered\ at no charge, and automatically 
-convert them to grayscale for print versions. In most journals, figures and 
-tables may alternatively be printed in color if an author chooses to do so. 
-Please note that this service comes at an extra expense to the author. If 
-you intend to have print color graphics, include a note with your final 
-paper indicating which figures or tables you would like to be handled that 
-way, and stating that you are willing to pay the additional fee.
 
 \section{Conclusion}
-A conclusion section is not required. Although a conclusion may review the 
-main points of the paper, do not replicate the abstract as the conclusion. A 
-conclusion might elaborate on the importance of the work or suggest 
-applications and extensions. 
+
+In this paper, we proposed a novel approach to range-only SLAM using multimodal-based RNN models and tested our architectures in two test data.
+
+Using deep learning, our structure directly learns the end-to-end mapping between distance data and robot position. The multimodal bidirectional stacked LSTM structure exhibits the precise estimates of robot positions. We set two test trajectory cases: an square path and zigzag path. an The results shows that it has better performance than established probabilistic-based approach. In both cases, performance of our networks  is better that of particle filter. RMSE of our networks in test1 is 3.928cm and 4.119cm in test2. Therefore, we could check the possibility that our multimodal LSTM-based structure can substitute traditional algorithms
+
+As a future work, because we conducted on just localization, this approach may not be operated when locations of sensors are changed. Therefore, the proposed method needs to be revised for precise estimates even though locations of anchors are changed. 
 
 \appendices
 
