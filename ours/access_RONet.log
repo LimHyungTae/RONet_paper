@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  3 JAN 2019 01:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  3 JAN 2019 14:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -904,9 +904,6 @@ Package pdftex.def Info: image/bidirectional.png  used on input line 388.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
 Package pdftex.def Info: notaglineLogo.png  used on input line 396.
@@ -1410,7 +1407,7 @@ ic/uhvbo8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 18/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2018/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on access_RONet.pdf (13 pages, 1637173 bytes).
+Output written on access_RONet.pdf (13 pages, 1638234 bytes).
 PDF statistics:
  148 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream

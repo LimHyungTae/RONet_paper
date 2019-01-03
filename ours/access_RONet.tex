@@ -344,8 +344,7 @@ But unfortunately, as the time-sequential gap grows, RNNs become unable to learn
 understandings. Recently, LSTM are also widely used in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
 
 
-Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates: forget gate, input gate, and output gate and eqations of those are as follws:
-
+Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates to preserve the previous information and control the cell state: forget gate, input gate, and output gate and equations of those are as follows:
 
 \begin{align}
 i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+W_{ci}\cdot c_{t-1}+b_{i}\big)\\
@@ -356,7 +355,7 @@ o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+W_{co}\cdot c_{t}+b_{o
 h_{t} & =o_{t}\cdot \tanh\big(c_{t}\big)
 \end{align}
 
-where $\sigma$ is the sigmoid function, $i_{t}$,$f_{t}$ and $o_{t}$ are respectively the input, forget, output gates, and $c_{t}$ is cell states. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
+where $\sigma$ is a kind of activation function, called \textit{sigmoid}, $i_{t}$, $f_{t}$ and $o_{t}$ respectively indicates the input gate, forget gate, output gates, and $c_{t}$ is cell states. And $\odot$ denotes element-wise multiplication, called \textit{Hadamard product}. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
 
 
 Forget gate layer: decide how much information to forget
