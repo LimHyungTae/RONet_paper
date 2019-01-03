@@ -257,10 +257,60 @@ K.~Tateno, F.~Tombari, I.~Laina, and N.~Navab, ``Cnn-slam: Real-time dense
   IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, vol.~2,
   2017.
 
-\bibitem{dyer2015transition}
-C.~Dyer, M.~Ballesteros, W.~Ling, A.~Matthews, and N.~A. Smith,
-  ``Transition-based dependency parsing with stack long short-term memory,''
-  \emph{arXiv preprint arXiv:1505.08075}, 2015.
+\bibitem{hochreiter1997long}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
+  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
+
+\bibitem{schuster1997bidirectional}
+M.~Schuster and K.~K. Paliwal, ``Bidirectional recurrent neural networks,''
+  \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
+  2673--2681, 1997.
+
+\bibitem{zhang2017multi}
+F.~Zhang, C.~Hu, Q.~Yin, W.~Li, H.-C. Li, and W.~Hong, ``Multi-aspect-aware
+  bidirectional lstm networks for synthetic aperture radar target
+  recognition,'' \emph{IEEE Access}, vol.~5, pp. 26\,880--26\,891, 2017.
+
+\bibitem{li2018human}
+W.~Li, W.~Nie, and Y.~Su, ``Human action recognition based on selected
+  spatio-temporal features via bidirectional lstm,'' \emph{IEEE Access},
+  vol.~6, pp. 44\,211--44\,220, 2018.
+
+\bibitem{ullah2018action}
+A.~Ullah, J.~Ahmad, K.~Muhammad, M.~Sajjad, and S.~W. Baik, ``Action
+  recognition in video sequences using deep bi-directional lstm with cnn
+  features,'' \emph{IEEE Access}, vol.~6, pp. 1155--1166, 2018.
+
+\bibitem{simonyan2014very}
+K.~Simonyan and A.~Zisserman, ``Very deep convolutional networks for
+  large-scale image recognition,'' \emph{arXiv preprint arXiv:1409.1556}, 2014.
+
+\bibitem{he2016deep}
+K.~He, X.~Zhang, S.~Ren, and J.~Sun, ``Deep residual learning for image
+  recognition,'' in \emph{Proceedings of the IEEE conference on computer vision
+  and pattern recognition}, 2016, pp. 770--778.
+
+\bibitem{graves2013hybrid}
+A.~Graves, N.~Jaitly, and A.-r. Mohamed, ``Hybrid speech recognition with deep
+  bidirectional lstm,'' in \emph{Automatic Speech Recognition and Understanding
+  (ASRU), 2013 IEEE Workshop on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
+  2013, pp. 273--278.
+
+\bibitem{graves2013speech}
+A.~Graves, A.-r. Mohamed, and G.~Hinton, ``Speech recognition with deep
+  recurrent neural networks,'' in \emph{Acoustics, speech and signal processing
+  (icassp), 2013 ieee international conference on}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2013, pp. 6645--6649.
+
+\bibitem{pascanu2013difficulty}
+R.~Pascanu, T.~Mikolov, and Y.~Bengio, ``On the difficulty of training
+  recurrent neural networks,'' in \emph{International Conference on Machine
+  Learning}, 2013, pp. 1310--1318.
+
+\bibitem{nair2010rectified}
+V.~Nair and G.~E. Hinton, ``Rectified linear units improve restricted boltzmann
+  machines,'' in \emph{Proceedings of the 27th international conference on
+  machine learning (ICML-10)}, 2010, pp. 807--814.
 
 \bibitem{luong2015effective}
 M.-T. Luong, H.~Pham, and C.~D. Manning, ``Effective approaches to
@@ -287,5 +337,10 @@ J.~Xu, T.~Yao, Y.~Zhang, and T.~Mei, ``Learning multimodal attention lstm
   networks for video captioning,'' in \emph{Proceedings of the 2017 ACM on
   Multimedia Conference}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2017, pp.
   537--545.
+
+\bibitem{wang2017residual}
+F.~Wang, M.~Jiang, C.~Qian, S.~Yang, C.~Li, H.~Zhang, X.~Wang, and X.~Tang,
+  ``Residual attention network for image classification,'' \emph{arXiv preprint
+  arXiv:1704.06904}, 2017.
 
 \end{thebibliography}

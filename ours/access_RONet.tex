@@ -24,7 +24,7 @@
 \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
 \doi{10.1109/ACCESS.2017.DOI}
 
-\title{WSNNet: Bidirectional LSTM with Residual Attention for Indoor Localization of Wireless Sensor Network}
+\title{WSNNet: Stacked Bidirectional LSTM with Residual Attention for Indoor Localization of Wireless Sensor Network}
 \author{\uppercase{HYUNGTAE LIM}\authorrefmark{1}, \IEEEmembership{Student Member, IEEE},
 	\uppercase{CHANGGYU PARK}\authorrefmark{1}, \IEEEmembership{Student Member, IEEE},
 	\uppercase{ and Hyun Myung}.\authorrefmark{1},
@@ -144,7 +144,6 @@ signal attenuation
 \end{figure}
 
 \section{Related Works}
-
 
 In the past few years, some researchers have conducted the studies for wireless sensor networks to improve the performance of their algorithms by reducing computational complexity or localizing a mobile node more precisely. Also, many machine learning techniques have been introduced: one authors utilized support vector machine(SVM) for localizaiton, \cite{tran2008localization, huan2010three, feng2012determination, afzal2014localization}, other author developed method support vector regression(SVR) for localiztion\cite{lee2013new, lee2013novel}. In \cite{tran2008localization}, authors suggested two SVMs for localization, called LSVMs, one LSVM infers x-dimension and the other LSVM infers y-dimension. To employeeing LSVMs, they divide the field into \textit{M-l} x-classes and \textit{M-l} y-classes, like grid, and this deployment has had an impact on succeeding studies\cite{chatterjee2010fletcher, feng2012determination, afzal2014localization}. Samadian \textit{et al.}\cite{samadian2011probabilistic} introduced probablistic support vector machine for localization and they showed that probablistic vector machine has better performance than LSVM. In terms of SVR, Lee \textit{et al.} suggested various types of SVR for localization\cite{lee2013new, lee2013novel}  
 
@@ -336,51 +335,48 @@ One of the popular SLAM techniques with deep learning is CNN-SLAM \cite{tateno20
 In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in \textcolor{red}{Fig. 2}. 
 In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and the describe the reason why we let the neural network infer in three-dimensional space even though experiment is conducted on the mobile robot. Finally, we explain how to set the loss function of our neural network and then compare to those of other previous works.
 
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=.9\textwidth]{image/networks}
+	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
+	\label{fig:experiment}
+\end{figure*}
+
+
 \subsection{long short-Term Memory}
 
 Recurrent Neural Networks(RNN) is a special artificial neural networks in the way that it has a loop, so that RNN can deal with temporal information for sequential modeling. It originally used in the natural language processing, speech recognition, and image captioning area. By virtue of a loop, RNN can remember past data and past situation and respond appropriately to the present situation based on these past information. 
 
 But unfortunately, as the time-sequential gap grows, RNNs become unable to learn the relationship of these sequential information. This issue is called the problem of \textit{Long-Term Dependency},which fail to propagate the previous matter into present tasks so that long-term dependency lead to a failure of learning. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture is introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual
-understandings. Recently, LSTM are also widely used in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
-
+understandings \cite{hochreiter1997long}. That's why LSTM have been actively studied for many tasks in a wide area of science and engineering.in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
 
 Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates to preserve the previous information and control the cell state: forget gate, input gate, and output gate and equations of those are as follows:
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.4\textwidth]{image/basic_LSTM}
+	\caption{It introduce 3 gates, forget gate, input gate, and output gate. And output gate is divided into cell state layer(Green) and output gate layer(cyan) 
+	}
+	\label{fig:basic_lstm}
+\end{figure}
+
 \begin{align}
-i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+b_{i}\big)\\
-f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+b_{f}\big)\\
-o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+b_{o}\big)\\
-\tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\\
-c_{t} & =f_{t}\odot c_{t-1}+i_{t}\odot\tilde{c}_{t}\\
-h_{t} & =o_{t}\odot \tanh\big(c_{t}\big)
+f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+b_{f}\big)\label{eq:forget}\\
+i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+b_{i}\big)\label{eq:input}\\
+tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\label{eq:new_cell}\\
+c_{t} & =f_{t}\odot c_{t-1}+i_{t}\odot\tilde{c}_{t}\label{eq:update}\\
+o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+b_{o}\big)\label{eq:output}\\
+h_{t} & =o_{t}\odot \tanh\big(c_{t}\big)\label{eq:hidden}
 \end{align}
 
-where $\sigma$ is a kind of activation function, called \textit{sigmoid}, $i_{t}$, $f_{t}$ and $o_{t}$ respectively indicates the input gate, forget gate, output gates, and $c_{t}$ is cell states. And $\odot$ denotes element-wise multiplication, called \textit{Hadamard product}. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
+where $\sigma$ is a kind of activation function, called \textit{sigmoid},  $f_{t}$, $i_{t}$, and $o_{t}$ respectively indicates the forget gate, input gate, and output gates, and $c_{t}$ denotes cell states. And $\odot$ denotes element-wise multiplication, called \textit{Hadamard product}. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
 
+The Forget gate layer, $f_{t}$, decides how much information to forget. The sigmoid layer, which is the activation function of $f_{t}$, takes previous hidden state, $h_{t}$, and present input, $x_{t}$ and outputs a number between 0 and 1. Note that 1 indicates "totally keep the previous cell state, $C_{t-1}$" and 0 indicate "totally forget $C_{t-1}$" \eqref{eq:forget}. Next, the input gate, $i_{t}$, decides how much information to embrace when updating the cell state. $i_{t}$ are also from the sigmoid function layer \eqref{eq:input} and $tanh$ generates the new candidate cell state, $\tilde{c}_{t}$, which ranges from -1 to 1 \eqref{eq:new_cell}. After that, $c_{t}$ is updated by the cell state layer based on $f_{t}$, $i_{t}$, and $\tilde{c}_{t}$ \eqref{eq:update}. In addition, output gate layer, $o_{t}$, sereves as a filter, which means $o_{t}$ determine what values are going to output \eqref{eq:output} in such a way as that present hidden state, $h_{t}$, is updated based on $o_{t}$ updated cell state, $c_{t}$ \eqref{eq:hidden}. 
 
-Forget gate layer: decide how much information to forget
-Input gate layer: decide how much information to embrace
-Output gate layer
-Cell state layer: update new cell state based on forget gate output, input gate output, and previous cell state
-Output gate layer: determine how to output
-
-
-\subsection{Applications of LSTMs}
-
-There are many variations of LSTM architecture. As studies of deep learning are getting popular, various modified architectures of LSTM have been proposed for many tasks in a wide area of science and engineering. Because LSTM is powerful when dealing with sequential data and infering output by using previous inputs, LSTM is utilized to estimate pose by being attached to the end part of deep learning architecture \cite{wang2017deepvo, kendall2015posenet, turan2018deep}  as a stacked form of LSTM. In addition, LSTM takes many various data as input; LSTM is exploited for sequential modeling using LiDAR scan data \cite{gladh2016deep}, images \cite{walch2017image, wang2017deepvo}, IMU \cite{ordonez2016deep}, a fusion of IMU and images \cite{clark2017vinet}. \textcolor{red}{Since existing RO-SLAM performs localization using low-dimensional data, it is difficult to estimate even if the value deviates slightly from the model. In addition, LSTM has the advantage of being able to solve long-term dependence problem of traditional RNN, and it is possible to model it by non-linear mapping through analyzing the current situation without modeling data characteristics separately. Therefore, we propose RO SLAM technology using deep learning based SLAM which applies the advantages of LSTM and deep learning to solve the disadvantages of RO SLAM.}
-
-
-
-\subsection{Multimodal LSTM}
-
-\textcolor{green}{To} effectively accept the \textcolor{red}{inputs} collected from the multiple sensors, instead of \textcolor{green}{using a single layer} as an input layer, we use \textcolor{green}{several} LSTM layers, thinking that each single sensor represents a different modality. Each layer corresponds to the input of each distance sensor. In other words, if N sensors are used for measuring the distance of the robot, the number of input layers also would be N. \textcolor{green}{And,} the MTh layer accepts an input from the MTh sensor. \textcolor{green}{So, the network is able to represent total N modalities.} By doing so, we can further expect that the input layers \textcolor{green}{can} act as the sensor calibration process in traditional RO-SLAM, allowing the sensors to be tuned respectively with the input layer’s parameters.
 
 \subsection{Bidirectional LSTM}
 
-It has one forward LSTM and one backward LSTM running in reverse time/ and their features are concatenated at the output layer,/ bidirectional LSTM can produce correct output considering both past and future at the same time
-
-As traditional RO-SLAM \cite{blanco2008pure,blanco2008efficient} takes an odometry which is an accumulated data from the beginning to the present point, our network takes sensor data for the time period l. So, if the current time stamp is t, the input layers take the sensor data obtained from timestamp \textcolor{green}{t-l+1} to t. \textcolor{green}{For dealing with such sequential information, LSTM network which is one of the most appropriate network for sequential data is applied to our network and each LSTM layer is designed to have l cells.} Furthermore, to take \textcolor{red}{an} advantage from the bidirectional time flow, normal time order and reverse time order, we \textcolor{green}{place the bidirectional LSTM layers in the three different locations. Each bidirectional LSTM layer} consists of 2 independent LSTM layers corresponding to normal and reverse time order repectively. Individual LSTM layers play a different role. The LSTM layers of input part take and preprocess the sequence of sensor data. LSTM layer placed between input and output layer takes a spatial information from a previous spatial attention layer and send it to another temporal Attention layer. Lastly, \textcolor{green}{the LSTM layer at the end outputs the positions of robot and landmars.}
-
+One shortcoming of conventional RNNs is that they only exploit previous context to update $h_{t}$ and $c_{t}$. However, in many cases dealing with sequential data, it could be efficient to extract well-discribed context by utilizing future context as well. Bidirectional RNNs are introduced\cite{schuster1997bidirectional} for that reason and bidirectional RNNs process the data in both directions with two separate hidden layers. Especially, bidirectional LSTM, which we employee, has one forward LSTM and one backward LSTM running in reverse time and their features are combined at the output layer, $y_{t}$. As a result, bidirectional LSTM can produce more appropriate context considering both past and future at the same time. By virtue of this characteristics, bidirectional LSTM is popularly utilized for many tasks to model their sequentional systems \cite{zhang2017multi,li2018human,ullah2018action}. 
 
 \begin{figure}[h!]
 	\centering
@@ -388,32 +384,43 @@ As traditional RO-SLAM \cite{blanco2008pure,blanco2008efficient} takes an odomet
 	\label{fig:bidirectional} 	
 	\caption{Bidirectional LSTM}
 \end{figure}
+
+As FIGURE. \textcolor{red}{\ref{fig:bidirectional}} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
+
 \begin{align}
 h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
 h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
 y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
 \end{align}
 
-$\mathcal{H}$ denotes the hidden layer activation function, e.g., $\tanh$ or $\sigma$. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$.
+
+where $\mathcal{H}$ denotes the hidden layer activation function, e.g., $\tanh$ or $\sigma$. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$. Note that in our case, we concatenate $h^{f}_{t}$ and $h^{b}_{t}$ to preverse their contexts seperately as our range measurement, which is gathered by the tag node and each anchor node, suffer from the \textit{rank-dificiency},which means range-based measurement consist of one-dimensional data\cite{fabresse2013undelayed}. Hence, we judge that it would be more helpful to increase the number of features naturally by concatenating two hidden states rather than adding them and when the network infer the position  .
 
 
 \subsection{Stacked Architecture}
 
-In deep learning, the number of layers stacked is getting large, intending to increase the non-linearity and correspondingly to improve the performance. Likewise, the multiple LSTM layers can be stacked as well \cite{dyer2015transition}, enabling more complex representation and higher performance. In stacked Bi-LSTM, total 3 LSTM layers are stacked in the series. 
+Recently, researchers show that the deeper the architecture of neural networks, the better their performance\cite{simonyan2014very, he2016deep} and their demonstrations has opened a deep learning area. Likewise, many authors have analyzed variations of LSTM architecture and find out that stacking multiple layers of the LSTM improve the performance for many tasks\cite{graves2013hybrid, graves2013speech,ullah2018action}. In other words, as the number of stacked layers is getting large, the more activation functions which rise the non-linearity within the networks are stacked  in such a way as that complexity of networks increases. As a results, networks could model more complex system by virture of these increased non-linerity.
+
+Therefore, we also construct our networks by stacking two LSTM to increase the non-linearity. Note that stacking more than three LSTM doesn't show the improvement of performance. We suppose that activation funtions within the LSTM cause the \textit{vanishing gradient problem}\cite{pascanu2013difficulty}, which the networks fail to training due to the fact that the gradient is getting closer to zero during the backpropagation. We deem that this problem could comes from the sigmoid function and $tanh$ function that compose the part of LSTM. Consequently, we put the ReLu function between LSTMs to avoid the vanishing gradient problem\cite{nair2010rectified}, instead of stacking LSTM.    
+
+\subsection{Residual Attention layer}
+
+A Attention layer is powerful module nowadays and mostly improves performance of neural network. Originally, neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
+
+To precisely estimate the position of the tag node, it is important for the network to distinguish which is more meaningful context on time step \textit{T} to help contextual understanding of our  networks. So, we add the attention layer between the LSTM and the attention layer take on a role of a feature selector\cite{wang2017residual}.  two different types of attention modules \cite{luong2015effective} which extract something more important and related to the task information \textcolor{green}{by making the network to focus on different part of input sequence}. \textcolor{green}{The first attention modules placed between the input LSTM layers and the second LSTM layer are called “Spatial attention modules“. The spatial attention modules are represented as blue blocks in Fig. 2.} These attention modules can judge \textcolor{green}{which sensor has more spatial information.} The second attention \textcolor{red}{modules} corresponding to the red blocks in Fig. 2 \textcolor{red}{are} the \textcolor{green}{"Temporal attention modules". These temporal attention modules can determine which time stamp has more useful information about time,} allowing the network to attend that time stamp more.  
 
 
-And stacked bidirectional LSTM comes from the idea that the deeper networks, the better the performance of the networks as the complexity of networks increases. 
-
-
-\subsection{Attention layer}
-
-\textit{Attention} is powerful module nowadays and mostly improves performance of neural network. Originally neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
-
-To precisely estimate the Robot’s pose and landmarks’ position, it is important for the network to distinguish which is more meaningful information and which is less \textcolor{green}{for preventing} to focus on less significant information. So, we add the two different types of attention modules \cite{luong2015effective} which extract something more important and related to the task information \textcolor{green}{by making the network to focus on different part of input sequence}. \textcolor{green}{The first attention modules placed between the input LSTM layers and the second LSTM layer are called “Spatial attention modules“. The spatial attention modules are represented as blue blocks in Fig. 2.} These attention modules can judge \textcolor{green}{which sensor has more spatial information.} The second attention \textcolor{red}{modules} corresponding to the red blocks in Fig. 2 \textcolor{red}{are} the \textcolor{green}{"Temporal attention modules". These temporal attention modules can determine which time stamp has more useful information about time,} allowing the network to attend that time stamp more.  
+output layer takes a spatial information from a previous spatial attention layer and send it to another temporal Attention layer. Lastly, \textcolor{green}{the LSTM layer at the end outputs the positions of robot and landmars.}
 
 \subsection{Training loss}
 
  Unlike existing RO-SLAM methods that localize a robot by probability-based approach or filtering method like Kalman filter, etc., our approach localize  robot's position by letting the networks be trained by distance data and ground truth of the robot's position. We express the problem statement for the localization of the robot using range measurements. The training input data set is formulated as follows: 
+ 
+ 
+\begin{equation}
+\left\{(L_{11}, L_{12}, ..., L_{1m}, P_1),...,(L_{n1}, L_{n2}, ..., L_{nm}, P_n)\right\}
+\end{equation} 
+
 \begin{equation}
 %$L = \left\{(X_t, Y_t)\right \}$ 
 L = {(X_t, Y_t)} 
@@ -430,6 +437,15 @@ where $T$ indicates sequential length of input to LSTM. Then, our final goal is 
 \end{equation}  
 
 \subsection{Why on three-dimensional?}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.4\textwidth]{image/3D_error_increasing}
+	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
+	\label{fig:experiment}
+\end{figure}
+
+
 \subsubsection{2D}
 \begin{equation}
 (x-x_1)^2+(y-y_1)^2={d_1}^2
@@ -600,6 +616,21 @@ We also verified effectiveness of attention layer. It was confirmed that the per
 
 
 
+The results of trajectory prediction are shown in Fig. 3(a) and Fig. 3(d) and
+Root-Mean-Squared Error (RMSE) are shown in Table 1. Performance is better
+in order of stacked Bi-LSTM, Bi-LSTM, LSTM and GRU. In case of GRU, it
+has only two gates which is less complex structure than LSTM [27]. However,
+due to GRU's less complexity, GRU has less number of neurons than LSTM so
+their non-linear mapping achieves less performance. Likewise, Bi-LSTM consists
+of two LSTMs to process sequence in two directions so that infer output using
+the correlation of the backward information and the forward information of the
+sequences of each time step with its two separate hidden layers. Thus, Bi-LSTM
+has better nonlinear mapping capability than LSTM. For similar reasons, stacked
+Bi-LSTM is the architecture that stacks two Bi-LSTMs, so inference performance
+is better than Bi-LSTM. As a result, the stacked Bi-LSTM showed the best
+performance among unit RNN architectures. Therefore, we can conclude that
+the performance improves as the non-linearity of the architecture increases.
+
 \section{Conclusion}
 
 In this paper, we proposed a novel approach to range-only SLAM using multimodal-based RNN models and tested our architectures in two test data.
@@ -621,160 +652,6 @@ like to thank $\ldots$ .'' Instead, write ``F. A. Author thanks $\ldots$ .'' In 
 cases, sponsor and financial support acknowledgments are placed in the 
 unnumbered footnote on the first page, not here.
 
-\section*{References and Footnotes}
-
-\subsection{References}
-References need not be cited in text. When they are, they appear on the 
-line, in square brackets, inside the punctuation. Multiple references are 
-each numbered with separate brackets. When citing a section in a book, 
-please give the relevant page numbers. In text, refer simply to the 
-reference number. Do not use ``Ref.'' or ``reference'' except at the 
-beginning of a sentence: ``Reference \cite{b3} shows $\ldots$ .'' Please do not use 
-automatic endnotes in \emph{Word}, rather, type the reference list at the end of the 
-paper using the ``References'' style.
-
-Reference numbers are set flush left and form a column of their own, hanging 
-out beyond the body of the reference. The reference numbers are on the line, 
-enclosed in square brackets. In all references, the given name of the author 
-or editor is abbreviated to the initial only and precedes the last name. Use 
-them all; use \emph{et al.} only if names are not given. Use commas around Jr., 
-Sr., and III in names. Abbreviate conference titles. When citing IEEE 
-transactions, provide the issue number, page range, volume number, year, 
-and/or month if available. When referencing a patent, provide the day and 
-the month of issue, or application. References may not include all 
-information; please obtain and include relevant information. Do not combine 
-references. There must be only one reference with each number. If there is a 
-URL included with the print reference, it can be included at the end of the 
-reference. 
-
-Other than books, capitalize only the first word in a paper title, except 
-for proper nouns and element symbols. For papers published in translation 
-journals, please give the English citation first, followed by the original 
-foreign-language citation See the end of this document for formats and 
-examples of common references. For a complete discussion of references and 
-their formats, see the IEEE style manual at
-\underline{http://www.ieee.org/authortools}.
-
-\subsection{Footnotes}
-Number footnotes separately in superscript numbers.\footnote{It is recommended that footnotes be avoided (except for 
-the unnumbered footnote with the receipt date on the first page). Instead, 
-try to integrate the footnote information into the text.} Place the actual 
-footnote at the bottom of the column in which it is cited; do not put 
-footnotes in the reference list (endnotes). Use letters for table footnotes 
-(see Table \ref{table}).
-
-\section{Submitting Your Paper for Review}
-
-\subsection{Final Stage}
-When you submit your final version (after your paper has been accepted), 
-print it in two-column format, including figures and tables. You must also 
-send your final manuscript on a disk, via e-mail, or through a Web 
-manuscript submission system as directed by the society contact. You may use 
-\emph{Zip} for large files, or compress files using \emph{Compress, Pkzip, Stuffit,} or \emph{Gzip.} 
-
-Also, send a sheet of paper or PDF with complete contact information for all 
-authors. Include full mailing addresses, telephone numbers, fax numbers, and 
-e-mail addresses. This information will be used to send each author a 
-complimentary copy of the journal in which the paper appears. In addition, 
-designate one author as the ``corresponding author.'' This is the author to 
-whom proofs of the paper will be sent. Proofs are sent to the corresponding 
-author only.
-
-\subsection{Review Stage Using ScholarOne\textregistered\ Manuscripts}
-Contributions to the Transactions, Journals, and Letters may be submitted 
-electronically on IEEE's on-line manuscript submission and peer-review 
-system, ScholarOne\textregistered\ Manuscripts. You can get a listing of the 
-publications that participate in ScholarOne at 
-\underline{http://www.ieee.org/publications\_standards/publications/}\break\underline{authors/authors\_submission.html}.
-First check if you have an existing account. If there is none, please create 
-a new account. After logging in, go to your Author Center and click ``Submit 
-First Draft of a New Manuscript.'' 
-
-Along with other information, you will be asked to select the subject from a 
-pull-down list. Depending on the journal, there are various steps to the 
-submission process; you must complete all steps for a complete submission. 
-At the end of each step you must click ``Save and Continue''; just uploading 
-the paper is not sufficient. After the last step, you should see a 
-confirmation that the submission is complete. You should also receive an 
-e-mail confirmation. For inquiries regarding the submission of your paper on 
-ScholarOne Manuscripts, please contact oprs-support@ieee.org or call +1 732 
-465 5861.
-
-ScholarOne Manuscripts will accept files for review in various formats. 
-Please check the guidelines of the specific journal for which you plan to 
-submit.
-
-You will be asked to file an electronic copyright form immediately upon 
-completing the submission process (authors are responsible for obtaining any 
-security clearances). Failure to submit the electronic copyright could 
-result in publishing delays later. You will also have the opportunity to 
-designate your article as ``open access'' if you agree to pay the IEEE open 
-access fee. 
-
-\subsection{Final Stage Using ScholarOne Manuscripts}
-Upon acceptance, you will receive an email with specific instructions 
-regarding the submission of your final files. To avoid any delays in 
-publication, please be sure to follow these instructions. Most journals 
-require that final submissions be uploaded through ScholarOne Manuscripts, 
-although some may still accept final submissions via email. Final 
-submissions should include source files of your accepted manuscript, high 
-quality graphic files, and a formatted pdf file. If you have any questions 
-regarding the final submission process, please contact the administrative 
-contact for the journal. 
-
-In addition to this, upload a file with complete contact information for all 
-authors. Include full mailing addresses, telephone numbers, fax numbers, and 
-e-mail addresses. Designate the author who submitted the manuscript on 
-ScholarOne Manuscripts as the ``corresponding author.'' This is the only 
-author to whom proofs of the paper will be sent. 
-
-\subsection{Copyright Form}
-Authors must submit an electronic IEEE Copyright Form (eCF) upon submitting 
-their final manuscript files. You can access the eCF system through your 
-manuscript submission system or through the Author Gateway. You are 
-responsible for obtaining any necessary approvals and/or security 
-clearances. For additional information on intellectual property rights, 
-visit the IEEE Intellectual Property Rights department web page at 
-\underline{http://www.ieee.org/publications\_standards/publications/}\break\underline{rights/index.html}. 
-
-\section{IEEE Publishing Policy}
-The general IEEE policy requires that authors should only submit original 
-work that has neither appeared elsewhere for publication, nor is under 
-review for another refereed publication. The submitting author must disclose 
-all prior publication(s) and current submissions when submitting a 
-manuscript. Do not publish ``preliminary'' data or results. The submitting 
-author is responsible for obtaining agreement of all coauthors and any 
-consent required from employers or sponsors before submitting an article. 
-The IEEE Access Department strongly discourages courtesy 
-authorship; it is the obligation of the authors to cite only relevant prior 
-work.
-
-The IEEE Access Department does not publish conference 
-records or proceedings, but can publish articles related to conferences that 
-have undergone rigorous peer review. Minimally, two reviews are required for 
-every article submitted for peer review.
-
-\section{Publication Principles}
-The two types of contents of that are published are; 1) peer-reviewed and 2) 
-archival. The Access Department publishes scholarly 
-articles of archival value as well as tutorial expositions and critical 
-reviews of classical subjects and topics of current interest. 
-
-Authors should consider the following points:
-
-\begin{enumerate}
-\item Technical papers submitted for publication must advance the state of knowledge and must cite relevant prior work. 
-\item The length of a submitted paper should be commensurate with the importance, or appropriate to the complexity, of the work. For example, an obvious extension of previously published work might not be appropriate for publication or might be adequately treated in just a few pages.
-\item Authors must convince both peer reviewers and the editors of the scientific and technical merit of a paper; the standards of proof are higher when extraordinary or unexpected results are reported. 
-\item Because replication is required for scientific progress, papers submitted for publication must provide sufficient information to allow readers to perform similar experiments or calculations and 
-use the reported results. Although not everything need be disclosed, a paper 
-must contain new, useable, and fully described information. For example, a 
-specimen's chemical composition need not be reported if the main purpose of 
-a paper is to introduce a new measurement technique. Authors should expect 
-to be challenged by reviewers if the results are not supported by adequate 
-data and critical details.
-\item Papers that describe ongoing work or announce the latest technical achievement, which are suitable for presentation at a professional conference, may not be appropriate for publication.
-\end{enumerate}
 
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
