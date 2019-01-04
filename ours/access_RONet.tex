@@ -350,15 +350,15 @@ Unlike RNN that consist only of hidden state, in LSTM, cell state is added on th
 \end{figure}
 
 \begin{align}
-f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+b_{f}\big)\label{eq:forget}\\
-i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+b_{i}\big)\label{eq:input}\\
+f_{t} & =\sigma _{s}\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+b_{f}\big)\label{eq:forget}\\
+i_{t} & =\sigma _{s}\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+b_{i}\big)\label{eq:input}\\
 \tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\label{eq:new_cell}\\
 c_{t} & =f_{t}\odot c_{t-1}+i_{t}\odot\tilde{c}_{t}\label{eq:update}\\
-o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+b_{o}\big)\label{eq:output}\\
+o_{t} & =\sigma _{s}\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+b_{o}\big)\label{eq:output}\\
 h_{t} & =o_{t}\odot \tanh\big(c_{t}\big)\label{eq:hidden}
 \end{align}
 
-where $\sigma$ is a kind of activation function, called \textit{sigmoid},  $f_{t}$, $i_{t}$, and $o_{t}$ respectively indicates the forget gate, input gate, and output gates, and $c_{t}$ denotes cell states. And $\odot$ denotes element-wise multiplication, called \textit{Hadamard product}. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
+where $\sigma _{s}$ is a kind of activation function, called \textit{sigmoid},  $f_{t}$, $i_{t}$, and $o_{t}$ respectively indicates the forget gate, input gate, and output gates, and $c_{t}$ denotes cell states. And $\odot$ denotes element-wise multiplication, called \textit{Hadamard product}. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
 
 The Forget gate layer, $f_{t}$, decides how much information to forget. The sigmoid layer, which is the activation function of $f_{t}$, takes previous hidden state, $h_{t}$, and present input, $x_{t}$ and outputs a number between 0 and 1. Note that 1 indicates "totally keep the previous cell state, $C_{t-1}$" and 0 indicate "totally forget $C_{t-1}$" \eqref{eq:forget}. Next, the input gate, $i_{t}$, decides how much information to embrace when updating the cell state. $i_{t}$ are also from the sigmoid function layer \eqref{eq:input} and $tanh$ generates the new candidate cell state, $\tilde{c}_{t}$, which ranges from -1 to 1 \eqref{eq:new_cell}. After that, $c_{t}$ is updated by the cell state layer based on $f_{t}$, $i_{t}$, and $\tilde{c}_{t}$ \eqref{eq:update}. In addition, output gate layer, $o_{t}$, sereves as a filter, which means $o_{t}$ determine what values are going to output \eqref{eq:output} in such a way as that present hidden state, $h_{t}$, is updated based on $o_{t}$ updated cell state, $c_{t}$ \eqref{eq:hidden}. 
 
@@ -377,13 +377,13 @@ One shortcoming of conventional RNNs is that they only exploit previous context 
 As FIGURE. \textcolor{red}{\ref{fig:bidirectional_revised}} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
 
 \begin{align}
-h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
-h^{b}_{t} & =\mathcal{H}\big(W_{xh^{b}}\cdot x_{t}+W_{h^{b}h^{b}}\cdot h^{b}_{t-1}+b_{h^{b}}\big)\\
-y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
+h^{f}_{t} & =\overrightarrow{LSTM}\big(x_{t}, h^{f}_{t-1}\big)\\
+h^{b}_{t} & =\overleftarrow{LSTM}\big(x_{t}, h^{b}_{t+1}\big)\\
+y_{t} & =\sigma _{R}\big(W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}\big)
 \end{align}
 
 
-where $\mathcal{H}$ denotes the aformentioned composite function composed by cell states in the LSTM. Note that in our case, we concatenate $h^{f}_{t}$ and $h^{b}_{t}$ to preverse their contexts seperately as our range measurement, which is gathered by the tag node and each anchor node, suffer from the \textit{rank-dificiency},which means range-based measurement consist of one-dimensional data\cite{fabresse2013undelayed}. Hence, we judge that it would be more helpful to increase the number of features naturally by concatenating two hidden states rather than adding them and when the network infer the position  .
+where $\sigma _{R}$ denotes activation function called ReLu. Note that in our case, we concatenate $h^{f}_{t}$ and $h^{b}_{t}$ to preverse their contexts seperately as our range measurement, which is gathered by the tag node and each anchor node, suffer from the \textit{rank-dificiency},which means range-based measurement consist of one-dimensional data\cite{fabresse2013undelayed}. Hence, we judge that it would be more helpful to increase the number of features naturally by concatenating two hidden states rather than adding them and when the network infer the position  .
 
 
 \subsection{Stacked Architecture}
