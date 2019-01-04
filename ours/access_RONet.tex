@@ -167,18 +167,7 @@ are offered.
 
 However, there are some points that could have been better. First of all, in some cases, their networks were trained by range measurement data corresponding position of mobile node in simulation environment\cite{chatterjee2010fletcher, shareef2008localization, rahman2009localization, singh2013tdoa, banihashemian2018new}. Because the simulation situation is alomst ideal in the point that the multipath caused by reflection and refraction does not occur. In other words, the data generated in the simulation environment has less noise than that of real-world necessarily. These factors make the sensor values more highly unstable in turn have a bad influence on accuracy of localization directly. In case of virtual environment, even though the authors artificially design the non line of sight(NLOS) situation or mix the noise into the measured value and shows quite accurate localization results, it is hard to say that their networks also works well on real world situation. Therefore, to test on whether it is possible for neural networks to estimate position with covering all disturbance, the experiment should be conducted on real-world. 
 
-Secondly, there's an overfitting issue. one authors let their neural networks architectue by grid-map train data. Grid-map train data indicates that sensor data are gathered by the mobile nodes that are evenly spaced. 
-Let $n$ be the number of mobile nodes and $m$ be the number of the anchor nodes, data set are represented as follows: 
-\begin{equation}
-\left\{(L_{11}, L_{12}, ..., L_{1m}, P_1),...,(L_{n1}, L_{n2}, ..., L_{nm}, P_n)\right\}
-\end{equation} 
 
-where $L_{ij}$ denotes the the distance between $i^{th}$ mobile node and $j^{th}$ anchor node, $P_i$ denotes the position of mobile node, which consist of 2D ($x$ and $y$), or 3D ($x$,$y$, and $z$). In other words, data consist of set of distance data corresponding and fixed position of mobile nodes. Conseqeuntly, neural network  could be optimized to be able to localize the mobile node when take distance set as input. However, it has the possibility of overfitting because their ground truth is restricted. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct. As a reusult,  even though position of mobile node to be tested is a short distance away, neural netorks may have a tendancy to outputs similar position that are included int train data when takes set of distance $(L_{i1}, L_{i2}, ..., L_{im})$. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
-%그들의 문제점
-
-If The nueral networks is trained by that grid-map data, then neural networks may  $P_i$ are finite their weights by the train data in  
-
-%학습 관점에서 overfitting되는 게 아닐까?
 
 %그들이 제시한 test data에서 성능이 좋을 수 있을ㅈ지 몰라도, 조금만 바꾸게 되면 성능이 떨어질 수 도 있음
 %채워지지 못 한 부분
@@ -339,7 +328,7 @@ In detail, we introduce the neural networks concepts that we choose for localiza
 	\centering
 	\includegraphics[width=.9\textwidth]{image/networks}
 	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
-	\label{fig:experiment}
+	\label{fig:our_network}
 \end{figure*}
 
 
@@ -354,7 +343,7 @@ Unlike RNN that consist only of hidden state, in LSTM, cell state is added on th
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=.4\textwidth]{image/basic_LSTM}
+	\includegraphics[width=.4\textwidth]{image/basic_LSTM_revised}
 	\caption{It introduce 3 gates, forget gate, input gate, and output gate. And output gate is divided into cell state layer(Green) and output gate layer(cyan) 
 	}
 	\label{fig:basic_lstm}
@@ -363,7 +352,7 @@ Unlike RNN that consist only of hidden state, in LSTM, cell state is added on th
 \begin{align}
 f_{t} & =\sigma\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+b_{f}\big)\label{eq:forget}\\
 i_{t} & =\sigma\big(W_{xi}\cdot x_{t}+W_{hi}\cdot h_{t-1}+b_{i}\big)\label{eq:input}\\
-tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\label{eq:new_cell}\\
+\tilde{c}_{t} & = \tanh\big(W_{xc}\cdot x_{t}+W_{hc}\cdot h_{t-1}+b_{c}\big)\label{eq:new_cell}\\
 c_{t} & =f_{t}\odot c_{t-1}+i_{t}\odot\tilde{c}_{t}\label{eq:update}\\
 o_{t} & =\sigma\big(W_{xo}\cdot x_{t}+W_{ho}\cdot h_{t-1}+b_{o}\big)\label{eq:output}\\
 h_{t} & =o_{t}\odot \tanh\big(c_{t}\big)\label{eq:hidden}
@@ -380,12 +369,12 @@ One shortcoming of conventional RNNs is that they only exploit previous context 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=.9\linewidth]{bidirectional}
-	\label{fig:bidirectional} 	
+	\includegraphics[width=.9\linewidth]{bidirectional_LSTM_revised}
+	\label{fig:bidirectional_revised} 	
 	\caption{Bidirectional LSTM}
 \end{figure}
 
-As FIGURE. \textcolor{red}{\ref{fig:bidirectional}} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
+As FIGURE. \textcolor{red}{\ref{fig:bidirectional_revised}} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
 
 \begin{align}
 h^{f}_{t} & =\mathcal{H}\big(W_{xh^{f}}\cdot x_{t}+W_{h^{f}h^{f}}\cdot h^{f}_{t-1}+b_{h^{f}}\big)\\
@@ -394,7 +383,7 @@ y_{t} & =W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}
 \end{align}
 
 
-where $\mathcal{H}$ denotes the hidden layer activation function, e.g., $\tanh$ or $\sigma$. In bidirectional LSTM, upper composite function is used for $\mathcal{H}$. Note that in our case, we concatenate $h^{f}_{t}$ and $h^{b}_{t}$ to preverse their contexts seperately as our range measurement, which is gathered by the tag node and each anchor node, suffer from the \textit{rank-dificiency},which means range-based measurement consist of one-dimensional data\cite{fabresse2013undelayed}. Hence, we judge that it would be more helpful to increase the number of features naturally by concatenating two hidden states rather than adding them and when the network infer the position  .
+where $\mathcal{H}$ denotes the aformentioned composite function composed by cell states in the LSTM. Note that in our case, we concatenate $h^{f}_{t}$ and $h^{b}_{t}$ to preverse their contexts seperately as our range measurement, which is gathered by the tag node and each anchor node, suffer from the \textit{rank-dificiency},which means range-based measurement consist of one-dimensional data\cite{fabresse2013undelayed}. Hence, we judge that it would be more helpful to increase the number of features naturally by concatenating two hidden states rather than adding them and when the network infer the position  .
 
 
 \subsection{Stacked Architecture}
@@ -407,120 +396,87 @@ Therefore, we also construct our networks by stacking two LSTM to increase the n
 
 A Attention layer is powerful module nowadays and mostly improves performance of neural network. Originally, neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
 
-To precisely estimate the position of the tag node, it is important for the network to distinguish which is more meaningful context on time step \textit{T} to help contextual understanding of our  networks. So, we add the attention layer between the LSTM and the attention layer take on a role of a feature selector\cite{wang2017residual}.  two different types of attention modules \cite{luong2015effective} which extract something more important and related to the task information \textcolor{green}{by making the network to focus on different part of input sequence}. \textcolor{green}{The first attention modules placed between the input LSTM layers and the second LSTM layer are called “Spatial attention modules“. The spatial attention modules are represented as blue blocks in Fig. 2.} These attention modules can judge \textcolor{green}{which sensor has more spatial information.} The second attention \textcolor{red}{modules} corresponding to the red blocks in Fig. 2 \textcolor{red}{are} the \textcolor{green}{"Temporal attention modules". These temporal attention modules can determine which time stamp has more useful information about time,} allowing the network to attend that time stamp more.  
+To precisely estimate the position of the tag node, it is important for the network to distinguish which is more meaningful context on time step \textit{T} to help contextual understanding of our  networks. So, we add the attention layer between the LSTM and the attention layer take on a role of a feature selector\cite{wang2017residual}. The equation of the attention machanism is as follows:  
 
+\begin{equation}
+H(x)=M(x)\odot x
+\end{equation} 
 
-output layer takes a spatial information from a previous spatial attention layer and send it to another temporal Attention layer. Lastly, \textcolor{green}{the LSTM layer at the end outputs the positions of robot and landmars.}
+where $x$ denotes the output of previous neural network layer, $H(x)$ denotes the output of the attention layer to be passed to the next neural network layer and $M(x)$ denotes the attention mask.  The attention layer takes $s$ as input and outputs the $H(x)$. By element-wise multiplying x by $M(x)$, attention layer makes the network weight more crutial information. 
+
+Despite of the improvement of the performance, the attention layer has potential risks that it may dilutes the features because attention mask ranges over 0 to 1. To alleviate this problem, residual attention layer is introduced in our network as follows\cite{wang2017residual}:
+
+\begin{equation}
+H(x)=\left(1+M(x)\right)\odot x
+\end{equation} 
+
+As blue cuboid shape in the FIGURE \ref{fig:our_network} shown, this idea is originated from the Residual Net(ResNet)\cite{he2016deep} that has skip connection in such a way as to mitigate aforementioned dilution problem and help the network to be trained well. Likewise the ResNet, residual attention also has other branch to calculate how much to attend and the branch is joined with original feature vector $x$. Each hidden state has each residual attention layer so that these attention modules can determine which time stamp has more fruitful meaning and deliver the output to second bidirectional LSTM.
+
 
 \subsection{Training loss}
 
- Unlike existing RO-SLAM methods that localize a robot by probability-based approach or filtering method like Kalman filter, etc., our approach localize  robot's position by letting the networks be trained by distance data and ground truth of the robot's position. We express the problem statement for the localization of the robot using range measurements. The training input data set is formulated as follows: 
+  In this section, we describe the method for training our network. Generally, let $n$ be the number of mobile nodes and $m$ be the number of the anchor nodes, data set are represented as follows:
+  
+  \begin{equation}
+  \left\{(l_{11}, l_{12}, ..., l_{1m}, P_1),...,(l_{n1}, l_{n2}, ..., l_{nm}, P_n)\right\}
+  \end{equation} 
+  
+  
+ where $l_{ij}$ denotes the the distance between $i^{th}$ mobile node and $j^{th}$ anchor node, $P_i$ denotes the position of mobile node, which consist of 2D ($x$ and $y$), or 3D ($x$,$y$, and $z$). 
+ In other words, data consist of set of distance data corresponding to the position of mobile nodes. Conseqeuntly, neural network  could be optimized to be able to localize the mobile node when take distance set as input.
  
+ However, in previous studies!!!!!!!!!!!!!!!!!, it has a possibility of overfitting because the authors generate the grid-map to estimate the moible node in such a way as to restrict their ground truth region. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct even though the position of mobile node to be tested is quite far from the grid. As a reusult, neural netorks may have a tendancy only to infer similar position that are included in train data when taking set of distance $(l_{i1}, l_{i2}, ..., l_{im})$ as input. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
+ %그들의 문제점
  
-\begin{equation}
-\left\{(L_{11}, L_{12}, ..., L_{1m}, P_1),...,(L_{n1}, L_{n2}, ..., L_{nm}, P_n)\right\}
-\end{equation} 
+ To return, our neural network does not only take a set of distance data but takes sets of distacne data on the time step $T$ where $T$ indicates sequential length of input to our network. And in our case, one mobile node is only placed on the robot. Therefore, data are formulated as follows:
+ 
+ \begin{equation}
+ %$L = \left\{(X_t, Y_t)\right \}$ 
+ \mathbb{L} = {(L_t, Y_t)} 
+ \end{equation}
+ where $L_t = \left\{(l_1, l_2... , l_m)_t\right\}$ denotes input range measurement between a tag node end each anchor node at the time $t$. We omit the part of subscript that indicates $i^{th}$mobile node because we have only one mobile node. $Y_t$ denotes the ground truth of the robot's 3D position, which is denoted as $Y_t = \left\{x_t, y_t, z_t\right\}$.
+ 
+ Let $\Theta$ be the parameters of our network model and assume that the trained network model could be expressed as conditional probability as follows:
 
-\begin{equation}
-%$L = \left\{(X_t, Y_t)\right \}$ 
-L = {(X_t, Y_t)} 
-\end{equation}
-where $X_t = \left\{(l_1, l_2... , l_m)_t, m = 1,...,M \right \}$ denotes input range data from range sensors and $M$ is the number of UWB sensors at time $t$. Ground truth of the robot's 2D position is denoted as $Y_t = \left\{(x_t, y_t)\right \}$.
+\begin{multline}
+ P(Y_t|L_{t-T+1}, L_{t-T+2},..., L_t) =\\
+ p((x_t, y_t, z_t)|(l_1,..., l_m)_{t-T+1},(l_1,..., l_m)_{t-T+2}..., (l_1,..., l_m)_t)
+\end{multline}  
 
-Let $\Theta$ be the parameters of a RNN model and assume that the trained RNN model could be expressed as conditional probability as follows:
-\begin{equation}
-P(Y_t|X_t) = p((x_t, y_t)|(l_1,..., l_m)_{t-T+1},(l_1,..., l_m)_{t-T+2}..., (l_1,..., l_m)_t)
-\end{equation}  
-where $T$ indicates sequential length of input to LSTM. Then, our final goal is to find optimal parameters $\Theta^{*}$ for localization by minimizing mean square error(MSE) of Euclidean distance between ground truth position $Y_k$ and estimated position $\hat{Y_k}$ as follows:
+Note that other studies only consider the input on time t, yet our approach consider temporal information about the range measurement data. Then, our final goal is to find optimal parameters $\Theta^{*}$ for localization by minimizing $L_2$ loss term. The $L_2$ loss term indicates mean square error(MSE) of Euclidean distance between ground truth position $Y_k$ and estimated position $\hat{Y_k}$ as follows:
+
 \begin{equation}
 \Theta^{*} = \underset{\Theta}{\mathrm{argmin}} \frac{1}{N} \sum_{k=1}^N \parallel Y_k - \hat{Y_k} \parallel^{2}
 \end{equation}  
-
+ 
 \subsection{Why on three-dimensional?}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=.4\textwidth]{image/3D_error_increasing}
+	\includegraphics[width=.4\textwidth]{image/3D_error_increasing_revised}
 	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
-	\label{fig:experiment}
+	\label{fig:range_error_reason}
 \end{figure}
 
+One may ask a question that why we infer the robot's position on the three dimensional space even test are being conducted on the mobile robot. It is true that position of the $z$ varys very little. However, we found that localizing the mobile node on the three dimensional space using range measurement data is very week to noise. In more detail, let assume that 4 anchor node are placed on the ground and form square with similar height. Let $x_i$, $y_i$, $z_i$, and $d_i$ be the position of $i^th$ anchor node and range measurement. Then equations on the 3-D space are as follows:      
 
-\subsubsection{2D}
-\begin{equation}
-(x-x_1)^2+(y-y_1)^2={d_1}^2
-\end{equation}
-\begin{equation}
-(x-x_2)^2+(y-y_2)^2={d_2}^2
-\end{equation}
-\begin{equation}
-(x-x_3)^2+(y-y_3)^2={d_3}^2
-\end{equation}
-\begin{equation}
-(x-x_4)^2+(y-y_4)^2={d_4}^2
-\end{equation}
-
-\begin{equation}
-2(x_2-x_1)x+2(y_2-y_1)y=({d_1}^2-{d_2}^2)-({x_1}^2-{x_2}^2)-({y_1}^2-{y_2}^2)
-\end{equation}
-\begin{equation}
-2(x_3-x_1)x+2(y_3-y_1)y=({d_1}^2-{d_3}^2)-({x_1}^2-{x_3}^2)-({y_1}^2-{y_3}^2)
-\end{equation}
-\begin{equation}
-2(x_4-x_1)x+2(y_4-y_1)y=({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)
-\end{equation}
-\begin{equation}
-A_{2D}X_{2D}=b_{2D}
-\end{equation}
-
-where $X_{2D}$ indicates $[x,y]^T$ and $A_{2D}$ and $b_{2D}$ are as follows: 
-
-\begin{equation}
-A_{2D} =\left[ {\begin{array}{cc}
-	2(x_2-x_1) & 2(y_2-y_1)\\
-	2(x_3-x_1) & 2(y_3-y_1)\\
-	2(x_4-x_1) & 2(y_4-y_1)\\
-	\end{array} } \right]
-\end{equation}
-\begin{equation}
-b_{2D} = \left[ {\begin{array}{c}
-	({d_1}^2-{d_2}^2)-({x_1}^2-{x_2}^2)-({y_1}^2-{y_2}^2)\\
-	({d_1}^2-{d_3}^2)-({x_1}^2-{x_3}^2)-({y_1}^2-{y_3}^2)\\
-	({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)\\
-	\end{array} } \right]
-\end{equation}
-
-\subsubsection{3D}
 
 \begin{equation}
 %\left\(\right\) 
-(x-x_1)^2+(y-y_1)^2+(z-z_1)^2={d_1}^2
+(x-x_1)^2+(y-y_1)^2+(z-z_1)^2={d_1}^2 \label{eq:range1}
 \end{equation}
 \begin{equation}
-(x-x_2)^2+(y-y_2)^2+(z-z_2)^2={d_2}^2
+(x-x_2)^2+(y-y_2)^2+(z-z_2)^2={d_2}^2 \label{eq:range2}
 \end{equation}
 \begin{equation}
-(x-x_3)^2+(y-y_3)^2+(z-z_3)^2={d_3}^2
+(x-x_3)^2+(y-y_3)^2+(z-z_3)^2={d_3}^2 \label{eq:range3}
 \end{equation}
 \begin{equation}
-(x-x_4)^2+(y-y_4)^2+(z-z_4)^2={d_4}^2
+(x-x_4)^2+(y-y_4)^2+(z-z_4)^2={d_4}^2 \label{eq:range4}
 \end{equation}
 
+where $x$, $y$, and $z$ is the unkown position of the mobile node. And we can rewrite these equation by substracting \eqref{eq:range4} from \eqref{eq:range1}, \eqref{eq:range2}, and \eqref{eq:range3} 
 
-\begin{equation}
-2(x_2-x_1)x+2(y_2-y_1)y+2(z_2-z_1)z =  
-({d_1}^2-{d_2}^2)-({x_1}^2-{x_2}^2)-({y_1}^2-{y_2}^2)-({z_1}^2-{z_2}^2)
-\end{equation}
-\begin{equation}
-2(x_3-x_1)x+2(y_3-y_1)y+2(z_3-z_1)z=
-({d_1}^2-{d_3}^2)-({x_1}^2-{x_3}^2)-({y_1}^2-{y_3}^2)-({z_1}^2-{z_3}^2)
-\end{equation}
-\begin{equation}
-\substack{
-	2(x_4-x_1)x+2(y_4-y_1)y+2(z_4-z_1)z=
-	({d_1}^2-{d_4}^2)-({x_1}^2-{x_4}^2)-({y_1}^2-{y_4}^2)-({z_1}^2-{z_4}^2)
-}
-\end{equation}
 \begin{equation}
 A_{3D}X_{3D}=b_{3D}
 \end{equation}
@@ -534,6 +490,7 @@ A_{3D} =\left[ {\begin{array}{ccc}
 	2(x_4-x_1) & 2(y_4-y_1) & 2(z_4-z_1)\\
 	\end{array} } \right]
 \end{equation}
+
 \begin{equation}
 b_{3D} = \left[ {\begin{array}{c}
 	\substack{
@@ -544,8 +501,15 @@ b_{3D} = \left[ {\begin{array}{c}
 	\end{array} } \right]
 \end{equation}
 
-Unlike the case of 2D, $A_{3D}$ consists of $z$ components on the third column. Let $a_{3D}^{ij}$ be the $i^{th}$ row and $j^{th}$ component of $A_{3D}$. In ideal case the anchor nodes are placed to square position with equal height, then $a_{3D}^{12}$, $a_{3D}^{31}$, and elements of the third colums are equal to zero. This cause the rank dificiency, however that terms could not be the zero even though the anchor nodes are placed carefully. in real-world, it is hard to put the anchor nodes with exactly same position. As a result, $z_1\approx z_2\approx z_3\approx z_4$ $A_{3D}$  
+Unlike the case of 2D, $A_{3D}$ consists of $z$ components on the third column. Anchor nodes are placed in a less scattered on the z direction than x and y axis. In other words, it is hard to put the anchor nodes with exactly same height in real-world, which means $z_1\approx z_2\approx z_3\approx z_4$. Consequently, values on the third column of $A_{3D}$ converge to zero. Let assume that $A_{3D}$ be full rank in such a way as to $\exists A_{3D}^{-1}$, then values of third row of $A_{3D}^{-1}$ relatively have considerable nubmers. As a result, this make z value very unstable in such a way as to cause huge error with respect to z adirection. 
 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.5\textwidth]{image/noises}
+	\caption{(-0.01,0.001, 0.24), (5.02, 0.01, 0.2), (5, 5.01, 0.21), (0.01, 4.999, 0.23) true: (2.5, 2.5,0.4)}
+	\label{fig:noise}
+\end{figure}
 
 
 \section{Experiments}
@@ -572,11 +536,20 @@ Unlike the case of 2D, $A_{3D}$ consists of $z$ components on the third column. 
 		\caption{}
 	\end{subfigure}
 	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
-	\label{fig:experiment}
+	\label{fig:experiments}
 \end{figure*}
-Our experimental system consists of a UWB(ultra wideband) sensor tag and eight anchors that have a UWB transceiver, the motion capture system with 12 cameras, a mobile robot and a small form-factor computer.
+Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a small-form-factor(SFF) computer.
 
-UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:experiment}(a) shows anchor and tag nodes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.4\textwidth]{anchor_tag_nodes}
+	\caption{(a)The anchor and tag nodes}
+	\label{fig:environment}
+\end{figure}
+
+
+UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:experiment} shows anchor and tag nodes.
 
 We inference the position of a robot with our network. To train the network and test the results, the ground truths are needed. We get the ground truth by using the motion capture system. The system is Eagle Digital Realtime system of motion analysis corporation that operates with the principle of stereo pattern recognition that is a kind of photogrammetry based on the epipolar geometry and the triangulation methodology. We attach four markers to a robot. The system gives us the location of these markers and has < 1mm accuracy.
 
