@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2018)
+This is BibTeX, Version 0.99d (TeX Live 2018/W32TeX)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: access_RONet.aux
 The style file: IEEEtran.bst
@@ -8,55 +8,58 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ./Access_RObib.bib
-Repeated entry---line 139 of file ./Access_RObib.bib
+Repeated entry---line 277 of file ./Access_RObib.bib
  : @article{ullah2018action
  :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 561 of file ./Access_RObib.bib
+ : @inproceedings{jung2011indoor
+ :                              ,
 I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty journal in smith2018object
 
 Done.
-You've used 61 entries,
+You've used 67 entries,
             3975 wiz_defined-function locations,
-            1135 strings with 19343 characters,
-and the built_in function-call counts, 52980 in all, are:
-= -- 4234
-> -- 1273
-< -- 528
-+ -- 736
-- -- 209
-* -- 2538
-:= -- 7519
-add.period$ -- 141
-call.type$ -- 61
-change.case$ -- 61
-chr.to.int$ -- 1290
-cite$ -- 62
-duplicate$ -- 3696
-empty$ -- 4259
-format.name$ -- 252
-if$ -- 12372
+            1166 strings with 20765 characters,
+and the built_in function-call counts, 58373 in all, are:
+= -- 4662
+> -- 1410
+< -- 577
++ -- 810
+- -- 232
+* -- 2801
+:= -- 8283
+add.period$ -- 157
+call.type$ -- 67
+change.case$ -- 67
+chr.to.int$ -- 1404
+cite$ -- 67
+duplicate$ -- 4080
+empty$ -- 4711
+format.name$ -- 282
+if$ -- 13643
 int.to.chr$ -- 0
-int.to.str$ -- 61
-missing$ -- 596
-newline$ -- 203
-num.names$ -- 61
-pop$ -- 1381
+int.to.str$ -- 67
+missing$ -- 662
+newline$ -- 221
+num.names$ -- 67
+pop$ -- 1534
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 4128
+skip$ -- 4546
 stack$ -- 0
-substring$ -- 3127
-swap$ -- 3160
-text.length$ -- 98
+substring$ -- 3405
+swap$ -- 3483
+text.length$ -- 109
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
-warning$ -- 1
-while$ -- 257
-width$ -- 63
-write$ -- 605
-(There was 1 error message)
+warning$ -- 0
+while$ -- 284
+width$ -- 69
+write$ -- 665
+(There were 2 error messages)
