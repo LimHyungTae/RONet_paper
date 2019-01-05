@@ -9,6 +9,8 @@
 \usepackage{xcolor}
 \usepackage{color, soul}
 \usepackage{amsmath}
+\usepackage{booktabs}
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \graphicspath{{image/}}
@@ -66,89 +68,34 @@ Especially, WSNs are also employeed in various location-aware applications, e.g.
 
 However, these range-based approaches suffer from \textit{rank dificiency} problem, \cite{fabresse2018efficient}, which means range measurements only consist of single value to represent distance between each TN and AN respectively in such a way as to be deficient to describe exact position or orientation of the MNs. Besides, only single value could represent the range measurement, these measurements have huge uncertainties caused by non-line-of-sight(NLOS) problem and multipath fading channel(MPF) problem\cite{li2017novel}. To alleviate these issues, many studies are conducted how to localize more precisely. For example, in \cite{li2017novel}, confidence-based intersection method is proposed for robust trilateration method. In \cite{caballero2008particle}, particle filter algorithm is introduced to estimate the position of a MN attached to a aerial robot while suppressing the noise. Also, many machine learning techniques have been introduced: one authors utilized support vector machine(SVM) for localizaiton\cite{tran2008localization, huan2010three, feng2012determination, afzal2014localization}, other author developed method support vector regression(SVR) for localiztion\cite{lee2013new, lee2013novel}. 
 
-In the meantime, as deep learning age has come\cite{lecun2015deep}, WSNs fields also have introduced various kinds of neural network architectures\cite{rahman2009localization, singh2013tdoa,abdelhadi2013efficient, kumar2016localization, banihashemian2018new}. An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations whose environments are not so complex. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible. 
+In the meantime, as deep learning age has come\cite{lecun2015deep}, WSNs fields also have introduced various kinds of neural network architectures\cite{rahman2009localization, singh2013tdoa, abdelhadi2013efficient, kumar2016localization, banihashemian2018new}. An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations situation. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible.
 
-In this paper, we propose a stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of a MN. Using deep learning, our structure directly learns the end-to-end mapping between range data measured by AN-to-MN distance and position of MN on three dimensional space. Our contributions can be summarized as follows. 
-
-%MLP와는 달리 temporal input도 받아서 end-to-end 인퍼런스를 한다! 제일 정확하게 3D space를 estimate함
-%stacked LSTM 사이에 residual attention을 부착하여 성능을 더 향상시킬 수 있음을 확인함
-%
-%real world에서 모든 네트워크를 구현하였고, 비교 분석하여 정리함
-
- This operation non-linearly maps the relationship not only considering the long-range dependence of sequential distance data by the LSTM, but also using the correlation of the backward information and the forward information of the sequence of each time step by virtue of its bidirectional architecture. \textcolor{red}{Existing RO SLAM needs calibration before filtering, and then, range measurement undergoes outlier rejection, prediction and correction processes are needed.	Furthermorme, it uses low dimensional data to perform localization, there is a disadvantage that estimation is difficult even if the value deviates slightly from the model.} \textcolor{green}{Therefore, we solve this complex algorithm with end-to-end based deep learning. This system overview is shown in the figure below.}
-
-
+In this paper, we propose a stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of a MN. Our contributions can be summarized as follows. First of all, Using deep learning, our structure directly learns the end-to-end mapping between range data measured by ANs-to-MN distances and the position of MN on three dimensional space. Unlike other approaches whose authors implement MLP-based neural networks, we exploit LSTM architecture in such a way as not only to take present range data but also take previous temporal data as input for estimating the MN's position. Second, we verify that effect of the residual attention in the way that the residual attention layer makes the network better understand context of the feature when dealing with low-dimensional input. Finally, we implement the networks presented at related works and compare which neural architecture perperforms better when real-world data are given as input. As a result, and our networks perform the best performance among other proposed approaches. Our system overview is shown in the figure \ref{fig:system_overview}. 
 
 %실험했다 얘기할 떄
-. We also provide statistical analysis from simulations demonstrating that
-our new approach can cope with highly noisy sensors and
-reduces in one order of magnitude the average errors of the
-method proposed
 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.5\textwidth]{image/Access_overview_figure_1}
 	\caption{System overview.}
-	\label{fig:experiment}
+	\label{fig:system_overview}
 \end{figure}
-
-
-
-++++
- we present a range-free localization method that uses neural networks for
-positioning of non-anchor nodes. The method uses hop count distances between anchor
-nodes for the training of the neural network. Particle swarm optimization (PSO) algorithm
-is used to optimize the count of neurons in the hidden layers of the neural network. An
-objective function is defined to optimize the neural network based on the localization
-accuracy and storage space that is needed for storing the weights of the neurons in the
-hidden layers. The contribution of this paper is that we use PSO to optimize the neural
-network based on the storage cost and localization accuracy, simultaneously. Furthermore,
-in this objective function, we consider both of average error of estimated positions of all
-beacons and the maximum error of estimated positions among beacons. The optimized
-neural network model is sent to the network and is used for localizing the non-anchor
-nodes.
-+++
 
 \section{Related Works}
 
-In the past few years, some researchers have conducted the studies for wireless sensor networks to improve the performance of their algorithms by reducing computational complexity or localizing a mobile node more precisely. Also, many machine learning techniques have been introduced: one authors utilized support vector machine(SVM) for localizaiton, \cite{tran2008localization, huan2010three, feng2012determination, afzal2014localization}, other author developed method support vector regression(SVR) for localiztion\cite{lee2013new, lee2013novel}. In \cite{tran2008localization}, authors suggested two SVMs for localization, called LSVMs, one LSVM infers x-dimension and the other LSVM infers y-dimension. To employeeing LSVMs, they divide the field into \textit{M-l} x-classes and \textit{M-l} y-classes, like grid, and this deployment has had an impact on succeeding studies\cite{chatterjee2010fletcher, feng2012determination, afzal2014localization}. Samadian \textit{et al.}\cite{samadian2011probabilistic} introduced probablistic support vector machine for localization and they showed that probablistic vector machine has better performance than LSVM. In terms of SVR, Lee \textit{et al.} suggested various types of SVR for localization\cite{lee2013new, lee2013novel}  
+In the past few years, researchers have conducted the studies using machine learning-based approaches to reduce computational complexity and localize a mobile node more precisely. One authors utilized support vector machine(SVM) for localizaiton, \cite{tran2008localization, huan2010three, feng2012determination, afzal2014localization}, other author developed method support vector regression(SVR) for localiztion\cite{lee2013new, lee2013novel}. In \cite{tran2008localization}, authors suggested two SVMs for localization, called LSVMs, one LSVM infers x-dimension and the other LSVM infers y-dimension. To employeeing LSVMs, they divide the field into \textit{M-l} x-classes and \textit{M-l} y-classes, like grid, and this deployment has had an impact on succeeding studies\cite{chatterjee2010fletcher, feng2012determination, afzal2014localization}. Samadian \textit{et al.}\cite{samadian2011probabilistic} introduced probablistic support vector machine for localization and they showed that probablistic vector machine has better performance than LSVM. In terms of SVR, Lee \textit{et al.} suggested various types of SVR for localization\cite{lee2013new, lee2013novel}  
 
-%Lee 가 두개 제시함!
-Especially, to localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties using neural networks, several fascinating works have been studied. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} did\cite{shareef2008localization} and conducted their experiment in the real-world. They conlcuded Multi-Layer Perceptron(MLP) may be the best option among the suggested Kalman filter models and RNN. 
+Especially, several works have been studied using neural networks to localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} did and conducted their experiment in the real-world. They concluded Radial Basis Function(RBF) may be the best option among the suggested Kalman filter models and RNN\cite{shareef2008localization}. 
 
-Similarly, many researchers also have achived considerable improvement to localize position of mobile node by exploiting MLP\cite{shareef2008localization, rahman2009localization, singh2013tdoa,abdelhadi2013efficient,bernas2015fully, kumar2016localization, banihashemian2018new} in WSN fields. Rahman \textit{et al.} \cite{rahman2009localization} considered the neural networks for mapping between RSS and corresponding position of sensor nodes and let neural networks be trained by the train data gathered by the sensor nodes that are eqaully spaced over x-axis and y-axis. In \cite{singh2013tdoa}, Singh \textit{et al.} compared that performance of Multilayer Back propagation Network Model(MLBPN) and Radial Basis Function Network Model(RBFN) and the authors show that RBFN performs better than MLBPN when the number of the sensor nodes is larger than 220 nodes in given arbitrarily spread sensor nodes test data set. Abdelhadi \textit{et al.}  \cite{abdelhadi2013efficient} presented two artificial intelligence techniques: Sugeno-type fuzzy system and neural networks system. In addition, the authors conducted experiment on three-dimensional(3D) space in such a way as verified the feasibility of localization by utilizing nueral networks in 3D space. Kumar \textit{et al.} \cite{kumar2016localization} also introduced the neural networks and evaluated five different training techniques,e.g., Levenberg-Marquardt (LM), Bayesian Regularization
+Similarly, many researchers also have achived considerable improvement to localize position of mobile node by exploiting MLP in WSNs fields\cite{shareef2008localization, rahman2009localization, singh2013tdoa,abdelhadi2013efficient,bernas2015fully, kumar2016localization, banihashemian2018new}. In case of range-based method, Rahman \textit{et al.} \cite{rahman2009localization} have considered the neural networks for mapping between RSS and corresponding position of sensor nodes and let neural networks be trained by the train data gathered by the sensor nodes that are eqaully spaced over x-axis and y-axis. In \cite{singh2013tdoa}, Singh \textit{et al.} compared that performance of Multilayer Back propagation Network Model(MLBPN) and Radial Basis Function Network Model(RBFN) and the authors show that RBFN performs better than MLBPN when the number of the sensor nodes is larger than 220. Abdelhadi \textit{et al.}  \cite{abdelhadi2013efficient} presented two artificial intelligence techniques: Sugeno-type fuzzy system and neural networks system. In addition, the authors conducted experiment on three-dimensional space in such a way as verified the feasibility of localization by utilizing nueral networks in 3D space. Kumar \textit{et al.} \cite{kumar2016localization} also introduced the neural networks and evaluated five different training techniques,e.g., Levenberg-Marquardt (LM), Bayesian Regularization
 (BR), Resilient Back-propagation (RP), Scaled Conjugate Gradient (SCG) and Gradient
 Descent (GD), to find optimal way to train neural networks with the best accuracy. Recently, \cite{banihashemian2018new} have proposed the neural networks with novel training technique, called Particle Swarm Optimization(PSO) and prove thire nerwork, called LPSONN, has better localization accuracy than previous machine learning method, soft computing method, and previously proposed network.
 
-
-
-However, there are some points that could have been better. First of all, in some cases, their networks were trained by range measurement data corresponding position of mobile node in simulation environment\cite{chatterjee2010fletcher, shareef2008localization, rahman2009localization, singh2013tdoa, banihashemian2018new}. Because the simulation situation is alomst ideal in the point that the multipath caused by reflection and refraction does not occur. In other words, the data generated in the simulation environment has less noise than that of real-world necessarily. These factors make the sensor values more highly unstable in turn have a bad influence on accuracy of localization directly. In case of virtual environment, even though the authors artificially design the non line of sight(NLOS) situation or mix the noise into the measured value and shows quite accurate localization results, it is hard to say that their networks also works well on real world situation. Therefore, to test on whether it is possible for neural networks to estimate position with covering all disturbance, the experiment should be conducted on real-world. 
-
-
-
-%그들이 제시한 test data에서 성능이 좋을 수 있을ㅈ지 몰라도, 조금만 바꾸게 되면 성능이 떨어질 수 도 있음
-%채워지지 못 한 부분
-%그리고 노이즈가 발생했을 시에는 같은 포지션이었더라도 값이  많이 달라 질 수 있음
-%
-%진행 중 
-Finally, It must be noted that the RSSI values obtained are highly unstable and turn to vary under
-environmental noise and mobility of sensor nodes. A neural network offers the advantage that
-prior knowledge of the environment and noise distribution is not necessary. Moreover, higher
-accuracies are achieved by neural networks compared to other techniques such as the Kalman
-filter [3]. The trade-off between the accuracy and memory requirements of the MLP neural
-network is the best when compared with other types of neural networks, thus it has been chosen
-to be used in this research. 
-%대부분의 연구 결과가 2D상에서 진행되었는데, 이것은 오히려 noise가 발생했을 때 숨기는 거임!
-
-%격자로 나뉨 - 움직인다면 움직이지 않은 부분에 대해서는 학습을 하지 못하므로 정확성이 떨어짐
-%대체로 simulation: 하지만 simulation의 상황에서는 실제의 데이터에서 일어나는 noise들이 비교적 적음. 좀더 complex하지 않은 ideal 상황임
-%2D
-
-\begin{table*}[h]
+\begin{table*}[ht]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
-		\hline
+		\toprule
 		\multicolumn{1}{|c|}{\textbf{Localization method}} & \multicolumn{1}{c|}{\textbf{Dimension}} & \multicolumn{1}{c|}{\textbf{Type of input data}} & \multicolumn{1}{c|}{\textbf{Train data}} & \multicolumn{1}{c|}{\textbf{Test data mobility}} & \multicolumn{1}{c|}{\textbf{Implementation environment}} \\ \hline
 		RBF\cite{shareef2008localization}                          & \multicolumn{1}{c|}{2D}                 & \multicolumn{1}{c|}{RSSI}                        & \multicolumn{1}{c|}{Grid}                & 
 		\multicolumn{1}{c|}{Dynamic nodes \checkmark}                & \multicolumn{1}{c|}{Real-world \checkmark}                          \\ \hline
@@ -186,28 +133,75 @@ to be used in this research.
 \end{table*}
 
 
+%		RBF\cite{shareef2008localization}                          & \multicolumn{1}{c|}{2D}                 & \multicolumn{1}{c|}{RSSI}                        & \multicolumn{1}{c|}{Grid}                & 
+%		\multicolumn{1}{c|}{Dynamic nodes \checkmark}                & \multicolumn{1}{c|}{Real-world \checkmark}                          \\ \hline
+%		MLP\cite{rahman2009localization}&        \multicolumn{1}{c|}{2D}              &      \multicolumn{1}{c|}{RSS}                                            &   \multicolumn{1}{c|}{Grid}                      & \multicolumn{1}{c|}{Static nodes}                     &   \multicolumn{1}{c|}{Simulation}    \\ \hline
+%		
+%		MLBPN\cite{singh2013tdoa}&
+%		\multicolumn{1}{c|}{2D}                   &      
+%		\multicolumn{1}{c|}{TDOA}                 &   \multicolumn{1}{c|}{Grid}                   & 
+%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
+%		
+%		MLP\cite{abdelhadi2013efficient}& 
+%		\multicolumn{1}{c|}{3D  \checkmark}                   &      
+%		\multicolumn{1}{c|}{Distance}                 &   \multicolumn{1}{c|}{Spread}                   & 
+%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
+%		
+%		Clustering-based FCNNs\cite{bernas2015fully}& 
+%		\multicolumn{1}{c|}{2D}                   &      
+%		\multicolumn{1}{c|}{RSSI}                 &   \multicolumn{1}{c|}{Spread}                   & 
+%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Real-world  \checkmark}   \\ \hline
+%		
+%		MLP\cite{kumar2016localization}& 
+%		\multicolumn{1}{c|}{2D}                   &      
+%		\multicolumn{1}{c|}{RSSI}                 &   \multicolumn{1}{c|}{Grid}                   & 
+%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Real-world  \checkmark}   \\ \hline
+%		LPSONN\cite{banihashemian2018new}&     
+%		\multicolumn{1}{c|}{2D}                   &      
+%		\multicolumn{1}{c|}{Hop cound}                 &   \multicolumn{1}{c|}{PSO  \checkmark}                   & 
+%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
+%		
+%		Ours&
+%		\multicolumn{1}{c|}{3D \checkmark}                   &      
+%		\multicolumn{1}{c|}{TOF}                 &   \multicolumn{1}{c|}{PSO on the mobile robot \checkmark}                   & 
+%		\multicolumn{1}{c|}{Dynamic nodes \checkmark}        &   \multicolumn{1}{c|}{Real-world \checkmark}   \\ \hline
+%	
+%\begin{table}[h!]
+%	\begin{center}
+%		\caption{Table using booktabs.}
+%		\label{tab:table1}
+%		\begin{tabular}{1|1|1}
+%			\toprule % <-- Toprule here
+%			\textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
+%			$\alpha$ & $\beta$ & $\gamma$ \\
+%			\midrule % <-- Midrule here
+%			1 & 1110.1 & a\\
+%			2 & 10.1 & b\\
+%			3 & 23.113231 & c\\
+%			\bottomrule % <-- Bottomrule here
+%		\end{tabular}
+%	\end{center}
+%\end{table}
+
+However, there are some points that could have been better. First of all, in some cases, their networks were trained by range measurement data corresponding position of mobile node in simulation environment\cite{chatterjee2010fletcher, shareef2008localization, rahman2009localization, singh2013tdoa, banihashemian2018new}. The simulation situation is almost ideal in the point that the NLOS or MPF problem does not occur. Even though in \cite{rahman2009localization}, they artificially generate NLOS data, but the gap of complexity between real-world and artificially generated data exists, since the generated data has less noise than those of real-world necessarily. For these reasons, it is hard to say that their networks also works well on real world situation. Therefore, to test on whether it is possible for neural networks to estimate position with covering all disturbance, the experiment should be conducted on real-world. 
+Second, some studies was conducted on the two-dimensional space to simplify their problem definition\cite{shareef2008localization, rahman2009localization, singh2013tdoa,bernas2015fully, kumar2016localization, banihashemian2018new}. However, gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible. Finally, in previous studies \cite{shareef2008localization, rahman2009localization, singh2013tdoa,kumar2016localization}, it has a possibility of overfitting because the authors generate the grid-map as train data in such a way as to restrict their ground truth region. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct even when the position of MN to be tested is quite far from the grid. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
+
+%그들이 제시한 test data에서 성능이 좋을 수 있을ㅈ지 몰라도, 조금만 바꾸게 되면 성능이 떨어질 수 도 있음
+%채워지지 못 한 부분
+%그리고 노이즈가 발생했을 시에는 같은 포지션이었더라도 값이  많이 달라 질 수 있음
+%
+%진행 중 
+ 
+%대부분의 연구 결과가 2D상에서 진행되었는데, 이것은 오히려 noise가 발생했을 때 숨기는 거임!
+
+%격자로 나뉨 - 움직인다면 움직이지 않은 부분에 대해서는 학습을 하지 못하므로 정확성이 떨어짐
+%대체로 simulation: 하지만 simulation의 상황에서는 실제의 데이터에서 일어나는 noise들이 비교적 적음. 좀더 complex하지 않은 ideal 상황임
+%2D
+
+
 
 
 %analogous: 유사한
-
-Note that their In case of \cite{shareef2008localization}. They let MLP learn the relationships between range measurement and position of mobile node, yet MLP could not learn sequential modeling. MLP just learn the relationship like generating finger print map. 
-
-In traditionally connected ANNs, such as the MLP or
-RBF, neurons are organized in layers and connections are
-introduced from one layer to the next layer. The FCNNs
-have additional connections across layers
-In \cite{jain2010data} it was
-demonstrated that when comparing FCNNs with traditionally connected ANNs the latter ones require about twice as
-many neurons to perform a similar task. With connections
-across layers in FCNNs,
-
-RSS is the actual signal strength received at the receiver and the unit of measurement can be in dBm, dB, milli Watt, Watt. So RSS will always have a unit.
-
-In this multihop connectivity-based localization algorithm,
-the distance between the two nodes is calculated in terms of the
-shortest path between them, which is expressed in hop-counts.
-The beacon nodes send their locations to ordinary sensors by
-sending messages that are propagated hop by hop
 
 %Localization Using Neural Networks in Wireless Sensor Networks \cite{shareef2008localization} - 변화되는 위치에 대응되는 걸 학습한 게 아니라 x,y,z에 대한 3개의 beacon의 l을 finger print map 방식으로 학습한거지! x,y만 추정  grid를 나눠서 모든 공간에 대한 거리에 대한 위치를 finger print 기법
 
@@ -218,41 +212,13 @@ sending messages that are propagated hop by hop
 %Blanco \textit{et al.} suggest two methods: one method is to employee Rao-blackwellized particle filter(RBPF), which divide one hidden state into the state of landmarks and the state of robot so that variance could be reduced \cite{blanco2008pure}, and the other is to e exploiting the conditional independence between the position distributions of  each beacon within a Rao-Blackwellized Particle Filter (RBPF)  for maintaining independent Sum of Gaussians (SOGs) for  each beacon \cite{blanco2008efficient}  
 
 
-Incidentally, There are many variations of LSTM architecture. As studies of deep learning are getting popular, various modified architectures of LSTM have been proposed for many tasks in a wide area of science and engineering. Because LSTM is powerful when dealing with sequential data and infering output by using previous inputs, LSTM is utilized to estimate pose by being attached to the end part of deep learning architecture \cite{wang2017deepvo, kendall2015posenet, turan2018deep}  as a stacked form of LSTM. In addition, LSTM takes many various data as input; LSTM is exploited for sequential modeling using LiDAR scan data \cite{gladh2016deep}, images \cite{walch2017image, wang2017deepvo}, IMU \cite{ordonez2016deep}, a fusion of IMU and images \cite{clark2017vinet}. Since existing RO-SLAM performs localization using low-dimensional data, it is difficult to estimate even if the value deviates slightly from the model. In addition, LSTM has the advantage of being able to solve long-term dependence problem of traditional RNN, and it is possible to model it by non-linear mapping through analyzing the current situation without modeling data characteristics separately. Therefore, we propose RO SLAM technology using deep learning based SLAM which applies the advantages of LSTM and deep learning to solve the disadvantages of RO SLAM.
-
-
-First, In case of particle filter based RO SLAM, it is more robust than kalman filter based approach, As figure illustrated, you can observe how the Kalman filter based approach performs poorly / when the uncertainty in the beacon position becomes excessively large. And In PF filter based RO SLAM, they exploit Rao-Blackwellization. Rao-blackwellization is a mathematical method. By dividing one hidden states into two variable, it proves that variance can be reduced. 
-
-So they utilize rao-blackwellized particle filter, called RBPF, so many authors separate all states / into states of landmarks and state of robot. But in many cases, they just consider almost annular ambiguity or projected spherical ambiguity, not spherical ambiguity!. 
-
-
-On the other hand, kalman filter based approach is steadily studied, and they make efforts to reduce the number of hidden state variables. In case of 3D RO SLAM, there are two angles to be estimated, one is the azimuth angle that indicates angle on horizontal plane, and the other is elevation angle which indicates amount of elevation literally. On state of the art paper about 3D RO SLAM based on EFK, they dramatically reduce the number of hidden states by expressing the hypothesis as multiplication of probability about azimuth angle and elevation angle as this figure shown. 
-
-
-Besides, not only for the indoor environment, also on the underwater environment, Olson \textit{et al.} suggest a method for localize a autonomous underwater vehicle(AUV) using extended Kalman Filter(EKF)\cite{olson2006robust}.
-
-Especially, deep learning-based approaches are also implemented to reduce noise of the san
-
-First, it’s very noisy, so it can occur errors easily. Second, the measurement is very ambiguous because each measurement is defined as the probability density of the sensor’s potential position. The last problem is that the landmark location estimations may converge to multi-modal densities.
-Especially, trilateration algorithm has been widely incorporated into robotics fields, especially utilized in the indoor environment to estimate the position of an object by distance measurements obtained from range sensors such as UWB, ultrasonic, laser-based beacon sensors \cite{thomas2005revisiting, cho2010mobile,raghavan2010accurate} due to the convenience of trilateration that estimates the position of a receiver of range sensors if one only knows range measurement. For that reasons, range-only Simultaneous Localization and Mapping(RO-SLAM) methods are utilized popularly, which not only estimate the position of the receiver of range sensors, but also localize the position of range sensors regarded as features on a map, and studies have been conducted continuously in terms of probability-based approach\cite{blanco2008pure,blanco2008efficient,fabresse2013undelayed, shetty2018particle}.
-
-
-In robotics fields, Blanco SLAM is a technique for building the map information while localizing the position of the robot while moving. Localization of the SLAM predicts the current position of the robot using the landmark measured by the sensor, and mapping locates the terrain object based on the pose of the robot. Research on this technology has been actively carried out, and researches and techniques have been summarized. In 2006, the \textcolor{blue}{ad hoc} sensor network consisting of range detection beacon was applied to SLAM technology for various ranges. This technology integrates node-to-node measurements to reduce drift and expedite node-map convergence \cite{djugash2006range} In 2008, the technique to consistently combine the observation information considering the uncertainty was studied through comparing the experimental data with the actual robot and simulation using Ultra Wide-Band (UWB) devices and Rao-Balckwellized Particle Filter (RBPF) \cite{blanco2008pure}.  In 2012, a simple and efficient algorithm for position recognition with high accuracy and low computational complexity was researched with ultrasonic sensors \cite{yang2012efficient}. In recent years, 3-dimensional-based SLAM has also been under active research and development. In 2013, a localization mapping approach of a wireless sensor network (WSN) node was studied through a centralized EKF-SLAM-based optimization research \cite{fabresse2013undelayed}. In addition, in 2014, a method of minimizing noise and localizing Unmanned Aerial Vehicle (UAV) by using  range-only measurement while simultaneously mapping the position of the wireless range sensors were proposed \cite{fabresse2014robust}. 
-SLAM based on range measurement has been continuously researched and developed then applied to various fields. In this paper, we propose a novel technology that applying deep-learning to range-only SLAM that derives accurate range and robot position measurement through in-depth learning. 
-
-
 
 %Ideal case에서 배치를 같은 높이에 두었을 때는 수식이 A는 full rank가 아니어서  역행렬이 존재하지 않는다. 하지만 real-world에서는 미세한 error가 발생하기 때문에, 
 %만약 full rank 여서 역행렬이 존재한다고 하면 역행렬을 구하는 과정에서 A-1의 값이 엄청 커지게 됨!
 
-\subsection{Deep Learning for Localization}
-There have been many approaches combining Simultaneous Localization and Mapping (SLAM) with deep learning, aiming to overcome the limitations on SLAM only technique such as difficulty on tuning the proper parameters in different environments and recovering an exact scale. Actually, those researches are showing the superior performance to the traditional SLAM approaches.
-
-One of the popular SLAM techniques with deep learning is CNN-SLAM \cite{tateno2017cnn} which takes Convolutional Neural Networks (CNNs) to precisely predict the depth from a single image without any scene-based assumptions or geometric constraints, allowing them to recover the absolute scale of reconstruction. Another approach using deep learning for localization is Deep VO \cite{clark2017vinet} In this method, Recurrent Convolutional Neural Networks (RCNNs) is utilized. Specifically, feature representation is learned by Convolutional Neural Networks and Sequential information and motion dynamics are obtained by deep Recurrent Neural Networks without using any module in the classic VO pipeline.
-
 \section{WSN Net}
 
-In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in \textcolor{red}{Fig. 2}. 
+In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in Fig. \ref{fig:our_network}. 
 In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and the describe the reason why we let the neural network infer in three-dimensional space even though experiment is conducted on the mobile robot. Finally, we explain how to set the loss function of our neural network and then compare to those of other previous works.
 
 \begin{figure*}[h]
@@ -354,10 +320,10 @@ As blue cuboid shape in the FIGURE \ref{fig:our_network} shown, this idea is ori
  where $l_{ij}$ denotes the the distance between $i^{th}$ mobile node and $j^{th}$ anchor node, $P_i$ denotes the position of mobile node, which consist of 2D ($x$ and $y$), or 3D ($x$,$y$, and $z$). 
  In other words, data consist of set of distance data corresponding to the position of mobile nodes. Conseqeuntly, neural network  could be optimized to be able to localize the mobile node when take distance set as input.
  
- However, in previous studies \cite{shareef2008localization, rahman2009localization, singh2013tdoa,abdelhadi2013efficient,bernas2015fully, kumar2016localization, banihashemian2018new}, it has a possibility of overfitting because the authors generate the grid-map to estimate the moible node in such a way as to restrict their ground truth region. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct even though the position of mobile node to be tested is quite far from the grid. As a reusult, neural netorks may have a tendancy only to infer similar position that are included in train data when taking set of distance $(l_{i1}, l_{i2}, ..., l_{im})$ as input. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
+
  %그들의 문제점
  
- To return, our neural network does not only take a set of distance data but takes sets of distacne data on the time step $T$ where $T$ indicates sequential length of input to our network. And in our case, one mobile node is only placed on the robot. Therefore, data are formulated as follows:
+ our neural network does not only take a set of distance data but takes sets of distacne data on the time step $T$ where $T$ indicates sequential length of input to our network. And in our case, one mobile node is only placed on the robot. Therefore, data are formulated as follows:
  
  \begin{equation}
  %$L = \left\{(X_t, Y_t)\right \}$ 
@@ -501,6 +467,12 @@ As illustrated in Experiment session, train data are our own data gathered by UW
 We set two test trajectory cases: an square path and zigzag path. an The results shows that it has better performance than established probabilistic-based approach. In both cases, performance of our networks  is better that of particle filter. RMSE of our networks in test1 is 3.928cm and 4.119cm in test2.
 
 We also verified effectiveness of attention layer. It was confirmed that the performance of the networks with the attention layer is improved compared to the networks without the attention layer.
+
+
+. We also provide statistical analysis from simulations demonstrating that
+our new approach can cope with highly noisy sensors and
+reduces in one order of magnitude the average errors of the
+method proposed
 
 \begin{table}[h]
 	\begin{tabular}{lllcc}

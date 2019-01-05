@@ -183,115 +183,6 @@ M.~Bernas and B.~P{\l}aczek, ``Fully connected neural networks ensemble with
   networks,'' \emph{International Journal of Distributed Sensor Networks},
   vol.~11, no.~12, p. 403242, 2015.
 
-\bibitem{jain2010data}
-A.~K. Jain, ``Data clustering: 50 years beyond k-means,'' \emph{Pattern
-  recognition letters}, vol.~31, no.~8, pp. 651--666, 2010.
-
-\bibitem{wang2017deepvo}
-S.~Wang, R.~Clark, H.~Wen, and N.~Trigoni, ``Deepvo: Towards end-to-end visual
-  odometry with deep recurrent convolutional neural networks,'' in
-  \emph{Robotics and Automation (ICRA), 2017 IEEE International Conference
-  on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2017, pp. 2043--2050.
-
-\bibitem{kendall2015posenet}
-A.~Kendall, M.~Grimes, and R.~Cipolla, ``Posenet: A convolutional network for
-  real-time 6-dof camera relocalization,'' in \emph{Proceedings of the IEEE
-  international conference on computer vision}, 2015, pp. 2938--2946.
-
-\bibitem{turan2018deep}
-M.~Turan, Y.~Almalioglu, H.~Araujo, E.~Konukoglu, and M.~Sitti, ``Deep endovo:
-  A recurrent convolutional neural network (rcnn) based visual odometry
-  approach for endoscopic capsule robots,'' \emph{Neurocomputing}, vol. 275,
-  pp. 1861--1870, 2018.
-
-\bibitem{gladh2016deep}
-S.~Gladh, M.~Danelljan, F.~S. Khan, and M.~Felsberg, ``Deep motion features for
-  visual tracking,'' in \emph{Pattern Recognition (ICPR), 2016 23rd
-  International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
-  2016, pp. 1243--1248.
-
-\bibitem{walch2017image}
-F.~Walch, C.~Hazirbas, L.~Leal-Taixe, T.~Sattler, S.~Hilsenbeck, and
-  D.~Cremers, ``Image-based localization using lstms for structured feature
-  correlation,'' in \emph{Int. Conf. Comput. Vis.(ICCV)}, 2017, pp. 627--637.
-
-\bibitem{ordonez2016deep}
-F.~J. Ord{\'o}{\~n}ez and D.~Roggen, ``Deep convolutional and lstm recurrent
-  neural networks for multimodal wearable activity recognition,''
-  \emph{Sensors}, vol.~16, no.~1, p. 115, 2016.
-
-\bibitem{clark2017vinet}
-R.~Clark, S.~Wang, H.~Wen, A.~Markham, and N.~Trigoni, ``Vinet: Visual-inertial
-  odometry as a sequence-to-sequence learning problem.'' in \emph{AAAI}, 2017,
-  pp. 3995--4001.
-
-\bibitem{olson2006robust}
-E.~Olson, J.~J. Leonard, and S.~Teller, ``Robust range-only beacon
-  localization,'' \emph{IEEE Journal of Oceanic Engineering}, vol.~31, no.~4,
-  pp. 949--958, 2006.
-
-\bibitem{thomas2005revisiting}
-F.~Thomas and L.~Ros, ``Revisiting trilateration for robot localization,''
-  \emph{IEEE Transactions on robotics}, vol.~21, no.~1, pp. 93--101, 2005.
-
-\bibitem{cho2010mobile}
-H.~Cho and S.~W. Kim, ``Mobile robot localization using biased
-  chirp-spread-spectrum ranging,'' \emph{IEEE transactions on industrial
-  electronics}, vol.~57, no.~8, pp. 2826--2835, 2010.
-
-\bibitem{raghavan2010accurate}
-A.~N. Raghavan, H.~Ananthapadmanaban, M.~S. Sivamurugan, and B.~Ravindran,
-  ``Accurate mobile robot localization in indoor environments using
-  bluetooth,'' in \emph{Robotics and Automation (ICRA), 2010 IEEE International
-  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2010, pp.
-  4391--4396.
-
-\bibitem{blanco2008pure}
-J.-L. Blanco, J.~Gonz{\'a}lez, and J.-A. Fern{\'a}ndez-Madrigal, ``A pure
-  probabilistic approach to range-only slam.'' in \emph{ICRA}.\hskip 1em plus
-  0.5em minus 0.4em\relax Citeseer, 2008, pp. 1436--1441.
-
-\bibitem{blanco2008efficient}
-J.-L. Blanco, J.-A. Fern{\'a}ndez-Madrigal, and J.~Gonz{\'a}lez, ``Efficient
-  probabilistic range-only slam,'' in \emph{Intelligent Robots and Systems,
-  2008. IROS 2008. IEEE/RSJ International Conference on}.\hskip 1em plus 0.5em
-  minus 0.4em\relax IEEE, 2008, pp. 1017--1022.
-
-\bibitem{fabresse2013undelayed}
-F.~R. Fabresse, F.~Caballero, I.~Maza, and A.~Ollero, ``Undelayed 3d ro-slam
-  based on gaussian-mixture and reduced spherical parametrization,'' in
-  \emph{Intelligent Robots and Systems (IROS), 2013 IEEE/RSJ International
-  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax Citeseer, 2013, pp.
-  1555--1561.
-
-\bibitem{shetty2018particle}
-N.~S. Shetty, ``Particle filter approach to overcome multipath propagation
-  error in slam indoor applications,'' Ph.D. dissertation, The University of
-  North Carolina at Charlotte, 2018.
-
-\bibitem{djugash2006range}
-J.~Djugash, S.~Singh, G.~Kantor, and W.~Zhang, ``Range-only slam for robots
-  operating cooperatively with sensor networks,'' in \emph{Robotics and
-  Automation, 2006. ICRA 2006. Proceedings 2006 IEEE International Conference
-  on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2006, pp. 2078--2084.
-
-\bibitem{yang2012efficient}
-P.~Yang, ``Efficient particle filter algorithm for ultrasonic sensor-based 2d
-  range-only simultaneous localisation and mapping application,'' \emph{IET
-  Wireless Sensor Systems}, vol.~2, no.~4, pp. 394--401, 2012.
-
-\bibitem{fabresse2014robust}
-F.~R. Fabresse, F.~Caballero, I.~Maza, and A.~Ollero, ``Robust range-only slam
-  for aerial vehicles,'' in \emph{Unmanned Aircraft Systems (ICUAS), 2014
-  International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
-  2014, pp. 750--755.
-
-\bibitem{tateno2017cnn}
-K.~Tateno, F.~Tombari, I.~Laina, and N.~Navab, ``Cnn-slam: Real-time dense
-  monocular slam with learned depth prediction,'' in \emph{Proceedings of the
-  IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, vol.~2,
-  2017.
-
 \bibitem{hochreiter1997long}
 S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
   computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
@@ -315,6 +206,13 @@ W.~Li, W.~Nie, and Y.~Su, ``Human action recognition based on selected
 A.~Ullah, J.~Ahmad, K.~Muhammad, M.~Sajjad, and S.~W. Baik, ``Action
   recognition in video sequences using deep bi-directional lstm with cnn
   features,'' \emph{IEEE Access}, vol.~6, pp. 1155--1166, 2018.
+
+\bibitem{fabresse2013undelayed}
+F.~R. Fabresse, F.~Caballero, I.~Maza, and A.~Ollero, ``Undelayed 3d ro-slam
+  based on gaussian-mixture and reduced spherical parametrization,'' in
+  \emph{Intelligent Robots and Systems (IROS), 2013 IEEE/RSJ International
+  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax Citeseer, 2013, pp.
+  1555--1561.
 
 \bibitem{simonyan2014very}
 K.~Simonyan and A.~Zisserman, ``Very deep convolutional networks for
