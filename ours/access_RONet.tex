@@ -88,100 +88,65 @@ In the past few years, researchers have conducted the studies using machine lear
 
 Especially, several works have been studied using neural networks to localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} did and conducted their experiment in the real-world. They concluded Radial Basis Function(RBF) may be the best option among the suggested Kalman filter models and RNN\cite{shareef2008localization}. 
 
+
+\begin{table*}[ht]
+	\centering
+	\caption{Comparison of previous studies with our approach}
+	\begin{tabular}{l|l|l|l|l|l}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Localization method}} & \multicolumn{1}{c}{\textbf{Dimension}} & \multicolumn{1}{c}{\textbf{Type of input}} & \multicolumn{1}{c}{\textbf{Train data}} & \multicolumn{1}{c}{\textbf{Test data mobility}} & \multicolumn{1}{c}{\textbf{Implementation environment}} \\ 
+		\midrule
+		RBF\cite{shareef2008localization}                          & \multicolumn{1}{c}{2D}                 & \multicolumn{1}{c}{Temporary}                        & \multicolumn{1}{c}{Grid}                & 
+		\multicolumn{1}{c}{Dynamic nodes \checkmark}                & \multicolumn{1}{c}{Real-world \checkmark}                          \\ 
+		MLP\cite{rahman2009localization}&        \multicolumn{1}{c}{2D}              &      \multicolumn{1}{c}{Temporary}                                            &   \multicolumn{1}{c}{Grid}                      & \multicolumn{1}{c}{Static nodes}                     &   \multicolumn{1}{c}{Simulation}    \\ 
+		
+		MLBPN\cite{singh2013tdoa}&
+		\multicolumn{1}{c}{2D}                   &      
+		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Grid}                   & 
+		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Simulation}   \\ 
+		
+		MLP\cite{abdelhadi2013efficient}& 
+		\multicolumn{1}{c}{3D  \checkmark}                   &      
+		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Spread \checkmark}                   & 
+		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Simulation}   \\ 
+		
+		c-FCNNs\cite{bernas2015fully}& 
+		\multicolumn{1}{c}{2D}                   &      
+		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Spread \checkmark}                   & 
+		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Real-world  \checkmark}   \\ 
+		
+		MLP\cite{kumar2016localization}& 
+		\multicolumn{1}{c}{2D}                   &      
+		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Grid}                   & 
+		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Real-world  \checkmark}   \\ 
+		LPSONN\cite{banihashemian2018new}&     
+		\multicolumn{1}{c}{2D}                   &      
+		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Spread  \checkmark}                   & 
+		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Simulation}   \\ 
+		
+		Ours&
+		\multicolumn{1}{c}{3D \checkmark}                   &      
+		\multicolumn{1}{c}{Sequential \checkmark}                 &   \multicolumn{1}{c}{Spread \checkmark}                   & 
+		\multicolumn{1}{c}{Dynamic nodes \checkmark}        &   \multicolumn{1}{c}{Real-world \checkmark}   \\ 
+		\bottomrule
+	\end{tabular}
+	\label{table:related_worsk}
+	
+\end{table*}
+
+\begin{figure*}[h]
+	\centering
+	\includegraphics[width=.9\textwidth]{image/networks}
+	\caption{Our proposed network architecture.}
+	\label{fig:our_network}
+\end{figure*}
+
 Similarly, many researchers also have achived considerable improvement to localize position of mobile node by exploiting MLP in WSNs fields\cite{shareef2008localization, rahman2009localization, singh2013tdoa,abdelhadi2013efficient,bernas2015fully, kumar2016localization, banihashemian2018new}. In case of range-based method, Rahman \textit{et al.} \cite{rahman2009localization} have considered the neural networks for mapping between RSS and corresponding position of sensor nodes and let neural networks be trained by the train data gathered by the sensor nodes that are eqaully spaced over x-axis and y-axis. In \cite{singh2013tdoa}, Singh \textit{et al.} compared that performance of Multilayer Back propagation Network Model(MLBPN) and Radial Basis Function Network Model(RBFN) and the authors show that RBFN performs better than MLBPN when the number of the sensor nodes is larger than 220. Abdelhadi \textit{et al.}  \cite{abdelhadi2013efficient} presented two artificial intelligence techniques: Sugeno-type fuzzy system and neural networks system. In addition, the authors conducted experiment on three-dimensional space in such a way as verified the feasibility of localization by utilizing nueral networks in 3D space. Kumar \textit{et al.} \cite{kumar2016localization} also introduced the neural networks and evaluated five different training techniques,e.g., Levenberg-Marquardt (LM), Bayesian Regularization
 (BR), Resilient Back-propagation (RP), Scaled Conjugate Gradient (SCG) and Gradient
 Descent (GD), to find optimal way to train neural networks with the best accuracy. Recently, \cite{banihashemian2018new} have proposed the neural networks with novel training technique, called Particle Swarm Optimization(PSO) and prove thire nerwork, called LPSONN, has better localization accuracy than previous machine learning method, soft computing method, and previously proposed network.
 
-\begin{table*}[ht]
-	\centering
-	\begin{tabular}{|l|l|l|l|l|l|}
-		\toprule
-		\multicolumn{1}{|c|}{\textbf{Localization method}} & \multicolumn{1}{c|}{\textbf{Dimension}} & \multicolumn{1}{c|}{\textbf{Type of input data}} & \multicolumn{1}{c|}{\textbf{Train data}} & \multicolumn{1}{c|}{\textbf{Test data mobility}} & \multicolumn{1}{c|}{\textbf{Implementation environment}} \\ \hline
-		RBF\cite{shareef2008localization}                          & \multicolumn{1}{c|}{2D}                 & \multicolumn{1}{c|}{RSSI}                        & \multicolumn{1}{c|}{Grid}                & 
-		\multicolumn{1}{c|}{Dynamic nodes \checkmark}                & \multicolumn{1}{c|}{Real-world \checkmark}                          \\ \hline
-		MLP\cite{rahman2009localization}&        \multicolumn{1}{c|}{2D}              &      \multicolumn{1}{c|}{RSS}                                            &   \multicolumn{1}{c|}{Grid}                      & \multicolumn{1}{c|}{Static nodes}                     &   \multicolumn{1}{c|}{Simulation}    \\ \hline
-		
-		MLBPN\cite{singh2013tdoa}&
-		\multicolumn{1}{c|}{2D}                   &      
-		\multicolumn{1}{c|}{TDOA}                 &   \multicolumn{1}{c|}{Grid}                   & 
-		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
-		
-		MLP\cite{abdelhadi2013efficient}& 
-		\multicolumn{1}{c|}{3D  \checkmark}                   &      
-		\multicolumn{1}{c|}{Distance}                 &   \multicolumn{1}{c|}{Spread}                   & 
-		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
-		
-		Clustering-based FCNNs\cite{bernas2015fully}& 
-		\multicolumn{1}{c|}{2D}                   &      
-		\multicolumn{1}{c|}{RSSI}                 &   \multicolumn{1}{c|}{Spread}                   & 
-		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Real-world  \checkmark}   \\ \hline
-		
-		MLP\cite{kumar2016localization}& 
-		\multicolumn{1}{c|}{2D}                   &      
-		\multicolumn{1}{c|}{RSSI}                 &   \multicolumn{1}{c|}{Grid}                   & 
-		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Real-world  \checkmark}   \\ \hline
-		LPSONN\cite{banihashemian2018new}&     
-		\multicolumn{1}{c|}{2D}                   &      
-		\multicolumn{1}{c|}{Hop cound}                 &   \multicolumn{1}{c|}{PSO  \checkmark}                   & 
-		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
-		
-		Ours&
-		\multicolumn{1}{c|}{3D \checkmark}                   &      
-		\multicolumn{1}{c|}{TOF}                 &   \multicolumn{1}{c|}{PSO on the mobile robot \checkmark}                   & 
-		\multicolumn{1}{c|}{Dynamic nodes \checkmark}        &   \multicolumn{1}{c|}{Real-world \checkmark}   \\ \hline
-	\end{tabular}
-\end{table*}
 
 
-%		RBF\cite{shareef2008localization}                          & \multicolumn{1}{c|}{2D}                 & \multicolumn{1}{c|}{RSSI}                        & \multicolumn{1}{c|}{Grid}                & 
-%		\multicolumn{1}{c|}{Dynamic nodes \checkmark}                & \multicolumn{1}{c|}{Real-world \checkmark}                          \\ \hline
-%		MLP\cite{rahman2009localization}&        \multicolumn{1}{c|}{2D}              &      \multicolumn{1}{c|}{RSS}                                            &   \multicolumn{1}{c|}{Grid}                      & \multicolumn{1}{c|}{Static nodes}                     &   \multicolumn{1}{c|}{Simulation}    \\ \hline
-%		
-%		MLBPN\cite{singh2013tdoa}&
-%		\multicolumn{1}{c|}{2D}                   &      
-%		\multicolumn{1}{c|}{TDOA}                 &   \multicolumn{1}{c|}{Grid}                   & 
-%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
-%		
-%		MLP\cite{abdelhadi2013efficient}& 
-%		\multicolumn{1}{c|}{3D  \checkmark}                   &      
-%		\multicolumn{1}{c|}{Distance}                 &   \multicolumn{1}{c|}{Spread}                   & 
-%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
-%		
-%		Clustering-based FCNNs\cite{bernas2015fully}& 
-%		\multicolumn{1}{c|}{2D}                   &      
-%		\multicolumn{1}{c|}{RSSI}                 &   \multicolumn{1}{c|}{Spread}                   & 
-%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Real-world  \checkmark}   \\ \hline
-%		
-%		MLP\cite{kumar2016localization}& 
-%		\multicolumn{1}{c|}{2D}                   &      
-%		\multicolumn{1}{c|}{RSSI}                 &   \multicolumn{1}{c|}{Grid}                   & 
-%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Real-world  \checkmark}   \\ \hline
-%		LPSONN\cite{banihashemian2018new}&     
-%		\multicolumn{1}{c|}{2D}                   &      
-%		\multicolumn{1}{c|}{Hop cound}                 &   \multicolumn{1}{c|}{PSO  \checkmark}                   & 
-%		\multicolumn{1}{c|}{Static nodes}        &   \multicolumn{1}{c|}{Simulation}   \\ \hline
-%		
-%		Ours&
-%		\multicolumn{1}{c|}{3D \checkmark}                   &      
-%		\multicolumn{1}{c|}{TOF}                 &   \multicolumn{1}{c|}{PSO on the mobile robot \checkmark}                   & 
-%		\multicolumn{1}{c|}{Dynamic nodes \checkmark}        &   \multicolumn{1}{c|}{Real-world \checkmark}   \\ \hline
-%	
-%\begin{table}[h!]
-%	\begin{center}
-%		\caption{Table using booktabs.}
-%		\label{tab:table1}
-%		\begin{tabular}{1|1|1}
-%			\toprule % <-- Toprule here
-%			\textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
-%			$\alpha$ & $\beta$ & $\gamma$ \\
-%			\midrule % <-- Midrule here
-%			1 & 1110.1 & a\\
-%			2 & 10.1 & b\\
-%			3 & 23.113231 & c\\
-%			\bottomrule % <-- Bottomrule here
-%		\end{tabular}
-%	\end{center}
-%\end{table}
 
 However, there are some points that could have been better. First of all, in some cases, their networks were trained by range measurement data corresponding position of mobile node in simulation environment\cite{chatterjee2010fletcher, shareef2008localization, rahman2009localization, singh2013tdoa, banihashemian2018new}. The simulation situation is almost ideal in the point that the NLOS or MPF problem does not occur. Even though in \cite{rahman2009localization}, they artificially generate NLOS data, but the gap of complexity between real-world and artificially generated data exists, since the generated data has less noise than those of real-world necessarily. For these reasons, it is hard to say that their networks also works well on real world situation. Therefore, to test on whether it is possible for neural networks to estimate position with covering all disturbance, the experiment should be conducted on real-world. 
 Second, some studies was conducted on the two-dimensional space to simplify their problem definition\cite{shareef2008localization, rahman2009localization, singh2013tdoa,bernas2015fully, kumar2016localization, banihashemian2018new}. However, gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible. Finally, in previous studies \cite{shareef2008localization, rahman2009localization, singh2013tdoa,kumar2016localization}, it has a possibility of overfitting because the authors generate the grid-map as train data in such a way as to restrict their ground truth region. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct even when the position of MN to be tested is quite far from the grid. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
@@ -221,30 +186,27 @@ Second, some studies was conducted on the two-dimensional space to simplify thei
 In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in Fig. \ref{fig:our_network}. 
 In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and the describe the reason why we let the neural network infer in three-dimensional space even though experiment is conducted on the mobile robot. Finally, we explain how to set the loss function of our neural network and then compare to those of other previous works.
 
-\begin{figure*}[h]
-	\centering
-	\includegraphics[width=.9\textwidth]{image/networks}
-	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
-	\label{fig:our_network}
-\end{figure*}
-
 
 \subsection{long short-Term Memory}
+
 
 Recurrent Neural Networks(RNN) is a special artificial neural networks in the way that it has a loop, so that RNN can deal with temporal information for sequential modeling. It originally used in the natural language processing, speech recognition, and image captioning area. By virtue of a loop, RNN can remember past data and past situation and respond appropriately to the present situation based on these past information. 
 
 But unfortunately, as the time-sequential gap grows, RNNs become unable to learn the relationship of these sequential information. This issue is called the problem of \textit{Long-Term Dependency},which fail to propagate the previous matter into present tasks so that long-term dependency lead to a failure of learning. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture is introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual
 understandings \cite{hochreiter1997long}. That's why LSTM have been actively studied for many tasks in a wide area of science and engineering.in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
 
-Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates to preserve the previous information and control the cell state: forget gate, input gate, and output gate and equations of those are as follows:
-
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.4\textwidth]{image/basic_LSTM_revised}
-	\caption{It introduce 3 gates, forget gate, input gate, and output gate. And output gate is divided into cell state layer(Green) and output gate layer(cyan) 
+	\caption{Architecture of the LSTM. It consists of 3 gates, forget gate(the part inside the red box), input gate(the part inside the blue box), and output gate. And output gate is divided into cell state layer(the part inside the green box) and output gate layer(the part inside the cyan box) 
 	}
 	\label{fig:basic_lstm}
 \end{figure}
+
+Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates to preserve the previous information and control the cell state: forget gate, input gate, and output gate and equations of those are as follows:
+
+
+
 
 \begin{align}
 f_{t} & =\sigma _{s}\big(W_{xf}\cdot x_{t}+W_{hf}\cdot h_{t-1}+b_{f}\big)\label{eq:forget}\\
@@ -262,16 +224,18 @@ The Forget gate layer, $f_{t}$, decides how much information to forget. The sigm
 
 \subsection{Bidirectional LSTM}
 
-One shortcoming of conventional RNNs is that they only exploit previous context to update $h_{t}$ and $c_{t}$. However, in many cases dealing with sequential data, it could be efficient to extract well-discribed context by utilizing future context as well. Bidirectional RNNs are introduced\cite{schuster1997bidirectional} for that reason and bidirectional RNNs process the data in both directions with two separate hidden layers. Especially, bidirectional LSTM, which we employee, has one forward LSTM and one backward LSTM running in reverse time and their features are combined at the output layer, $y_{t}$. As a result, bidirectional LSTM can produce more appropriate context considering both past and future at the same time. By virtue of this characteristics, bidirectional LSTM is popularly utilized for many tasks to model their sequentional systems \cite{zhang2017multi,li2018human,ullah2018action}. 
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=.9\linewidth]{bidirectional_LSTM_revised}
-	\label{fig:bidirectional_revised} 	
-	\caption{Bidirectional LSTM}
+	\caption{Architecture of the Bidirectional LSTM(Bi-LSTM)}
+	\label{fig:bidirectional_revised}	
 \end{figure}
 
-As FIGURE. \textcolor{red}{\ref{fig:bidirectional_revised}} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
+
+One shortcoming of conventional RNNs is that they only exploit previous context to update $h_{t}$ and $c_{t}$. However, in many cases dealing with sequential data, it could be efficient to extract well-discribed context by utilizing future context as well. Bidirectional RNNs are introduced\cite{schuster1997bidirectional} for that reason and bidirectional RNNs process the data in both directions with two separate hidden layers. Especially, bidirectional LSTM, which we employee, has one forward LSTM and one backward LSTM running in reverse time and their features are combined at the output layer, $y_{t}$. As a result, bidirectional LSTM can produce more appropriate context considering both past and future at the same time. By virtue of this characteristics, bidirectional LSTM is popularly utilized for many tasks to model their sequentional systems \cite{zhang2017multi,li2018human,ullah2018action}. 
+
+
+As FIGURE. \ref{fig:bidirectional_revised} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
 
 \begin{align}
 h^{f}_{t} & =\overrightarrow{LSTM}\big(x_{t}, h^{f}_{t-1}\big)\\
@@ -461,6 +425,7 @@ During the robot is going on, the data is saved in the computer. The distance da
 \section{Results}
 
 \textcolor{green}{To verify our proposal that RNNs can estimate the robot's position through varying range data, we trained our RNN-based multimodal architecture. Plus, to compare to previous traditional SLAM algorithm, we also estimate robot's position by particle filter(PF) based algorithm.}
+\subsection{Performance according to the sequence length}
 
 As illustrated in Experiment session, train data are our own data gathered by UWB sensors and motion capture camera, so neural networks take range-only measurements as input and output robot's position. Ground truth data is robot's position measured by eagle eye motion capturer, whose error is in mm units. The results of trajectory prediction are shown in Fig. \ref{fig:trajectory} and Root-Mean-Squared Error (RMSE) are shown in Table \ref{table:RMSE_table}. Note that out experiment is conducted on mobile robot, so we can pre-estimates that z position of robot is almost similar while robot is running. 
 
@@ -489,6 +454,7 @@ method proposed
 \end{table}
 
 
+\subsection{Performance comparison result}
 
 The results of trajectory prediction are shown in Fig. 3(a) and Fig. 3(d) and
 Root-Mean-Squared Error (RMSE) are shown in Table 1. Performance is better
