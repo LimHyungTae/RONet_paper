@@ -374,51 +374,40 @@ Unlike the case of 2D, $A_{3D}$ consists of $z$ components on the third column. 
 \section{Experiments}
 \subsection{Experimental environment}
 
-\begin{figure*}[h]
-	\centering
-	\begin{subfigure}[b]{.25\textwidth}
-		\centering
-		\includegraphics[width=.9\textwidth]{anchor_tag_nodes}
-		\label{fig:dataset} 	
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[b]{.25\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{paths}
-		\label{fig:nodes} 	
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[b]{.5\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{dataset_process}
-		\label{fig:trajectories} 	
-		\caption{}
-	\end{subfigure}
-	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
-	\label{fig:experiments}
-\end{figure*}
-Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a small-form-factor(SFF) computer.
+Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a SFF(small-form-factor) computer.
 
+UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:anchor_tag_nodes} shows anchor and tag nodes.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=.4\textwidth]{anchor_tag_nodes}
-	\caption{(a)The anchor and tag nodes}
-	\label{fig:environment}
+	\includegraphics[width=.9\linewidth]{anchor_tag_nodes}
+	\caption{The anchor and tag nodes}
+	\label{fig:anchor_tag_nodes}
 \end{figure}
-
-
-UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:experiment} shows anchor and tag nodes.
 
 We inference the position of a robot with our network. To train the network and test the results, the ground truths are needed. We get the ground truth by using the motion capture system. The system is Eagle Digital Realtime system of motion analysis corporation that operates with the principle of stereo pattern recognition that is a kind of photogrammetry based on the epipolar geometry and the triangulation methodology. We attach four markers to a robot. The system gives us the location of these markers and has < 1mm accuracy.
 
-A mobile robot used in experiment is iClebo Kobuki from Yujinrobot that has 70 cm/s maximum velocity.The small form-factor computer is a gigabyte Ultra compact PC. Deep learning framework used for our network is pytorch 0.4.0 on python 3.6. The network inferences on the same setting.
+A mobile robot used in experiment is iClebo Kobuki from Yujinrobot that has 70 cm/s maximum velocity.The SFF computer is a gigabyte Ultra compact PC. Deep learning framework used for our network is pytorch 0.4.0 on python 3.6. The network inferences on the same setting.
 
-The UWB tag is attached to mobile robot that has a small compact computer. The UWB anchors are attached to stands that have two different heights. The anchors are positioned randomly in the square space. As you can see in Fig. \ref{fig:experiment}(b), a mobile robot manually goes on various random trajectories by experimenters.
+The UWB tag is attached to mobile robot that has a SFF computer. The UWB anchors are attached to stands that have two different heights. The anchors are positioned randomly in the square space where the motion capture system can measure the position. The robot moves in this sapce also. As you can see in Fig. \ref{fig:paths}, a mobile robot manually goes on various random trajectories by experimenters.
 
-During the robot is going on, the data is saved in the computer. The distance data used for input data is measured by the UWB sensors. The global position data used for ground truth is measured by the motion capture system. These two kinds of data are paired in a dataset. The computer receives these two kinds of data respectively and syncronizes these by time. To synchronize, we make an independent thread that concatenates and saves these data at the same time. The data is saved at 20Hz frequency. Each trajectory becomes one dataset. All the trajectories are different. Fig. \ref{fig:experiment}(c) shows this process. After collecting whole datasets, we separate the entire dataset to two types, some are the training datasets and others are test datasets.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{paths}
+	\caption{Four example of the trajectories}
+	\label{fig:paths} 
+\end{figure}
 
 \subsection{Data syncronization for Train/Test data}
+During the robot is going on, the data is saved in the computer. The distance data used for input data is measured by the UWB sensors. The global position data used for ground truth is measured by the motion capture system. These two kinds of data are paired in a dataset. Because these two data are transmitted by different frequency, we need to syncronize these. This process is conducted in a SFF computer. The computer receives these two kinds of data respectively and syncronizes these by time. To synchronize, we make an independent thread that concatenates and saves these data at the same time. The data is saved at 20Hz frequency. Each trajectory becomes one dataset. All the trajectories are different. Fig. \ref{fig:dataset} shows this process. After collecting whole datasets, we separate the entire dataset to two types, some are the training datasets and others are test datasets.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{dataset_process}
+	\caption{the process that makes dataset}
+	\label{fig:dataset} 	
+\end{figure}
+
 \subsection{Training the Networks}
 
 

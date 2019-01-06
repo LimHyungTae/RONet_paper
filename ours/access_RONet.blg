@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2018/W32TeX)
+This is BibTeX, Version 0.99d (TeX Live 2018)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: access_RONet.aux
 The style file: IEEEtran.bst
@@ -8,11 +8,11 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ./Access_RObib.bib
-Repeated entry---line 277 of file ./Access_RObib.bib
+Repeated entry---line 139 of file ./Access_RObib.bib
  : @article{ullah2018action
  :                         ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 561 of file ./Access_RObib.bib
+Repeated entry---line 281 of file ./Access_RObib.bib
  : @inproceedings{jung2011indoor
  :                              ,
 I'm skipping whatever remains of this entry
