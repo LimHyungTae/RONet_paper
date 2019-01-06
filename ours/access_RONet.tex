@@ -10,6 +10,7 @@
 \usepackage{color, soul}
 \usepackage{amsmath}
 \usepackage{booktabs}
+\usepackage{multirow}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -453,6 +454,24 @@ method proposed
 	\label{table:RMSE_table}
 \end{table}
 
+\begin{table}[h]
+	\centeringd
+	\begin{tabular}{clllll}
+		\toprule
+		\multicolumn{6}{c}{The results of RMSE[cm]}                         \\
+		\midrule
+		& \multicolumn{5}{c}{Sequence length} \\  \cmidrule{2-6}
+		
+		\multicolumn{1}{l}{} & 2   & 3   & 5  & 7  & 10  \\
+		Test1                &     &     &    &    &     \\
+		Test2                &     &     &    &    &     \\
+		Test3                &     &     &    &    &    \\
+		\bottomrule 
+		
+	\end{tabular}
+	\caption{Root mean squared error of each case}
+	\label{table:RMSE_sequence}
+\end{table}
 
 \subsection{Performance comparison result}
 
@@ -470,7 +489,48 @@ Bi-LSTM is the architecture that stacks two Bi-LSTMs, so inference performance
 is better than Bi-LSTM. As a result, the stacked Bi-LSTM showed the best
 performance among unit RNN architectures. Therefore, we can conclude that
 the performance improves as the non-linearity of the architecture increases.
-
+\begin{table*}[t]
+	\centering
+	\begin{tabular}{llllllllllll}
+		\toprule
+		\multirow{2}{*}{Method} & \multicolumn{4}{c}{Abs. Error}                                                                    & \multicolumn{4}{c}{Std. Error}                                                                    & \multicolumn{1}{c}{\multirow{2}{*}{RMSE}} & \multicolumn{1}{c}{\multirow{2}{*}{Min. Error}} & \multicolumn{1}{c}{\multirow{2}{*}{Max. Error}} \\ \cmidrule{2-5} \cmidrule{6-9}
+		& \multicolumn{1}{c}{x} & \multicolumn{1}{c}{y} & \multicolumn{1}{c}{z} & \multicolumn{1}{c}{total} & \multicolumn{1}{c}{x} & \multicolumn{1}{c}{y} & \multicolumn{1}{c}{z} & \multicolumn{1}{c}{total} & \multicolumn{1}{c}{}                      & \multicolumn{1}{c}{}                            & \multicolumn{1}{c}{}                            \\
+		\midrule
+		\multicolumn{12}{l}{Test1: Square path}                                                                                                                                                                                                                                                                                                                                         \\
+		\midrule
+		RBF\cite{shareef2008localization}  &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{rahman2009localization}   &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLBPN\cite{singh2013tdoa}          &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{abdelhadi2013efficient}   &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{kumar2016localization}    &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		LPSONN\cite{banihashemian2018new}  &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		Ours w/o attn.          &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		Ours                    &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		\midrule
+		\multicolumn{12}{l}{Test2: Vertical winding path}                                                                                                                                                                                                                                                                                                                                         \\
+		\midrule
+		RBF\cite{shareef2008localization}  &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{rahman2009localization}   &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLBPN\cite{singh2013tdoa}          &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{abdelhadi2013efficient}   &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{kumar2016localization}    &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		LPSONN\cite{banihashemian2018new}  &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		Ours w/o attn.          &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		Ours                    &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		\midrule
+		\multicolumn{12}{l}{Test3: Diagonal winding path}                                                                                                                                                                                                                                                                                                                                         \\
+		\midrule
+		RBF\cite{shareef2008localization}  &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{rahman2009localization}   &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLBPN\cite{singh2013tdoa}          &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{abdelhadi2013efficient}   &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		MLP\cite{kumar2016localization}    &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		LPSONN\cite{banihashemian2018new}  &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		Ours w/o attn.          &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		Ours                    &                       &                       &                       &                           &                       &                       &                       &                           &                                           &                                                 &                                                 \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
 \section{Conclusion}
 
 In this paper, we proposed a novel approach to range-only SLAM using multimodal-based RNN models and tested our architectures in two test data.
