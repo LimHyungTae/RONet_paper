@@ -375,64 +375,69 @@ Unlike the case of 2D, $A_{3D}$ consists of $z$ components on the third column. 
 \section{Experiments}
 \subsection{Experimental environment}
 
-\begin{figure*}[h]
-	\centering
-	\begin{subfigure}[b]{.25\textwidth}
-		\centering
-		\includegraphics[width=.9\textwidth]{anchor_tag_nodes}
-		\label{fig:dataset} 	
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[b]{.25\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{paths}
-		\label{fig:nodes} 	
-		\caption{}
-	\end{subfigure}%
-	\begin{subfigure}[b]{.5\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{dataset_process}
-		\label{fig:trajectories} 	
-		\caption{}
-	\end{subfigure}
-	\caption{Figures from experiment (a)The anchor and tag nodes (b)Four examples of the trajectory (c) the process that makes dataset}
-	\label{fig:experiments}
-\end{figure*}
-Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a small-form-factor(SFF) computer.
+Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a SFF(small-form-factor) computer.
 
+UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:anchor_tag_nodes} shows anchor and tag nodes.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=.4\textwidth]{anchor_tag_nodes}
-	\caption{(a)The anchor and tag nodes}
-	\label{fig:environment}
+	\includegraphics[width=.9\linewidth]{anchor_tag_nodes}
+	\caption{The anchor and tag nodes}
+	\label{fig:anchor_tag_nodes}
 \end{figure}
-
-
-UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:experiment} shows anchor and tag nodes.
 
 We inference the position of a robot with our network. To train the network and test the results, the ground truths are needed. We get the ground truth by using the motion capture system. The system is Eagle Digital Realtime system of motion analysis corporation that operates with the principle of stereo pattern recognition that is a kind of photogrammetry based on the epipolar geometry and the triangulation methodology. We attach four markers to a robot. The system gives us the location of these markers and has < 1mm accuracy.
 
-A mobile robot used in experiment is iClebo Kobuki from Yujinrobot that has 70 cm/s maximum velocity.The small form-factor computer is a gigabyte Ultra compact PC. Deep learning framework used for our network is pytorch 0.4.0 on python 3.6. The network inferences on the same setting.
+A mobile robot used in experiment is iClebo Kobuki from Yujinrobot that has 70 cm/s maximum velocity.The SFF computer is a gigabyte Ultra compact PC. Deep learning framework used for our network is pytorch 0.4.0 on python 3.6. The network inferences on the same setting.
 
-The UWB tag is attached to mobile robot that has a small compact computer. The UWB anchors are attached to stands that have two different heights. The anchors are positioned randomly in the square space. As you can see in Fig. \ref{fig:experiment}(b), a mobile robot manually goes on various random trajectories by experimenters.
+The UWB tag is attached to mobile robot that has a SFF computer. The UWB anchors are attached to stands that have two different heights. The anchors are positioned randomly in the square space where the motion capture system can measure the position. The robot moves in this sapce also. As you can see in Fig. \ref{fig:paths}, a mobile robot manually goes on various random trajectories by experimenters.
 
-During the robot is going on, the data is saved in the computer. The distance data used for input data is measured by the UWB sensors. The global position data used for ground truth is measured by the motion capture system. These two kinds of data are paired in a dataset. The computer receives these two kinds of data respectively and syncronizes these by time. To synchronize, we make an independent thread that concatenates and saves these data at the same time. The data is saved at 20Hz frequency. Each trajectory becomes one dataset. All the trajectories are different. Fig. \ref{fig:experiment}(c) shows this process. After collecting whole datasets, we separate the entire dataset to two types, some are the training datasets and others are test datasets.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{paths}
+	\caption{Four example of the trajectories}
+	\label{fig:paths} 
+\end{figure}
 
 \subsection{Data syncronization for Train/Test data}
+During the robot is going on, the data is saved in the computer. The distance data used for input data is measured by the UWB sensors. The global position data used for ground truth is measured by the motion capture system. These two kinds of data are paired in a dataset. Because these two data are transmitted by different frequency, we need to syncronize these. This process is conducted in a SFF computer. The computer receives these two kinds of data respectively and syncronizes these by time. To synchronize, we make an independent thread that concatenates and saves these data at the same time. The data is saved at 20Hz frequency. Each trajectory becomes one dataset. All the trajectories are different. Fig. \ref{fig:dataset} shows this process. After collecting whole datasets, we separate the entire dataset to two types, some are the training datasets and others are test datasets.
+
+Ground truth data is robot's position measured by eagle eye motion capturer, whose error is in mm units.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{dataset_process}
+	\caption{the process that makes dataset}
+	\label{fig:dataset} 	
+\end{figure}
+
 \subsection{Training the Networks}
 
+Pass
 
 \section{Results}
 
-\textcolor{green}{To verify our proposal that RNNs can estimate the robot's position through varying range data, we trained our RNN-based multimodal architecture. Plus, to compare to previous traditional SLAM algorithm, we also estimate robot's position by particle filter(PF) based algorithm.}
+To improve the performance of our proposed networks, we check which seqeunce length is optimal for localization of MN. And then, we implemented and trained other previous networks to compare their performance when our real-world data are given as input. We set three test trajectory cases: an square path, verical and horizontal winding path, and diagonal winding path. 
+
 \subsection{Performance according to the sequence length}
 
-As illustrated in Experiment session, train data are our own data gathered by UWB sensors and motion capture camera, so neural networks take range-only measurements as input and output robot's position. Ground truth data is robot's position measured by eagle eye motion capturer, whose error is in mm units. The results of trajectory prediction are shown in Fig. \ref{fig:trajectory} and Root-Mean-Squared Error (RMSE) are shown in Table \ref{table:RMSE_table}. Note that out experiment is conducted on mobile robot, so we can pre-estimates that z position of robot is almost similar while robot is running. 
+Even though LSTM solve the long term dependency problem, we thought that it would not always make neural network perform better as sequence length become more longer. So, as part of turning hyperparameters, we modified sequence length of our network in a variety of numbers to find optimal sequence length.   
 
-We set two test trajectory cases: an square path and zigzag path. an The results shows that it has better performance than established probabilistic-based approach. In both cases, performance of our networks  is better that of particle filter. RMSE of our networks in test1 is 3.928cm and 4.119cm in test2.
+As illustrated in FIGURE. \ref{fig:paths}, The train data are gathered by the robot that arbitrary moves on the region where the motion capture camera cover. The neural network takes distances measured by each AN and a MN as input and outputs robot's position. The Root-Mean-Squared Error (RMSE) results of trajectory prediction with respect to sequence length are shown in FIGURE. \ref{fig:seq_length} and specific figures are shown in Table \ref{table:RMSE_sequence}.
 
-We also verified effectiveness of attention layer. It was confirmed that the performance of the networks with the attention layer is improved compared to the networks without the attention layer.
+As a result, we found that there is a trade-off between robustness and improvement of general performance according to the sequence length. Figure. \ref{fig:seq_length} show that as longer the sequence length, as more inaccurate the mean performance. This is because it is hard for the neural architecture to generalize the chracteristics of the sequential data. In other words, as sequence length become longer, the tendency of the values may be different due to accumulation of different patterns of system noises even if the data is acquired by moving to a similar path in the train data.
+
+ 
+each sequential data containing the train data have less generality because each sequence have 
+
+However
+ Note that out experiment is conducted on mobile robot, so we can pre-estimates that z position of robot is almost similar while robot is running. 
+
+%sequence length가 길어질수록 netowrk가 그 sequential data를 일반화 시키는 게 어렵다
+%In other workds, sequence length만큼 끊어서 input으로 받기 때문에 sequential한 경향성에 대해 적절한 output을 내게 학습을 하는데, sequence가 길어지게 되면 길어지는 만큼 그 상황이 특수해져서 비슷한 특성을 지닌 input이 줄기 때문이다????
+%On the other hand, 짧아질수록 좋지만 경향성이 
+
+
+
 
 
 . We also provide statistical analysis from simulations demonstrating that
@@ -440,22 +445,17 @@ our new approach can cope with highly noisy sensors and
 reduces in one order of magnitude the average errors of the
 method proposed
 
-\begin{table}[h]
-	\begin{tabular}{lllcc}
-		\hline
-		\multicolumn{5}{c}{The results of RMSE{[}cm{]}}                                                                          \\ \hline
-		\multicolumn{3}{c|}{Model}                                        & \multicolumn{1}{c|}{Test1}          & Test2          \\ \hline
-		\multicolumn{3}{l|}{Particle Filter-based w/o pre-estimates of z} & \multicolumn{1}{c|}{11.253}         & 9.195          \\
-		\multicolumn{3}{l|}{Particle Filter-based}                        & \multicolumn{1}{c|}{5.525}          & 5.258          \\
-		\multicolumn{3}{l|}{Multimodal(Ours)}                                   & \multicolumn{1}{c|}{4.225}          & 4.311          \\
-		\multicolumn{3}{l|}{Multimodal(Ours) + attention}                       & \multicolumn{1}{c|}{\textbf{3.928}} & \textbf{4.119}
-	\end{tabular}
-	\caption{Root mean squared error of each case}
-	\label{table:RMSE_table}
-\end{table}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/seq_result_prototype}
+	\caption{the process that makes dataset}
+	\label{fig:seq_length} 	
+\end{figure}
+
 
 \begin{table}[h]
-	\centeringd
+	\centering
+	\caption{Root mean squared error of each case}
 	\begin{tabular}{clllll}
 		\toprule
 		\multicolumn{6}{c}{The results of RMSE[cm]}                         \\
@@ -469,7 +469,6 @@ method proposed
 		\bottomrule 
 		
 	\end{tabular}
-	\caption{Root mean squared error of each case}
 	\label{table:RMSE_sequence}
 \end{table}
 
@@ -489,6 +488,8 @@ Bi-LSTM is the architecture that stacks two Bi-LSTMs, so inference performance
 is better than Bi-LSTM. As a result, the stacked Bi-LSTM showed the best
 performance among unit RNN architectures. Therefore, we can conclude that
 the performance improves as the non-linearity of the architecture increases.
+
+We also verified effectiveness of attention layer. It was confirmed that the performance of the networks with the attention layer is improved compared to the networks without the attention layer.
 \begin{table*}[t]
 	\centering
 	\begin{tabular}{llllllllllll}
