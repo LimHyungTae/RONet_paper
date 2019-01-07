@@ -394,7 +394,7 @@ The UWB tag is attached to mobile robot that has a SFF computer. The UWB anchors
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\linewidth]{paths}
+	\includegraphics[width=0.9\linewidth]{paths_1}
 	\caption{Four example of the trajectories}
 	\label{fig:paths} 
 \end{figure}
@@ -405,7 +405,7 @@ During the robot is going on, the data is saved in the computer. The distance da
 Ground truth data is robot's position measured by eagle eye motion capturer, whose error is in mm units.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\linewidth]{dataset_process}
+	\includegraphics[width=0.9\linewidth]{data_sync}
 	\caption{the process that makes dataset}
 	\label{fig:dataset} 	
 \end{figure}
@@ -416,7 +416,7 @@ Pass
 
 \section{Results}
 
-To improve the performance of our proposed networks, we check which seqeunce length is optimal for localization of MN. And then, we implemented and trained other previous networks to compare their performance when our real-world data are given as input. We set three test trajectory cases: an square path, verical and horizontal winding path, and diagonal winding path. 
+To improve the performance of our proposed networks, we check which seqeunce length is optimal for localization of MN. And then, we implemented and trained other previous networks to compare their performance when our real-world data are given as input. We set three test trajectory cases: a square path, a verical and horizontal winding path, and a diagonal winding path. 
 
 \subsection{Performance according to the sequence length}
 
@@ -424,31 +424,22 @@ Even though LSTM solve the long term dependency problem, we thought that it woul
 
 As illustrated in FIGURE. \ref{fig:paths}, The train data are gathered by the robot that arbitrary moves on the region where the motion capture camera cover. The neural network takes distances measured by each AN and a MN as input and outputs robot's position. The Root-Mean-Squared Error (RMSE) results of trajectory prediction with respect to sequence length are shown in FIGURE. \ref{fig:seq_length} and specific figures are shown in Table \ref{table:RMSE_sequence}.
 
-As a result, we found that there is a trade-off between robustness and improvement of general performance according to the sequence length. Figure. \ref{fig:seq_length} show that as longer the sequence length, as more inaccurate the mean performance. This is because it is hard for the neural architecture to generalize the chracteristics of the sequential data. In other words, as sequence length become longer, the tendency of the values may be different due to accumulation of different patterns of system noises even if the data is acquired by moving to a similar path in the train data.
+As a result, we found that there is a trade-off between robustness and improvement of general performance according to the sequence length. Figure. \ref{fig:seq_length} show that as longer the sequence length, as more inaccurate the mean performance. This is because it is hard for the neural architecture to train the chracteristics of the sequential data. In other words, as sequence length become longer, the tendency of the values may be different due to accumulation of different patterns of system noises even if the data is acquired by moving to a similar path in the train data. Note that network with longer sequence length tend to have less error variance and more a ability to generalize the situation since they could utilize more extended temporal information. By doing so, the nerual network have the ability to suppress the disturbance caused by noises.
+
+Similarily, as sequence length become shorter, it is less difficult for the neural architecture to understand the chracteristics of the sequential data by virtue of the less accumulation of different patterns of system noises. Note that in most cases, the network constructed by the shorter sequential length tend to estimate the position more precisely than those with longer sequential lengths. However, it becomes a double-edged sword because temporal information is also reduced accordingly in such a way as to week to the noises, having larger error variance.
 
  
-each sequential data containing the train data have less generality because each sequence have 
-
-However
- Note that out experiment is conducted on mobile robot, so we can pre-estimates that z position of robot is almost similar while robot is running. 
 
 %sequence length가 길어질수록 netowrk가 그 sequential data를 일반화 시키는 게 어렵다
 %In other workds, sequence length만큼 끊어서 input으로 받기 때문에 sequential한 경향성에 대해 적절한 output을 내게 학습을 하는데, sequence가 길어지게 되면 길어지는 만큼 그 상황이 특수해져서 비슷한 특성을 지닌 input이 줄기 때문이다????
-%On the other hand, 짧아질수록 좋지만 경향성이 
+%길이가 길어짐에 따라 noise에 대한 방해를 더 길어진 temporal information을 활용해서 억누를 수 있다.
+%On the other hand, 짧아질수록 좋지만 경향성을 학습?
 
-
-
-
-
-. We also provide statistical analysis from simulations demonstrating that
-our new approach can cope with highly noisy sensors and
-reduces in one order of magnitude the average errors of the
-method proposed
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\linewidth]{image/seq_result_prototype}
-	\caption{the process that makes dataset}
+	\caption{Error bar graph of RMSE with respect to sequence length}
 	\label{fig:seq_length} 	
 \end{figure}
 
@@ -462,10 +453,10 @@ method proposed
 		\midrule
 		& \multicolumn{5}{c}{Sequence length} \\  \cmidrule{2-6}
 		
-		\multicolumn{1}{l}{} & 2   & 3   & 5  & 7  & 10  \\
-		Test1                &     &     &    &    &     \\
-		Test2                &     &     &    &    &     \\
-		Test3                &     &     &    &    &    \\
+		\multicolumn{1}{l}{} & 2     & 3       & 5      & 7    & 10  \\
+		Test1                & 2.84  & 2.88    & \textbf{2.78}   & 3.65 & 4.16 \\
+		Test2                & 3.61  & 3.63    & \textbf{3.57}   & 3.84 & 4.18 \\
+		Test3                & \textbf{2.93}  & 3.21    & 3.03   & 3.62 & 3.93 \\
 		\bottomrule 
 		
 	\end{tabular}
@@ -489,7 +480,16 @@ is better than Bi-LSTM. As a result, the stacked Bi-LSTM showed the best
 performance among unit RNN architectures. Therefore, we can conclude that
 the performance improves as the non-linearity of the architecture increases.
 
+
+!!!!!!!!!!!!!!!!!
 We also verified effectiveness of attention layer. It was confirmed that the performance of the networks with the attention layer is improved compared to the networks without the attention layer.
+ We also provide statistical analysis from simulations demonstrating that
+our new approach can cope with highly noisy sensors and
+reduces in one order of magnitude the average errors of the
+method proposed
+!!!!!!!!!!!!!!!!!
+
+
 \begin{table*}[t]
 	\centering
 	\begin{tabular}{llllllllllll}
@@ -558,70 +558,16 @@ unnumbered footnote on the first page, not here.
 % argument is your BibTeX string definitions and bibliography database(s)
 \bibliography{./Access_RObib}
 
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a1.png}}]{First A. Author} (M'76--SM'81--F'87) and all authors may include 
-biographies. Biographies are often not included in conference-related
-papers. This author became a Member (M) of IEEE in 1976, a Senior
-Member (SM) in 1981, and a Fellow (F) in 1987. The first paragraph may
-contain a place and/or date of birth (list place, then date). Next,
-the author's educational background is listed. The degrees should be
-listed with type of degree in what field, which institution, city,
-state, and country, and year the degree was earned. The author's major
-field of study should be lower-cased. 
-
-The second paragraph uses the pronoun of the person (he or she) and not the 
-author's last name. It lists military and work experience, including summer 
-and fellowship jobs. Job titles are capitalized. The current job must have a 
-location; previous positions may be listed 
-without one. Information concerning previous publications may be included. 
-Try not to list more than three books or published articles. The format for 
-listing publishers of a book within the biography is: title of book 
-(publisher name, year) similar to a reference. Current and previous research 
-interests end the paragraph. The third paragraph begins with the author's 
-title and last name (e.g., Dr.\ Smith, Prof.\ Jones, Mr.\ Kajor, Ms.\ Hunter). 
-List any memberships in professional societies other than the IEEE. Finally, 
-list any awards and work for IEEE committees and publications. If a 
-photograph is provided, it should be of good quality, and 
-professional-looking. Following are two examples of an author's biography.
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a_1.png}}]{HYUNGTAE LIM}
+	received the B.S. degree in the Mechanical Engineering from the Korea Advanced Institute of Science and Technology, where he is currently pursuing the M.S. degree with the robotics program and civil engineering. His research includes computer vision, localization using raw-level sensors, SLAM, and deep learning.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a2.png}}]{Second B. Author} was born in Greenwich Village, New York, NY, USA in 
-1977. He received the B.S. and M.S. degrees in aerospace engineering from 
-the University of Virginia, Charlottesville, in 2001 and the Ph.D. degree in 
-mechanical engineering from Drexel University, Philadelphia, PA, in 2008.
-
-From 2001 to 2004, he was a Research Assistant with the Princeton Plasma 
-Physics Laboratory. Since 2009, he has been an Assistant Professor with the 
-Mechanical Engineering Department, Texas A{\&}M University, College Station. 
-He is the author of three books, more than 150 articles, and more than 70 
-inventions. His research interests include high-pressure and high-density 
-nonthermal plasma discharge processes and applications, microscale plasma 
-discharges, discharges in liquids, spectroscopic diagnostics, plasma 
-propulsion, and innovation plasma applications. He is an Associate Editor of 
-the journal \emph{Earth, Moon, Planets}, and holds two patents. 
-
-Dr. Author was a recipient of the International Association of Geomagnetism 
-and Aeronomy Young Scientist Award for Excellence in 2008, and the IEEE 
-Electromagnetic Compatibility Society Best Symposium Paper Award in 2011. 
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a_2.png}}]{CHANGGYU PARK}
+	received the B.S. degree in the Civil Engineering from the Yonsei University and Technology and now he is on the M.S. degree with the the Civil Engineerging from the Korea Advanced Institute of Science and Technology. His research includes deep learning, optimization, and computer vision.
 \end{IEEEbiography}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a3.png}}]{Third C. Author, Jr.} (M'87) received the B.S. degree in mechanical 
-engineering from National Chung Cheng University, Chiayi, Taiwan, in 2004 
-and the M.S. degree in mechanical engineering from National Tsing Hua 
-University, Hsinchu, Taiwan, in 2006. He is currently pursuing the Ph.D. 
-degree in mechanical engineering at Texas A{\&}M University, College 
-Station, TX, USA.
-
-From 2008 to 2009, he was a Research Assistant with the Institute of 
-Physics, Academia Sinica, Tapei, Taiwan. His research interest includes the 
-development of surface processing and biological/medical treatment 
-techniques using nonthermal atmospheric pressure plasmas, fundamental study 
-of plasma sources, and fabrication of micro- or nanostructured surfaces. 
-
-Mr. Author's awards and honors include the Frew Fellowship (Australian 
-Academy of Science), the I. I. Rabi Prize (APS), the European Frequency and 
-Time Forum Award, the Carl Zeiss Research Award, the William F. Meggers 
-Award and the Adolph Lomb Medal (OSA).
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{a3.png}}]{HYUN MYUNG} 
+	received the B.S., M.S., and Ph.D. degrees from the Korea Advanced Institute of Science and Technology (KAIST), Daejeon, South Korea, in 1992, 1994, and 1998, respectively, all in electrical engineering. He was a Senior Researcher with the Electronics and Telecommunications Research Institute, Daejeon, from 1998 to 2002, a CTO and the Director with the Digital Contents Research Laboratory, Emersys Corporation, Daejeon, from 2002 to 2003, and a Principle Researcher with the Samsung Advanced Institute of Technology, Yongin, South Korea, from 2003 to 2008. Since 2008, he has been an Associate Professor with the Department of Civil and Environmental Engineering, KAIST, where he is currently an Adjunct Professor in robotics program. His current research interests include structural health monitoring using robotics, soft computing, simultaneous localization and mapping, robot navigation, machine learning, deep learning, and swarm robot.  
 \end{IEEEbiography}
 
 \EOD

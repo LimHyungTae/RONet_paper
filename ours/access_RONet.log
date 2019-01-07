@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  6 JAN 2019 21:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  7 JAN 2019 13:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1063,20 +1063,42 @@ File: image/anchor_tag_nodes.png Graphic file (type png)
 <use image/anchor_tag_nodes.png>
 Package pdftex.def Info: image/anchor_tag_nodes.png  used on input line 384.
 (pdftex.def)             Requested size: 218.40471pt x 160.92987pt.
-<image/paths.png, id=748, 512.1534pt x 451.9284pt>
-File: image/paths.png Graphic file (type png)
-<use image/paths.png>
-Package pdftex.def Info: image/paths.png  used on input line 397.
-(pdftex.def)             Requested size: 218.40471pt x 192.72557pt.
+Package epstopdf Info: Source file: <image/paths_1.eps>
+(epstopdf)                    date: 2019-01-06 23:50:02
+(epstopdf)                    size: 880131 bytes
+(epstopdf)             Output file: <image/paths_1-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-01-07 01:51:39
+(epstopdf)                    size: 346897 bytes
+(epstopdf)             Command: <repstopdf --outfile=image/paths_1-eps-converte
+d-to.pdf image/paths_1.eps>
+(epstopdf)             \includegraphics on input line 397.
+Package epstopdf Info: Output file is already uptodate.
+<image/paths_1-eps-converted-to.pdf, id=748, 722.7pt x 542.025pt>
+File: image/paths_1-eps-converted-to.pdf Graphic file (type pdf)
+<use image/paths_1-eps-converted-to.pdf>
+Package pdftex.def Info: image/paths_1-eps-converted-to.pdf  used on input line
+ 397.
+(pdftex.def)             Requested size: 218.40471pt x 163.79971pt.
 
 
 Package xcolor Warning: Incompatible color definition on input line 402.
 
-<image/dataset_process.png, id=749, 444.7014pt x 239.9364pt>
-File: image/dataset_process.png Graphic file (type png)
-<use image/dataset_process.png>
-Package pdftex.def Info: image/dataset_process.png  used on input line 408.
-(pdftex.def)             Requested size: 218.40471pt x 117.84077pt.
+Package epstopdf Info: Source file: <image/data_sync.eps>
+(epstopdf)                    date: 2019-01-07 02:00:35
+(epstopdf)                    size: 1498440 bytes
+(epstopdf)             Output file: <image/data_sync-eps-converted-to.pdf>
+(epstopdf)                    date: 2019-01-07 02:01:03
+(epstopdf)                    size: 101010 bytes
+(epstopdf)             Command: <repstopdf --outfile=image/data_sync-eps-conver
+ted-to.pdf image/data_sync.eps>
+(epstopdf)             \includegraphics on input line 408.
+Package epstopdf Info: Output file is already uptodate.
+<image/data_sync-eps-converted-to.pdf, id=749, 722.7pt x 542.025pt>
+File: image/data_sync-eps-converted-to.pdf Graphic file (type pdf)
+<use image/data_sync-eps-converted-to.pdf>
+Package pdftex.def Info: image/data_sync-eps-converted-to.pdf  used on input li
+ne 408.
+(pdftex.def)             Requested size: 218.40471pt x 163.79971pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1088,7 +1110,7 @@ Package xcolor Warning: Incompatible color definition on input line 417.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 420.
+Package pdftex.def Info: notaglineLogo.png  used on input line 421.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1106,31 +1128,22 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [7 <./image/noises-eps-converted-to.pdf> <./image/anchor_tag_nodes.png> <./imag
-e/paths.png>]
+e/paths_1-eps-converted-to.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 421.
 
-<image/seq_result_prototype.png, id=761, 462.528pt x 346.896pt>
+<image/seq_result_prototype.png, id=771, 462.528pt x 346.896pt>
 File: image/seq_result_prototype.png Graphic file (type png)
 <use image/seq_result_prototype.png>
-Package pdftex.def Info: image/seq_result_prototype.png  used on input line 450
+Package pdftex.def Info: image/seq_result_prototype.png  used on input line 441
 .
 (pdftex.def)             Requested size: 218.40471pt x 163.80336pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Package xcolor Warning: Incompatible color definition on input line 475.
-
-
-Package xcolor Warning: Incompatible color definition on input line 535.
+Package xcolor Warning: Incompatible color definition on input line 466.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 540.
+Package pdftex.def Info: notaglineLogo.png  used on input line 491.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1147,7 +1160,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[8 <./image/dataset_process.png> <./image/seq_result_prototype.png>]
+[8 <./image/data_sync-eps-converted-to.pdf> <./image/seq_result_prototype.png>]
+
+Package xcolor Warning: Incompatible color definition on input line 535.
+
 
 Package xcolor Warning: Incompatible color definition on input line 547.
 
@@ -1159,12 +1175,9 @@ Package xcolor Warning: Incompatible color definition on input line 1.
 LaTeX Font Warning: Font shape `T1/ptm/n/it' undefined
 (Font)              using `T1/ptm/n/n' instead on input line 24.
 
-
-Underfull \vbox (badness 1540) has occurred while \output is active []
-
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 88.
+Package pdftex.def Info: notaglineLogo.png  used on input line 179.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1188,18 +1201,9 @@ print
  []
 
 )
-<a1.png, id=770, 72.27pt x 90.3375pt>
-File: a1.png Graphic file (type png)
-<use a1.png>
-Package pdftex.def Info: a1.png  used on input line 562.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-File: a1.png Graphic file (type png)
-<use a1.png>
-Package pdftex.def Info: a1.png  used on input line 562.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 586.
+Package pdftex.def Info: notaglineLogo.png  used on input line 561.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1217,39 +1221,43 @@ Underfull \hbox (badness 10000) has occurred while \output is active
  []
 
 [10]
-<a2.png, id=776, 72.27pt x 90.3375pt>
-File: a2.png Graphic file (type png)
-<use a2.png>
-Package pdftex.def Info: a2.png  used on input line 588.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-File: a2.png Graphic file (type png)
-<use a2.png>
-Package pdftex.def Info: a2.png  used on input line 588.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
-
-Underfull \hbox (badness 2189) in paragraph at lines 588--606
-\T1/ptm/n/it/8 lottesville, in 2001 and the Ph.D. de-gree in
- []
-
-<a3.png, id=779, 72.27pt x 90.3375pt>
+<a_1.png, id=794, 603.0028pt x 552.56438pt>
+File: a_1.png Graphic file (type png)
+<use a_1.png>
+Package pdftex.def Info: a_1.png  used on input line 561.
+(pdftex.def)             Requested size: 72.2652pt x 66.22054pt.
+File: a_1.png Graphic file (type png)
+<use a_1.png>
+Package pdftex.def Info: a_1.png  used on input line 561.
+(pdftex.def)             Requested size: 72.2652pt x 66.22054pt.
+<a_2.png, id=797, 378.66469pt x 491.58656pt>
+File: a_2.png Graphic file (type png)
+<use a_2.png>
+Package pdftex.def Info: a_2.png  used on input line 565.
+(pdftex.def)             Requested size: 69.58385pt x 90.3345pt.
+File: a_2.png Graphic file (type png)
+<use a_2.png>
+Package pdftex.def Info: a_2.png  used on input line 565.
+(pdftex.def)             Requested size: 69.58385pt x 90.3345pt.
+<a3.png, id=800, 192.72pt x 239.89626pt>
 File: a3.png Graphic file (type png)
 <use a3.png>
-Package pdftex.def Info: a3.png  used on input line 608.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
+Package pdftex.def Info: a3.png  used on input line 569.
+(pdftex.def)             Requested size: 72.2698pt x 89.96086pt.
 File: a3.png Graphic file (type png)
 <use a3.png>
-Package pdftex.def Info: a3.png  used on input line 608.
-(pdftex.def)             Requested size: 72.2709pt x 90.33864pt.
+Package pdftex.def Info: a3.png  used on input line 569.
+(pdftex.def)             Requested size: 72.2698pt x 89.96086pt.
 File: bullet.png Graphic file (type png)
 <use bullet.png>
-Package pdftex.def Info: bullet.png  used on input line 627.
+Package pdftex.def Info: bullet.png  used on input line 573.
 (pdftex.def)             Requested size: 5.0pt x 14.6871pt.
 \Changes@OutFile=\write3
 \openout3 = `access_RONet.soc'.
 
 File: notaglineLogo.png Graphic file (type png)
 <use notaglineLogo.png>
-Package pdftex.def Info: notaglineLogo.png  used on input line 629.
+Package pdftex.def Info: notaglineLogo.png  used on input line 575.
 (pdftex.def)             Requested size: 91.32pt x 23.1352pt.
 
 Overfull \hbox (505.12177pt too wide) has occurred while \output is active
@@ -1266,19 +1274,21 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []
  []
 
-[11 <./a1.png> <./a2.png> <./a3.png>] (./access_RONet.aux)
+[11
+
+ <./a_1.PNG> <./a_2.PNG> <./a3.png>] (./access_RONet.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 6971 strings out of 494587
- 106231 string characters out of 6177953
- 191144 words of memory out of 5000000
- 10410 multiletter control sequences out of 15000+600000
+ 6970 strings out of 494587
+ 106392 string characters out of 6177953
+ 196144 words of memory out of 5000000
+ 10409 multiletter control sequences out of 15000+600000
  96385 words of font info for 138 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 59i,20n,94p,1562b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,20n,94p,1562b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2018/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2018/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2018/texmf-dist/fonts/type1
@@ -1296,10 +1306,10 @@ texlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb><c:/texlive/2018/t
 exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2018/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on access_RONet.pdf (11 pages, 2898943 bytes).
+Output written on access_RONet.pdf (11 pages, 3242641 bytes).
 PDF statistics:
- 847 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 869 PDF objects out of 1000 (max. 8388607)
+ 173 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
