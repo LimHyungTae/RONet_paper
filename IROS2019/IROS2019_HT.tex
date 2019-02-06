@@ -101,8 +101,24 @@ As verified experimentally, this new proposal represents a significant improveme
  
  The range measurements are usually measured by Time-of-Flight(TOF) and only consist of single value to represent distance between each landmark and mobile robot respectively. This cause two problems: one is that it is very vulnerable to noise because the distance are measured by only one-dimensionl information and the other one is \textit{rank dificiency} problem\cite{fabresse2018efficient}. In other words, the single value to represent distance between each landmark and mobile robot respectively is deficient to describe exact position or orientation of the landmark. Besides, these measurements could have huge uncertainties caused by multipath fading channel(MPF) problem\cite{li2017novel} in real world. To alleviate these issues, many studies based on Kalman Filter(KF) algorithm or probabilistic approaches are conducted how to estimate state of the mobile robot and landmarks more precisely with covering the uncertainties. 
 
+\begin{figure}[h]
+	
+	\centering
+	%\subfigure[]{
+	%\includegraphics[height=4.5cm]{IROS2018_image_1}
+	\includegraphics[height=5cm]{image/conventional_deep_comparsion}
+	
+	%\includegraphics[trim={0 0 0 1cm}height=4.5cm]{IROS2018_image_1}
+	\label{fig:example}
+	%	}
+	
+	\caption{Comparison between a standard range-only localization or SLAM framework and our learning-based approach.}
+	
+\end{figure}
 
-In this paper, we propose a robust stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of the robot. To the best of our knowledge, it is a first approach to introduce LSTM-based architecture to localize the mobile robot on the real-world in real-time using range-only measurement. Our contributions are as follows:
+In this paper, we propose a robust stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of the robot. To the best of our knowledge, it is a first approach to apply LSTM-based architecture to localize the mobile robot on the real-world in real-time using range-only measurement. Since it is achieved in an end-to-end mapping between range measurement and robot position, it does not need any preprocessing module used in the conventional RO-SLAM or range-only localization, such as an calibration and outlier rejection. Our contribution is threefold as follows:
+
+ Using LSTM-based architecture, our structure directly learns the end-to-end mapping between range measurements and robot position. This operation non-linearly maps the relationship not only considering the long-range dependence of sequential distance data by the LSTM, but also using the correlation of the backward information and the forward information of the sequence of each time step by virtue of its bidirectional architecture. \textcolor{red}{Existing RO SLAM needs calibration before filtering, and then, range measurement undergoes outlier rejection, prediction and correction processes are needed.	Furthermorme, it uses low dimensional data to perform localization, there is a disadvantage that estimation is difficult even if the value deviates slightly from the model.} \textcolor{green}{Therefore, we solve this complex algorithm with end-to-end based deep learning. This system overview is shown in the figure below.}
 
 \begin{itemize}
 	%\setlength{\itemindent}{-.5in}
@@ -115,44 +131,11 @@ In this paper, we propose a robust stacked bidirectional Long Short-Term Memory(
 The rest of the paper is organized as follows: Section II overviews the related works. Section III describes our neural network in detail and defines the problem to be considered, and Section IV describes the experimental results. Finally, Section V summarizes our contributions and points to future work.
 
 
- Using LSTM-based architecture, our structure directly learns the end-to-end mapping between range measurements and robot position. This operation non-linearly maps the relationship not only considering the long-range dependence of sequential distance data by the LSTM, but also using the correlation of the backward information and the forward information of the sequence of each time step by virtue of its bidirectional architecture. \textcolor{red}{Existing RO SLAM needs calibration before filtering, and then, range measurement undergoes outlier rejection, prediction and correction processes are needed.	Furthermorme, it uses low dimensional data to perform localization, there is a disadvantage that estimation is difficult even if the value deviates slightly from the model.} \textcolor{green}{Therefore, we solve this complex algorithm with end-to-end based deep learning. This system overview is shown in the figure below.}
-
-
-
-
-For example, in \cite{li2017novel}, confidence-based intersection method is proposed for robust trilateration method. In \cite{caballero2008particle}, particle filter algorithm is introduced to estimate the position of a MN attached to a aerial robot while suppressing the noise. Also, many machine learning techniques have been introduced: 
-
-
-In the meantime, as deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for many tasks related to robotics field. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized such as not only speech recognition, but also pose estimation and localization\cite{walch2017image, gladh2016deep, wang2017deepvo, kendall2015posenet, turan2018deep}. 
-
- WSNs fields also have introduced various kinds of neural network architectures\cite{rahman2009localization, singh2013tdoa, abdelhadi2013efficient, kumar2016localization, banihashemian2018new}. An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations situation. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible.
-
-
 \cite{lim2018effective}
-
+!!!!
 In the meantime, as deep learning age has come\cite{lecun2015deep},
 
 In this paper, we propose a stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of a MN. Our contributions can be summarized as follows. First of all, Using deep learning, our structure directly learns the end-to-end mapping between range data measured by ANs-to-MN distances and the position of MN on three dimensional space. Unlike other approaches whose authors implement MLP-based neural networks, we exploit LSTM architecture in such a way as not only to take present range data but also take previous temporal data as input for estimating the MN's position. Second, we verify that effect of the residual attention in the way that the residual attention layer makes the network better understand context of the feature when dealing with low-dimensional input. Finally, we implement the networks presented at related works and compare which neural architecture perperforms better when real-world data are given as input. As a result, and our networks perform the best performance among other proposed approaches. Our system overview is shown in the figure 
-!!!!!!!!!!!!!!!!
- As deep learning age has come, various kinds of deep neural architectures have been proposed for many tasks. Especially, recurrent neural networks (RNNs) have been shown to achieve better performance in case of dealing with time variant information, such as not only speech recognition, but also pose estimation and robot localization, than traditional methods. 
- 
-In this poster, we tested various kinds of RNN models for robot localization using range data. We trained 4 kinds of RNNs; LSTM\cite{hochreiter1997long}, GRU\cite{cho2014learning}, Bi-LSTM\cite{schuster1997bidirectional}, stacked Bi-LSTM, which are basic architecture units of many RNNs. Using deep learning, these structures directly learn the end-to-end mapping between distance data and robot position. 
-!!!!!!!!!!!!!
-
-\begin{figure}[h]
-	
-	\centering
-	%\subfigure[]{
-		%\includegraphics[height=4.5cm]{IROS2018_image_1}
-	\includegraphics[height=3.0cm]{overview}
-		
-		%\includegraphics[trim={0 0 0 1cm}height=4.5cm]{IROS2018_image_1}
-	\label{fig:example}
-%	}
-
-	\caption{System overview. A robot localizes its own pose through distance data and the derivative of distance data. }
-	
-\end{figure}
 
 
 \section{Related Works}
@@ -164,11 +147,22 @@ In the past few years, researchers have conducted the studies using machine lear
 
 Especially, several works have been studied using neural networks to localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} did and conducted their experiment in the real-world. They concluded Radial Basis Function(RBF) may be the best option among the suggested Kalman filter models and RNN\cite{shareef2008localization}. 
 
-\subsection{Neural Networks-based Localization}
+\subsection{LSTM-based Localization}
+
+For example, in \cite{li2017novel}, confidence-based intersection method is proposed for robust trilateration method. In \cite{caballero2008particle}, particle filter algorithm is introduced to estimate the position of a MN attached to a aerial robot while suppressing the noise. Also, many machine learning techniques have been introduced: 
 
 
-\subsection{RO SLAM with Neural Networks}
+In this poster, we tested various kinds of RNN models for robot localization using range data. We trained 4 kinds of RNNs; LSTM\cite{hochreiter1997long}, GRU\cite{cho2014learning}, Bi-LSTM\cite{schuster1997bidirectional}, stacked Bi-LSTM, which are basic architecture units of many RNNs. Using deep learning, these structures directly learn the end-to-end mapping between distance data and robot position. 
 
+
+WSNs fields also have introduced various kinds of neural network architectures\cite{rahman2009localization, singh2013tdoa, abdelhadi2013efficient, kumar2016localization, banihashemian2018new}. An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations situation. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible.
+
+\subsection{Deep Learning and Low-dimensional Sensor Data}
+
+ As deep learning age has come, various kinds of deep neural architectures have been proposed for many tasks. Especially, recurrent neural networks (RNNs) have been shown to achieve better performance in case of dealing with time variant information, such as not only speech recognition, but also pose estimation and robot localization, than traditional methods. 
+
+
+In the meantime, as deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for many tasks related to robotics field. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized such as not only speech recognition, but also pose estimation and localization\cite{walch2017image, gladh2016deep, wang2017deepvo, kendall2015posenet, turan2018deep}. 
 
 \begin{table*}[ht]
 	\centering
@@ -215,12 +209,12 @@ Especially, several works have been studied using neural networks to localize no
 	
 \end{table*}
 
-\begin{figure*}[h]
-	\centering
-	\includegraphics[width=.9\textwidth]{image/networks}
-	\caption{Our proposed network architecture.}
-	\label{fig:our_network}
-\end{figure*}
+%\begin{figure*}[h]
+%	\centering
+%	\includegraphics[width=.9\textwidth]{image/networks}
+%	\caption{Our proposed network architecture.}
+%	\label{fig:our_network}
+%\end{figure*}
 
 Similarly, many researchers also have achived considerable improvement to localize position of mobile node by exploiting MLP in WSNs fields\cite{shareef2008localization, rahman2009localization, singh2013tdoa,abdelhadi2013efficient,bernas2015fully, kumar2016localization, banihashemian2018new}. In case of range-based method, Rahman \textit{et al.} \cite{rahman2009localization} have considered the neural networks for mapping between RSS and corresponding position of sensor nodes and let neural networks be trained by the train data gathered by the sensor nodes that are eqaully spaced over x-axis and y-axis. In \cite{singh2013tdoa}, Singh \textit{et al.} compared that performance of Multilayer Back propagation Network Model(MLBPN) and Radial Basis Function Network Model(RBFN) and the authors show that RBFN performs better than MLBPN when the number of the sensor nodes is larger than 220. Abdelhadi \textit{et al.}  \cite{abdelhadi2013efficient} presented two artificial intelligence techniques: Sugeno-type fuzzy system and neural networks system. In addition, the authors conducted experiment on three-dimensional space in such a way as verified the feasibility of localization by utilizing nueral networks in 3D space. Kumar \textit{et al.} \cite{kumar2016localization} also introduced the neural networks and evaluated five different training techniques,e.g., Levenberg-Marquardt (LM), Bayesian Regularization
 (BR), Resilient Back-propagation (RP), Scaled Conjugate Gradient (SCG) and Gradient
@@ -302,38 +296,38 @@ Therefore, we also construct our networks by stacking two LSTM to increase the n
 
 \subsection{Training loss}
 
-In this section, we describe the method for training our network. Generally, let $n$ be the number of mobile nodes and $m$ be the number of the anchor nodes, data set are represented as follows:
+In this section, we describe the method for training our network. Generally, let $n$ be the number of anchor nodes, data set measured by each anchor node and tag node are represented on the time step $t$ as follows:
 
 \begin{equation}
-\left\{(l_{11}, l_{12}, ..., l_{1m}, P_1),...,(l_{n1}, l_{n2}, ..., l_{nm}, P_n)\right\}
-\end{equation} 
+L_{t} = (l_{1}, l_{2}, ..., l_{n})_{t}
+\end{equation}
 
-
-where $l_{ij}$ denotes the the distance between $i^{th}$ mobile node and $j^{th}$ anchor node, $P_i$ denotes the position of mobile node, which consist of 2D ($x$ and $y$), or 3D ($x$,$y$, and $z$). 
-In other words, data consist of set of distance data corresponding to the position of mobile nodes. Conseqeuntly, neural network  could be optimized to be able to localize the mobile node when take distance set as input.
-
-
-%그들의 문제점
-
-our neural network does not only take a set of distance data but takes sets of distacne data on the time step $T$ where $T$ indicates sequential length of input to our network. And in our case, one mobile node is only placed on the robot. Therefore, data are formulated as follows:
+where $l_{i}$ denotes the the distance between $i^{th}$ anchor node and the tag node. Note that our neural network does not only take a set of distance data at the time $t$ but takes sets of distacne data based on the sequential length of input to our network, $T$. In other words, train data consist of $T$ sets of distance data  corresponding to the position of mobile nodes. Let $\mathbb{L}_t$ be 
 
 \begin{equation}
 %$L = \left\{(X_t, Y_t)\right \}$ 
-\mathbb{L} = {(L_t, Y_t)} 
+\mathbb{L}_t = \left\{L_{t-T+1}, L_{t-T+2}, ..., L_t\right\} 
 \end{equation}
-where $L_t = \left\{(l_1, l_2... , l_m)_t\right\}$ denotes input range measurement between a tag node end each anchor node at the time $t$. We omit the part of subscript that indicates $i^{th}$mobile node because we have only one mobile node. $Y_t$ denotes the ground truth of the robot's 3D position, which is denoted as $Y_t = \left\{x_t, y_t, z_t\right\}$.
+
+Conseqeuntly, neural network  could be optimized to be able to localize the mobile node when take distance sets as input. Train data $\mathbb{D}$ are formulated as follows:
+
+\begin{equation}
+%$L = \left\{(X_t, Y_t)\right \}$ 
+\mathbb{D} = {(\mathfrak{N}(\mathbb{L}_t), \mathfrak{N}(Y_t))} 
+\end{equation}
+
+where $Y_t$ denotes the ground truth of the robot's 2D position, which is denoted as $Y_t = (x_t, y_t)$ and $\mathfrak{N}$ denotes normalization function that transforms data to min-max scaling 0 to 1. Note that range measurements mesured by each range sensor are processed by each min-max scaling because each range sensor has own characteristic, as one calibrate range sensors respectively.  
 
 Let $\Theta$ be the parameters of our network model and assume that the trained network model could be expressed as conditional probability as follows:
 
 \begin{multline}
-P(Y_t|L_{t-T+1}, L_{t-T+2},..., L_t) =\\
-p((x_t, y_t, z_t)|(l_1,..., l_m)_{t-T+1},(l_1,..., l_m)_{t-T+2}..., (l_1,..., l_m)_t)
+P(\mathfrak{N}(Y_t)|\mathfrak{N}(\mathbb{L}_t)) = p((x_t, y_t)|\left\{L_{t-T+1}, L_{t-T+2}, ..., L_t\right\})
 \end{multline}  
 
-Note that other studies only consider the input on time t, yet our approach consider temporal information about the range measurement data. Then, our final goal is to find optimal parameters $\Theta^{*}$ for localization by minimizing $L_2$ loss term. The $L_2$ loss term indicates mean square error(MSE) of Euclidean distance between ground truth position $Y_k$ and estimated position $\hat{Y_k}$ as follows:
+Note that our approach takes sequential range data on the sequence length $T$ so that extract temporal features to map sets of the range measurements to position and also learn how to cover the noises and outliers, which temporarily caused by the MPF problem or unstable signal conditions. Then, our final goal is to find optimal parameters $\Theta^{*}$ for localization by minimizing $L_2$ loss term. The $L_2$ loss term indicates mean square error(MSE) of Euclidean distance between the normalized ground truth position $\mathfrak{N}(Y_k)$ and estimated position $\hat{Y_k}$ as follows:
 
 \begin{equation}
-\Theta^{*} = \underset{\Theta}{\mathrm{argmin}} \frac{1}{N} \sum_{k=1}^N \parallel Y_k - \hat{Y_k} \parallel^{2}
+\Theta^{*} = \underset{\Theta}{\mathrm{argmin}} \frac{1}{N} \sum_{k=1}^N \parallel \mathfrak{N}(Y_k) - \hat{Y_k} \parallel^{2}
 \end{equation}  
 
 
@@ -342,12 +336,12 @@ Note that other studies only consider the input on time t, yet our approach cons
 
 Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a SFF(small-form-factor) computer.
 
-UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:anchor_tag_nodes} shows anchor and tag nodes.
+UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:anchor_tag_nodes} shows our experimental environment briefly and how to the anchor nodes and the tag node are attatched.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=.9\linewidth]{image/anchor_tag_nodes}
-	\caption{The anchor and tag nodes}
+	\caption{our experimental environment briefly and how to the anchor nodes and the tag node are attatched.}
 	\label{fig:anchor_tag_nodes}
 \end{figure}
 

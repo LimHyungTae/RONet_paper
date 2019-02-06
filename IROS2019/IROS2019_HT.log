@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  4 FEB 2019 02:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.7.23)  7 FEB 2019 00:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -688,36 +688,40 @@ LaTeX Font Info:    Try loading font information for T1+pcr on input line 72.
 
 (c:/texlive/2018/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [1{c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-<overview.png, id=14, 1699.5495pt x 768.471pt>
-File: overview.png Graphic file (type png)
-<use overview.png>
-Package pdftex.def Info: overview.png  used on input line 147.
-(pdftex.def)             Requested size: 188.76633pt x 85.35826pt.
- [2 <./overview.PNG>]
-Package epstopdf Info: Source file: <image/networks.eps>
-(epstopdf)                    date: 2019-01-03 23:06:25
-(epstopdf)                    size: 8739509 bytes
-(epstopdf)             Output file: <image/networks-eps-converted-to.pdf>
-(epstopdf)                    date: 2019-01-03 23:11:24
-(epstopdf)                    size: 1168004 bytes
-(epstopdf)             Command: <repstopdf --outfile=image/networks-eps-convert
-ed-to.pdf image/networks.eps>
-(epstopdf)             \includegraphics on input line 220.
+)
+Package epstopdf Info: Source file: <image/conventional_deep_comparsion.eps>
+(epstopdf)                    date: 2019-02-06 18:15:21
+(epstopdf)                    size: 3030009 bytes
+(epstopdf)             Output file: <image/conventional_deep_comparsion-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2019-02-06 18:16:14
+(epstopdf)                    size: 262562 bytes
+(epstopdf)             Command: <repstopdf --outfile=image/conventional_deep_co
+mparsion-eps-converted-to.pdf image/conventional_deep_comparsion.eps>
+(epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
-<image/networks-eps-converted-to.pdf, id=20, 963.6pt x 542.025pt>
-File: image/networks-eps-converted-to.pdf Graphic file (type pdf)
-<use image/networks-eps-converted-to.pdf>
-Package pdftex.def Info: image/networks-eps-converted-to.pdf  used on input lin
-e 220.
-(pdftex.def)             Requested size: 455.2979pt x 256.09988pt.
+<image/conventional_deep_comparsion-eps-converted-to.pdf, id=1, 963.6pt x 542.0
+25pt>
+File: image/conventional_deep_comparsion-eps-converted-to.pdf Graphic file (typ
+e pdf)
+<use image/conventional_deep_comparsion-eps-converted-to.pdf>
+Package pdftex.def Info: image/conventional_deep_comparsion-eps-converted-to.pd
+f  used on input line 109.
+(pdftex.def)             Requested size: 252.91203pt x 142.26378pt.
+
+Overfull \hbox (7.19392pt too wide) in paragraph at lines 109--110
+ [][] 
+ []
+
+[1{c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ <./image/conventional_deep_comparsion-eps-converted-to.pdf>] [2]
 
+LaTeX Warning: Reference `fig:our_network' on page 3 undefined on input line 22
+8.
+
+[3]
 Package epstopdf Info: Source file: <image/basic_LSTM_revised.eps>
 (epstopdf)                    date: 2019-01-04 15:38:12
 (epstopdf)                    size: 528984 bytes
@@ -727,18 +731,14 @@ pdf>
 (epstopdf)                    size: 52143 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/basic_LSTM_revised-e
 ps-converted-to.pdf image/basic_LSTM_revised.eps>
-(epstopdf)             \includegraphics on input line 248.
+(epstopdf)             \includegraphics on input line 242.
 Package epstopdf Info: Output file is already uptodate.
-<image/basic_LSTM_revised-eps-converted-to.pdf, id=21, 722.7pt x 542.025pt>
+<image/basic_LSTM_revised-eps-converted-to.pdf, id=161, 722.7pt x 542.025pt>
 File: image/basic_LSTM_revised-eps-converted-to.pdf Graphic file (type pdf)
 <use image/basic_LSTM_revised-eps-converted-to.pdf>
 Package pdftex.def Info: image/basic_LSTM_revised-eps-converted-to.pdf  used on
- input line 248.
+ input line 242.
 (pdftex.def)             Requested size: 202.3529pt x 151.76596pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3]
 Package epstopdf Info: Source file: <image/bidirectional_LSTM_revised.eps>
 (epstopdf)                    date: 2019-01-04 15:36:35
 (epstopdf)                    size: 361870 bytes
@@ -748,34 +748,36 @@ rted-to.pdf>
 (epstopdf)                    size: 36109 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/bidirectional_LSTM_r
 evised-eps-converted-to.pdf image/bidirectional_LSTM_revised.eps>
-(epstopdf)             \includegraphics on input line 277.
+(epstopdf)             \includegraphics on input line 271.
 Package epstopdf Info: Output file is already uptodate.
-<image/bidirectional_LSTM_revised-eps-converted-to.pdf, id=25, 722.7pt x 542.02
-5pt>
+<image/bidirectional_LSTM_revised-eps-converted-to.pdf, id=162, 722.7pt x 542.0
+25pt>
 File: image/bidirectional_LSTM_revised-eps-converted-to.pdf Graphic file (type 
 pdf)
 <use image/bidirectional_LSTM_revised-eps-converted-to.pdf>
 Package pdftex.def Info: image/bidirectional_LSTM_revised-eps-converted-to.pdf 
- used on input line 277.
+ used on input line 271.
 (pdftex.def)             Requested size: 221.14479pt x 165.8591pt.
+ [4 <./image/basic_LSTM_revised-eps-converted-to.pdf> <./image/bidirectional_LS
+TM_revised-eps-converted-to.pdf>]
+LaTeX Font Info:    Try loading font information for U+euf on input line 316.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4 <./image/networks-eps-converted-to.pdf>] [5 <./image/basic_LSTM_revised-eps-
-converted-to.pdf> <./image/bidirectional_LSTM_revised-eps-converted-to.pdf>]
-Overfull \hbox (23.65007pt too wide) detected at line 331
- []$[]\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 x[]; y[]; z[]\OT1/cm
-r/m/n/10 )\OMS/cmsy/m/n/10 j\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 l[]; :::; l[]\OT1
-/cmr/m/n/10 )[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 l[]; :::; l
-[]\OT1/cmr/m/n/10 )[]\OML/cmm/m/it/10 :::; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 l[
-]; :::; l[]\OT1/cmr/m/n/10 )[])$ []  
+(c:/texlive/2018/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+Overfull \hbox (11.82236pt too wide) detected at line 325
+ []$[]  \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\U/euf/m/n/10 N\OT1/cmr/m/n/10 (\OML
+/cmm/m/it/10 Y[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j\U/euf/m/n/10 N\OT1/cmr/m/n/
+10 (\U/msb/m/n/10 L[]\OT1/cmr/m/n/10 )) = \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 ((\
+OML/cmm/m/it/10 x[]; y[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j []\OT1/cmr/m/n/10 )
+$ []  
  []
 
-<image/anchor_tag_nodes.png, id=714, 320.397pt x 236.082pt>
+[5]
+<image/anchor_tag_nodes.png, id=215, 320.397pt x 236.082pt>
 File: image/anchor_tag_nodes.png Graphic file (type png)
 <use image/anchor_tag_nodes.png>
-Package pdftex.def Info: image/anchor_tag_nodes.png  used on input line 349.
+Package pdftex.def Info: image/anchor_tag_nodes.png  used on input line 343.
 (pdftex.def)             Requested size: 221.14479pt x 162.95078pt.
 Package epstopdf Info: Source file: <image/paths_1.eps>
 (epstopdf)                    date: 2019-01-06 23:50:02
@@ -785,14 +787,18 @@ Package epstopdf Info: Source file: <image/paths_1.eps>
 (epstopdf)                    size: 346897 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/paths_1-eps-converte
 d-to.pdf image/paths_1.eps>
-(epstopdf)             \includegraphics on input line 362.
+(epstopdf)             \includegraphics on input line 356.
 Package epstopdf Info: Output file is already uptodate.
-<image/paths_1-eps-converted-to.pdf, id=715, 722.7pt x 542.025pt>
+<image/paths_1-eps-converted-to.pdf, id=217, 722.7pt x 542.025pt>
 File: image/paths_1-eps-converted-to.pdf Graphic file (type pdf)
 <use image/paths_1-eps-converted-to.pdf>
 Package pdftex.def Info: image/paths_1-eps-converted-to.pdf  used on input line
- 362.
+ 356.
 (pdftex.def)             Requested size: 221.14479pt x 165.8591pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 Package epstopdf Info: Source file: <image/data_sync.eps>
 (epstopdf)                    date: 2019-01-07 02:00:35
 (epstopdf)                    size: 1498440 bytes
@@ -801,31 +807,34 @@ Package epstopdf Info: Source file: <image/data_sync.eps>
 (epstopdf)                    size: 101010 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/data_sync-eps-conver
 ted-to.pdf image/data_sync.eps>
-(epstopdf)             \includegraphics on input line 373.
+(epstopdf)             \includegraphics on input line 367.
 Package epstopdf Info: Output file is already uptodate.
-<image/data_sync-eps-converted-to.pdf, id=716, 722.7pt x 542.025pt>
+<image/data_sync-eps-converted-to.pdf, id=218, 722.7pt x 542.025pt>
 File: image/data_sync-eps-converted-to.pdf Graphic file (type pdf)
 <use image/data_sync-eps-converted-to.pdf>
 Package pdftex.def Info: image/data_sync-eps-converted-to.pdf  used on input li
-ne 373.
+ne 367.
 (pdftex.def)             Requested size: 221.14479pt x 165.8591pt.
-[6 <./image/anchor_tag_nodes.png> <./image/paths_1-eps-converted-to.pdf>]
-<image/seq_result_prototype.png, id=732, 462.528pt x 346.896pt>
+[6 <./image/anchor_tag_nodes.png> <./image/paths_1-eps-converted-to.pdf> <./ima
+ge/data_sync-eps-converted-to.pdf>]
+<image/seq_result_prototype.png, id=245, 462.528pt x 346.896pt>
 File: image/seq_result_prototype.png Graphic file (type png)
 <use image/seq_result_prototype.png>
-Package pdftex.def Info: image/seq_result_prototype.png  used on input line 406
+Package pdftex.def Info: image/seq_result_prototype.png  used on input line 400
 .
 (pdftex.def)             Requested size: 221.14479pt x 165.86241pt.
 
-[7 <./image/data_sync-eps-converted-to.pdf> <./image/seq_result_prototype.png>]
-(./IROS2019_HT.bbl
-Underfull \hbox (badness 2521) in paragraph at lines 122--125
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(./IROS2019_HT.bbl [7 <./image/seq_result_prototype.png>]
+Underfull \hbox (badness 2521) in paragraph at lines 201--204
 []\T1/ptm/m/n/8 M. Ab-del-hadi, M. Anan, and M. Ayyash, ``Ef-fi-cient ar-ti-fi-
 cial
  []
 
 
-Underfull \hbox (badness 2707) in paragraph at lines 127--129
+Underfull \hbox (badness 2707) in paragraph at lines 206--208
 []\T1/ptm/m/n/8 S. Ku-mar, R. Sharma, and E. Vans, ``Lo-cal-iza-tion for wire-
  []
 
@@ -844,35 +853,42 @@ Before submitting the final camera ready copy, remember to:
 \Changes@OutFile=\write4
 \openout4 = `IROS2019_HT.soc'.
 
-[9] (./IROS2019_HT.aux) ) 
+[9
+
+] (./IROS2019_HT.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6930 strings out of 494587
- 102056 string characters out of 6177953
- 178809 words of memory out of 5000000
- 10394 multiletter control sequences out of 15000+600000
- 117787 words of font info for 143 fonts, out of 8000000 for 9000
+ 6941 strings out of 494587
+ 102339 string characters out of 6177953
+ 179801 words of memory out of 5000000
+ 10399 multiletter control sequences out of 15000+600000
+ 120074 words of font info for 149 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 59i,20n,94p,1464b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.en
-c}<c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/tex
-live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2018
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2018/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2018/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr6.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-<c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texli
-ve/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2018/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2018/texmf-
-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2018/texmf-dist
-/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw
-/times/utmb8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb
-><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2018/
-texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on IROS2019_HT.pdf (9 pages, 2714858 bytes).
+ 59i,20n,94p,1464b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2018/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2018/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2018/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
+c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/
+2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2018/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2018/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/pu
+blic/amsfonts/euler/eufm10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/a
+msfonts/symbols/msam10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/amsfo
+nts/symbols/msbm10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/courier/ucrr
+8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive
+/2018/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2018/texmf-dist/
+fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/ti
+mes/utmri8a.pfb>
+Output written on IROS2019_HT.pdf (9 pages, 1500137 bytes).
 PDF statistics:
- 811 PDF objects out of 1000 (max. 8388607)
- 143 compressed objects within 2 object streams
+ 316 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
