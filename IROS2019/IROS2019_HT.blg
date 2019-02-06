@@ -1,0 +1,66 @@
+This is BibTeX, Version 0.99d (TeX Live 2018/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: IROS2019_HT.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: ./IEEEabrv.bib
+Database file #2: ./IROS_RObib.bib
+Repeated entry---line 335 of file ./IROS_RObib.bib
+ : @article{ullah2018action
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 619 of file ./IROS_RObib.bib
+ : @inproceedings{jung2011indoor
+ :                              ,
+I'm skipping whatever remains of this entry
+-- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
+-- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 51 entries,
+            3975 wiz_defined-function locations,
+            1421 strings with 24197 characters,
+and the built_in function-call counts, 45365 in all, are:
+= -- 3654
+> -- 1074
+< -- 463
++ -- 624
+- -- 175
+* -- 2187
+:= -- 6433
+add.period$ -- 120
+call.type$ -- 51
+change.case$ -- 51
+chr.to.int$ -- 1122
+cite$ -- 51
+duplicate$ -- 3147
+empty$ -- 3607
+format.name$ -- 211
+if$ -- 10596
+int.to.chr$ -- 0
+int.to.str$ -- 51
+missing$ -- 503
+newline$ -- 173
+num.names$ -- 51
+pop$ -- 1144
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 3533
+stack$ -- 0
+substring$ -- 2725
+swap$ -- 2729
+text.length$ -- 89
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 0
+warning$ -- 0
+while$ -- 223
+width$ -- 53
+write$ -- 517
+(There were 2 error messages)
