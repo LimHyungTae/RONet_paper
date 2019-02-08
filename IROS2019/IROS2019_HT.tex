@@ -147,22 +147,15 @@ In the past few years, researchers have conducted the studies using machine lear
 
 Especially, several works have been studied using neural networks to localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} did and conducted their experiment in the real-world. They concluded Radial Basis Function(RBF) may be the best option among the suggested Kalman filter models and RNN\cite{shareef2008localization}. 
 
-\subsection{LSTM-based Localization}
+\subsection{Deep Learning and LSTM-based Sequential Modeling}
 
-For example, in \cite{li2017novel}, confidence-based intersection method is proposed for robust trilateration method. In \cite{caballero2008particle}, particle filter algorithm is introduced to estimate the position of a MN attached to a aerial robot while suppressing the noise. Also, many machine learning techniques have been introduced: 
+As deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for many tasks related to robotics field. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized such as not only speech recognition, but also pose estimation and localization\cite{walch2017image, gladh2016deep, wang2017deepvo, kendall2015posenet, turan2018deep}. 
 
-
-In this poster, we tested various kinds of RNN models for robot localization using range data. We trained 4 kinds of RNNs; LSTM\cite{hochreiter1997long}, GRU\cite{cho2014learning}, Bi-LSTM\cite{schuster1997bidirectional}, stacked Bi-LSTM, which are basic architecture units of many RNNs. Using deep learning, these structures directly learn the end-to-end mapping between distance data and robot position. 
+\subsection{Deep Learning for Low-dimensional Sensor Data}
 
 
 WSNs fields also have introduced various kinds of neural network architectures\cite{rahman2009localization, singh2013tdoa, abdelhadi2013efficient, kumar2016localization, banihashemian2018new}. An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations situation. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible.
-
-\subsection{Deep Learning and Low-dimensional Sensor Data}
-
- As deep learning age has come, various kinds of deep neural architectures have been proposed for many tasks. Especially, recurrent neural networks (RNNs) have been shown to achieve better performance in case of dealing with time variant information, such as not only speech recognition, but also pose estimation and robot localization, than traditional methods. 
-
-
-In the meantime, as deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for many tasks related to robotics field. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized such as not only speech recognition, but also pose estimation and localization\cite{walch2017image, gladh2016deep, wang2017deepvo, kendall2015posenet, turan2018deep}. 
+ 
 
 \begin{table*}[ht]
 	\centering
@@ -223,7 +216,7 @@ Descent (GD), to find optimal way to train neural networks with the best accurac
 However, there are some points that could have been better. First of all, in some cases, their networks were trained by range measurement data corresponding position of mobile node in simulation environment\cite{chatterjee2010fletcher, shareef2008localization, rahman2009localization, singh2013tdoa, banihashemian2018new}. The simulation situation is almost ideal in the point that the NLOS or MPF problem does not occur. Even though in \cite{rahman2009localization}, they artificially generate NLOS data, but the gap of complexity between real-world and artificially generated data exists, since the generated data has less noise than those of real-world necessarily. For these reasons, it is hard to say that their networks also works well on real world situation. Therefore, to test on whether it is possible for neural networks to estimate position with covering all disturbance, the experiment should be conducted on real-world. 
 Second, some studies was conducted on the two-dimensional space to simplify their problem definition\cite{shareef2008localization, rahman2009localization, singh2013tdoa,bernas2015fully, kumar2016localization, banihashemian2018new}. However, gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible. Finally, in previous studies \cite{shareef2008localization, rahman2009localization, singh2013tdoa,kumar2016localization}, it has a possibility of overfitting because the authors generate the grid-map as train data in such a way as to restrict their ground truth region. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct even when the position of MN to be tested is quite far from the grid. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
 
-\section{WSN Net}
+\section{RONet}
 
 In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in Fig. \ref{fig:our_network}. 
 In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and the describe the reason why we let the neural network infer in three-dimensional space even though experiment is conducted on the mobile robot. Finally, we explain how to set the loss function of our neural network and then compare to those of other previous works.

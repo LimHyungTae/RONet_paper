@@ -164,54 +164,6 @@ A.~Shareef, Y.~Zhu, and M.~Musavi, ``Localization using neural networks in
   Applications}.\hskip 1em plus 0.5em minus 0.4em\relax ICST (Institute for
   Computer Sciences, Social-Informatics and~…, 2008, p.~4.
 
-\bibitem{caballero2008particle}
-F.~Caballero, L.~Merino, I.~Maza, and A.~Ollero, ``A particle filtering method
-  for wireless sensor network localization with an aerial robot beacon,'' in
-  \emph{Robotics and Automation, 2008. ICRA 2008. IEEE International Conference
-  on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2008, pp. 596--601.
-
-\bibitem{hochreiter1997long}
-S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
-  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
-
-\bibitem{cho2014learning}
-K.~Cho, B.~Van~Merri{\"e}nboer, C.~Gulcehre, D.~Bahdanau, F.~Bougares,
-  H.~Schwenk, and Y.~Bengio, ``Learning phrase representations using rnn
-  encoder-decoder for statistical machine translation,'' \emph{arXiv preprint
-  arXiv:1406.1078}, 2014.
-
-\bibitem{schuster1997bidirectional}
-M.~Schuster and K.~K. Paliwal, ``Bidirectional recurrent neural networks,''
-  \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
-  2673--2681, 1997.
-
-\bibitem{rahman2009localization}
-M.~S. Rahman, Y.~Park, and K.-D. Kim, ``Localization of wireless sensor network
-  using artificial neural network,'' in \emph{Communications and Information
-  Technology, 2009. ISCIT 2009. 9th International Symposium on}.\hskip 1em plus
-  0.5em minus 0.4em\relax IEEE, 2009, pp. 639--642.
-
-\bibitem{singh2013tdoa}
-P.~Singh and S.~Agrawal, ``Tdoa based node localization in wsn using neural
-  networks,'' in \emph{Communication Systems and Network Technologies (CSNT),
-  2013 International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2013, pp. 400--404.
-
-\bibitem{abdelhadi2013efficient}
-M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
-  localization algorithm for wireless sensor networks,'' \emph{Journal of
-  Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
-
-\bibitem{kumar2016localization}
-S.~Kumar, R.~Sharma, and E.~Vans, ``Localization for wireless sensor networks:
-  A neural network approach,'' \emph{arXiv preprint arXiv:1610.04494}, 2016.
-
-\bibitem{banihashemian2018new}
-S.~S. Banihashemian, F.~Adibnia, and M.~A. Sarram, ``A new range-free and
-  storage-efficient localization algorithm using neural networks in wireless
-  sensor networks,'' \emph{Wireless Personal Communications}, vol.~98, no.~1,
-  pp. 1547--1568, 2018.
-
 \bibitem{elman1990finding}
 J.~L. Elman, ``Finding structure in time,'' \emph{Cognitive science}, vol.~14,
   no.~2, pp. 179--211, 1990.
@@ -244,11 +196,47 @@ M.~Turan, Y.~Almalioglu, H.~Araujo, E.~Konukoglu, and M.~Sitti, ``Deep endovo:
   approach for endoscopic capsule robots,'' \emph{Neurocomputing}, vol. 275,
   pp. 1861--1870, 2018.
 
+\bibitem{rahman2009localization}
+M.~S. Rahman, Y.~Park, and K.-D. Kim, ``Localization of wireless sensor network
+  using artificial neural network,'' in \emph{Communications and Information
+  Technology, 2009. ISCIT 2009. 9th International Symposium on}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2009, pp. 639--642.
+
+\bibitem{singh2013tdoa}
+P.~Singh and S.~Agrawal, ``Tdoa based node localization in wsn using neural
+  networks,'' in \emph{Communication Systems and Network Technologies (CSNT),
+  2013 International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2013, pp. 400--404.
+
+\bibitem{abdelhadi2013efficient}
+M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
+  localization algorithm for wireless sensor networks,'' \emph{Journal of
+  Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
+
+\bibitem{kumar2016localization}
+S.~Kumar, R.~Sharma, and E.~Vans, ``Localization for wireless sensor networks:
+  A neural network approach,'' \emph{arXiv preprint arXiv:1610.04494}, 2016.
+
+\bibitem{banihashemian2018new}
+S.~S. Banihashemian, F.~Adibnia, and M.~A. Sarram, ``A new range-free and
+  storage-efficient localization algorithm using neural networks in wireless
+  sensor networks,'' \emph{Wireless Personal Communications}, vol.~98, no.~1,
+  pp. 1547--1568, 2018.
+
 \bibitem{bernas2015fully}
 M.~Bernas and B.~P{\l}aczek, ``Fully connected neural networks ensemble with
   signal strength clustering for indoor localization in wireless sensor
   networks,'' \emph{International Journal of Distributed Sensor Networks},
   vol.~11, no.~12, p. 403242, 2015.
+
+\bibitem{hochreiter1997long}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
+  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
+
+\bibitem{schuster1997bidirectional}
+M.~Schuster and K.~K. Paliwal, ``Bidirectional recurrent neural networks,''
+  \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
+  2673--2681, 1997.
 
 \bibitem{zhang2017multi}
 F.~Zhang, C.~Hu, Q.~Yin, W.~Li, H.-C. Li, and W.~Hong, ``Multi-aspect-aware
