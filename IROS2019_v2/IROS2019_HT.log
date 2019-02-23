@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.8.13)  22 FEB 2019 14:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.8.13)  24 FEB 2019 02:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -698,16 +698,16 @@ o.pdf>
 (epstopdf)                    size: 394454 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/conventional_deep_v2
 -eps-converted-to.pdf image/conventional_deep_v2.eps>
-(epstopdf)             \includegraphics on input line 96.
+(epstopdf)             \includegraphics on input line 92.
 Package epstopdf Info: Output file is already uptodate.
 <image/conventional_deep_v2-eps-converted-to.pdf, id=1, 963.6pt x 542.025pt>
 File: image/conventional_deep_v2-eps-converted-to.pdf Graphic file (type pdf)
 <use image/conventional_deep_v2-eps-converted-to.pdf>
 Package pdftex.def Info: image/conventional_deep_v2-eps-converted-to.pdf  used 
-on input line 96.
+on input line 92.
 (pdftex.def)             Requested size: 252.91203pt x 142.26378pt.
 
-Overfull \hbox (7.19392pt too wide) in paragraph at lines 96--97
+Overfull \hbox (7.19392pt too wide) in paragraph at lines 92--93
  [][] 
  []
 
@@ -718,7 +718,7 @@ Overfull \hbox (7.19392pt too wide) in paragraph at lines 96--97
 <image/network_figure.png, id=223, 863.02425pt x 221.02576pt>
 File: image/network_figure.png Graphic file (type png)
 <use image/network_figure.png>
-Package pdftex.def Info: image/network_figure.png  used on input line 129.
+Package pdftex.def Info: image/network_figure.png  used on input line 125.
 (pdftex.def)             Requested size: 480.59395pt x 123.08556pt.
 
 
@@ -734,13 +734,13 @@ pdf>
 (epstopdf)                    size: 41661 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/bidirectional_LSTM-e
 ps-converted-to.pdf image/bidirectional_LSTM.eps>
-(epstopdf)             \includegraphics on input line 177.
+(epstopdf)             \includegraphics on input line 172.
 Package epstopdf Info: Output file is already uptodate.
 <image/bidirectional_LSTM-eps-converted-to.pdf, id=229, 722.7pt x 542.025pt>
 File: image/bidirectional_LSTM-eps-converted-to.pdf Graphic file (type pdf)
 <use image/bidirectional_LSTM-eps-converted-to.pdf>
 Package pdftex.def Info: image/bidirectional_LSTM-eps-converted-to.pdf  used on
- input line 177.
+ input line 172.
 (pdftex.def)             Requested size: 221.14479pt x 165.8591pt.
 
 
@@ -748,7 +748,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [3 <./image/network_figure.PNG> <./image/bidirectional_LSTM-eps-converted-to.pd
 f>]
-LaTeX Font Info:    Try loading font information for U+euf on input line 237.
+LaTeX Font Info:    Try loading font information for U+euf on input line 229.
  (c:/texlive/2018/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
@@ -761,13 +761,13 @@ o.pdf>
 (epstopdf)                    size: 603366 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/system_whole_picture
 -eps-converted-to.pdf image/system_whole_picture.eps>
-(epstopdf)             \includegraphics on input line 247.
+(epstopdf)             \includegraphics on input line 238.
 Package epstopdf Info: Output file is already uptodate.
 <image/system_whole_picture-eps-converted-to.pdf, id=263, 722.7pt x 542.025pt>
 File: image/system_whole_picture-eps-converted-to.pdf Graphic file (type pdf)
 <use image/system_whole_picture-eps-converted-to.pdf>
 Package pdftex.def Info: image/system_whole_picture-eps-converted-to.pdf  used 
-on input line 247.
+on input line 238.
 (pdftex.def)             Requested size: 161.8885pt x 121.41277pt.
 Package epstopdf Info: Source file: <image/motion_capture.eps>
 (epstopdf)                    date: 2019-02-22 02:39:11
@@ -778,19 +778,19 @@ Package epstopdf Info: Source file: <image/motion_capture.eps>
 (epstopdf)                    size: 219818 bytes
 (epstopdf)             Command: <repstopdf --outfile=image/motion_capture-eps-c
 onverted-to.pdf image/motion_capture.eps>
-(epstopdf)             \includegraphics on input line 254.
+(epstopdf)             \includegraphics on input line 245.
 Package epstopdf Info: Output file is already uptodate.
 <image/motion_capture-eps-converted-to.pdf, id=264, 722.7pt x 542.025pt>
 File: image/motion_capture-eps-converted-to.pdf Graphic file (type pdf)
 <use image/motion_capture-eps-converted-to.pdf>
 Package pdftex.def Info: image/motion_capture-eps-converted-to.pdf  used on inp
-ut line 254.
+ut line 245.
 (pdftex.def)             Requested size: 161.8885pt x 121.41277pt.
 <image/system_exact_position.jpg, id=265, 722.7pt x 542.025pt>
 File: image/system_exact_position.jpg Graphic file (type jpg)
 <use image/system_exact_position.jpg>
-Package pdftex.def Info: image/system_exact_position.jpg  used on input line 26
-1.
+Package pdftex.def Info: image/system_exact_position.jpg  used on input line 25
+2.
 (pdftex.def)             Requested size: 161.8885pt x 121.41277pt.
 
 
@@ -800,7 +800,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <image/RMSE_error.png, id=271, 462.528pt x 346.896pt>
 File: image/RMSE_error.png Graphic file (type png)
 <use image/RMSE_error.png>
-Package pdftex.def Info: image/RMSE_error.png  used on input line 295.
+Package pdftex.def Info: image/RMSE_error.png  used on input line 284.
 (pdftex.def)             Requested size: 221.14479pt x 165.86241pt.
 
 
@@ -809,17 +809,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <image/trajectory_3.png, id=272, 578.16pt x 433.62pt>
 File: image/trajectory_3.png Graphic file (type png)
 <use image/trajectory_3.png>
-Package pdftex.def Info: image/trajectory_3.png  used on input line 307.
+Package pdftex.def Info: image/trajectory_3.png  used on input line 296.
 (pdftex.def)             Requested size: 161.8885pt x 121.41277pt.
 <image/trajectory_5.png, id=273, 578.16pt x 433.62pt>
 File: image/trajectory_5.png Graphic file (type png)
 <use image/trajectory_5.png>
-Package pdftex.def Info: image/trajectory_5.png  used on input line 314.
+Package pdftex.def Info: image/trajectory_5.png  used on input line 303.
 (pdftex.def)             Requested size: 161.8885pt x 121.41277pt.
 <image/trajectory_8.png, id=274, 578.16pt x 433.62pt>
 File: image/trajectory_8.png Graphic file (type png)
 <use image/trajectory_8.png>
-Package pdftex.def Info: image/trajectory_8.png  used on input line 321.
+Package pdftex.def Info: image/trajectory_8.png  used on input line 310.
 (pdftex.def)             Requested size: 161.8885pt x 121.41277pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -827,20 +827,18 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 5446) has occurred while \output is active []
-
- [5 <./image/system_whole_picture-eps-converted-to.pdf> <./image/motion_capture
--eps-converted-to.pdf> <./image/system_exact_position.jpg> <./image/RMSE_error.
-png>]
-<image/boxcompare.png, id=303, 462.528pt x 346.896pt>
+<image/boxcompare.png, id=275, 462.528pt x 346.896pt>
 File: image/boxcompare.png Graphic file (type png)
 <use image/boxcompare.png>
-Package pdftex.def Info: image/boxcompare.png  used on input line 363.
+Package pdftex.def Info: image/boxcompare.png  used on input line 352.
 (pdftex.def)             Requested size: 221.14479pt x 165.86241pt.
 
-[6 <./image/trajectory_3.png> <./image/trajectory_5.png> <./image/trajectory_8.
-png> <./image/boxcompare.png>] (./IROS2019_HT.bbl
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./image/system_whole_picture-eps-converted-to.pdf> <./image/motion_capture-
+eps-converted-to.pdf> <./image/system_exact_position.jpg> <./image/RMSE_error.p
+ng>] (./IROS2019_HT.bbl [6 <./image/trajectory_3.png> <./image/trajectory_5.png
+> <./image/trajectory_8.png> <./image/boxcompare.png>]
 Underfull \hbox (badness 2521) in paragraph at lines 83--86
 []\T1/ptm/m/n/8 M. Ab-del-hadi, M. Anan, and M. Ayyash, ``Ef-fi-cient ar-ti-fi-
 cial
@@ -875,11 +873,11 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  6962 strings out of 494587
  102744 string characters out of 6177953
- 176824 words of memory out of 5000000
+ 177824 words of memory out of 5000000
  10416 multiletter control sequences out of 15000+600000
  120045 words of font info for 149 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 59i,14n,94p,1347b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,14n,94p,1367b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.en
 c}<c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/tex
 live/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2018
@@ -895,7 +893,7 @@ xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2018/texmf-dist/fonts/t
 ype1/urw/times/utmb8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utm
 bi8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texli
 ve/2018/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on IROS2019_HT.pdf (7 pages, 1975918 bytes).
+Output written on IROS2019_HT.pdf (7 pages, 1975629 bytes).
 PDF statistics:
  368 PDF objects out of 1000 (max. 8388607)
  106 compressed objects within 2 object streams
