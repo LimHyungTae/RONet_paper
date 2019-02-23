@@ -184,7 +184,7 @@ Therefore, we constructed our networks by stacking three Bi--LSTM networks to in
 
 \subsection{Residual Attention Layer}
 
-To precisely estimate the position of the tag node, it is important for the network to distinguish the most meaningful context based on the time step \textit{T} to help contextual understanding of our networks. The equation of the original attention mechanism is as follows,   
+To precisely estimate the position of the tag node, it is important for the network to distinguish the most meaningful context based on the time step \textit{T} to help contextual understanding of our networks. The equation of the original attention mechanism is as follows:   
 
 \begin{equation}
 H(x)=M(x)\odot x
@@ -219,11 +219,11 @@ where $l_{i}$ denotes the distance between the $i$-th anchor and tag nodes. Note
 \mathbb{Y}_t = \left\{Y_{t-T+1}, Y_{t-T+2}, ..., Y_t\right\}.
 \end{equation}
 
-Consequently, neural networks could be optimized to be able to localize the mobile node by being trained using the training dataset $\mathbb{D}$ as follows,  
+Consequently, neural networks could be optimized to be able to localize the mobile node by being trained using the training dataset $\mathbb{D}$ as follows:  
 
 \begin{equation}
 %$L = \left\{(X_t, Y_t)\right \}$ 
-\mathbb{D} = \left\{(\mathbb{L}_{T-1}, \mathbb{Y}_{T-1}),...,(\mathbb{L}_t, \mathbb{Y}_t),...\right\} 
+\mathbb{D} = \left\{(\mathbb{L}_{T-1}, \mathbb{Y}_{T-1}),...,(\mathbb{L}_t, \mathbb{Y}_t),...\right\}.
 \end{equation}
 
 Therefore, let $\Theta$ be the parameters of our network model. Our final goal is to find optimal parameters $\Theta^{*}$ for precise localization by minimizing the $L_2$ loss term. The $L_2$ loss term denotes the mean-square-error (MSE) of the Euclidean distance between the normalized ground truth position $\mathfrak{N}(Y_k)$ and the estimated position $\hat{Y_k}$, as follows:
@@ -320,7 +320,7 @@ As a result, the networks with longer sequence lengths tend to have smaller erro
 	\begin{tabular}{ccccc}
 		\toprule
 		\multicolumn{5}{c}{RMSE {[}cm{]}}   \\ \midrule
-		Number of anchors & Particle Filter\cite{gonzalez2009mobile} & MLP\cite{kumar2016localization} & Bi-LSTM\cite{lim2018effective} & Ours (RONet) \\ \cmidrule{2-5} 
+		Number of anchors & Particle Filter\cite{gonzalez2009mobile} & MLP\cite{kumar2016localization} & Bi-LSTM\cite{lim2018effective} & RONet (Ours) \\ \cmidrule{2-5} 
 		3             & 8.722 & 5.485 & 5.051 & \textbf{4.466} \\
 		5             & 8.286 & 4.546 & 4.418 & \textbf{3.210} \\
 		8             & 7.650 & 4.235 & 4.290 & \textbf{3.090} \\ \bottomrule
