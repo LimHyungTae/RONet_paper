@@ -18,12 +18,6 @@
 \fi
 #2}}
 
-\bibitem{dissanayake2001solution}
-M.~G. Dissanayake, P.~Newman, S.~Clark, H.~F. Durrant-Whyte, and M.~Csorba, ``A
-  solution to the simultaneous localization and map building (slam) problem,''
-  \emph{IEEE Transactions on robotics and automation}, vol.~17, no.~3, pp.
-  229--241, 2001.
-
 \bibitem{peneda2009trilateration}
 L.~Peneda, A.~Azenha, and A.~Carvalho, ``Trilateration for indoors positioning
   within the framework of wireless communications,'' in \emph{Industrial
@@ -36,13 +30,6 @@ J.~Jung and H.~Myung, ``Indoor localization using particle filter and map-based
   International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
   2011, pp. 5185--5190.
 
-\bibitem{raghavan2010accurate}
-A.~N. Raghavan, H.~Ananthapadmanaban, M.~S. Sivamurugan, and B.~Ravindran,
-  ``Accurate mobile robot localization in indoor environments using
-  bluetooth,'' in \emph{Robotics and Automation (ICRA), 2010 IEEE International
-  Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2010, pp.
-  4391--4396.
-
 \bibitem{newman2003pure}
 P.~Newman and J.~Leonard, ``Pure range-only sub-sea slam,'' in \emph{Robotics
   and Automation, 2003. Proceedings. ICRA'03. IEEE International Conference
@@ -54,15 +41,36 @@ E.~Olson, J.~J. Leonard, and S.~Teller, ``Robust range-only beacon
   localization,'' \emph{IEEE Journal of Oceanic Engineering}, vol.~31, no.~4,
   pp. 949--958, 2006.
 
+\bibitem{li2017novel}
+J.~Li, X.~Yue, J.~Chen, and F.~Deng, ``A novel robust trilateration method
+  applied to ultra-wide bandwidth location systems,'' \emph{Sensors}, vol.~17,
+  no.~4, p. 795, 2017.
+
 \bibitem{fabresse2018efficient}
 F.~R. Fabresse, F.~Caballero, I.~Maza, and A.~Ollero, ``An efficient approach
   for undelayed range-only slam based on gaussian mixtures expectation,''
   \emph{Robotics and Autonomous Systems}, vol. 104, pp. 40--55, 2018.
 
-\bibitem{li2017novel}
-J.~Li, X.~Yue, J.~Chen, and F.~Deng, ``A novel robust trilateration method
-  applied to ultra-wide bandwidth location systems,'' \emph{Sensors}, vol.~17,
-  no.~4, p. 795, 2017.
+\bibitem{gonzalez2009mobile}
+J.~Gonz{\'a}lez, J.-L. Blanco, C.~Galindo, A.~Ortiz-de Galisteo, J.-A.
+  Fern{\'a}ndez-Madrigal, F.~A. Moreno, and J.~L. Mart{\'\i}nez, ``Mobile robot
+  localization based on ultra-wide-band ranging: A particle filter approach,''
+  \emph{Robotics and autonomous systems}, vol.~57, no.~5, pp. 496--507, 2009.
+
+\bibitem{rahman2009localization}
+M.~S. Rahman, Y.~Park, and K.-D. Kim, ``Localization of wireless sensor network
+  using artificial neural network,'' in \emph{Communications and Information
+  Technology, 2009. ISCIT 2009. 9th International Symposium on}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2009, pp. 639--642.
+
+\bibitem{abdelhadi2013efficient}
+M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
+  localization algorithm for wireless sensor networks,'' \emph{Journal of
+  Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
+
+\bibitem{kumar2016localization}
+S.~Kumar, R.~Sharma, and E.~Vans, ``Localization for wireless sensor networks:
+  A neural network approach,'' \emph{arXiv preprint arXiv:1610.04494}, 2016.
 
 \bibitem{lim2018effective}
 H.~LIM, J.~GOO, and H.~Myung, ``Effective indoor robot localization by stacked
@@ -70,19 +78,6 @@ H.~LIM, J.~GOO, and H.~Myung, ``Effective indoor robot localization by stacked
   \emph{International Conference of Robotics Intelligence and Applications
   (RiTA)}.\hskip 1em plus 0.5em minus 0.4em\relax Universiti Malaysia Pahang,
   2018.
-
-\bibitem{lecun2015deep}
-Y.~LeCun, Y.~Bengio, and G.~Hinton, ``Deep learning,'' \emph{nature}, vol. 521,
-  no. 7553, p. 436, 2015.
-
-\bibitem{thomas2005revisiting}
-F.~Thomas and L.~Ros, ``Revisiting trilateration for robot localization,''
-  \emph{IEEE Transactions on robotics}, vol.~21, no.~1, pp. 93--101, 2005.
-
-\bibitem{cho2010mobile}
-H.~Cho and S.~W. Kim, ``Mobile robot localization using biased
-  chirp-spread-spectrum ranging,'' \emph{IEEE transactions on industrial
-  electronics}, vol.~57, no.~8, pp. 2826--2835, 2010.
 
 \bibitem{blanco2008pure}
 J.-L. Blanco, J.~Gonz{\'a}lez, and J.-A. Fern{\'a}ndez-Madrigal, ``A pure
@@ -107,71 +102,20 @@ N.~S. Shetty, ``Particle filter approach to overcome multipath propagation
   error in slam indoor applications,'' Ph.D. dissertation, The University of
   North Carolina at Charlotte, 2018.
 
-\bibitem{tran2008localization}
-D.~A. Tran and T.~Nguyen, ``Localization in wireless sensor networks based on
-  support vector machines,'' \emph{IEEE Transactions on Parallel and
-  Distributed Systems}, vol.~19, no.~7, pp. 981--994, 2008.
+\bibitem{lecun2015deep}
+Y.~LeCun, Y.~Bengio, and G.~Hinton, ``Deep learning,'' \emph{nature}, vol. 521,
+  no. 7553, p. 436, 2015.
 
-\bibitem{huan2010three}
-R.~Huan, Q.~Chen, K.~Mao, and Y.~Pan, ``A three-dimension localization
-  algorithm for wireless sensor network nodes based on svm,'' in \emph{Green
-  Circuits and Systems (ICGCS), 2010 International Conference on}.\hskip 1em
-  plus 0.5em minus 0.4em\relax IEEE, 2010, pp. 651--654.
+\bibitem{kendall2016modelling}
+A.~Kendall and R.~Cipolla, ``Modelling uncertainty in deep learning for camera
+  relocalization,'' in \emph{2016 IEEE international conference on Robotics and
+  Automation (ICRA)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2016, pp.
+  4762--4769.
 
-\bibitem{feng2012determination}
-V.-s. Feng and S.~Y. Chang, ``Determination of wireless networks parameters
-  through parallel hierarchical support vector machines,'' \emph{IEEE
-  Transactions on Parallel and Distributed Systems}, vol.~23, no.~3, pp.
-  505--512, 2012.
-
-\bibitem{afzal2014localization}
-S.~Afzal and H.~Beigy, ``A localization algorithm for large scale mobile
-  wireless sensor networks: a learning approach,'' \emph{The Journal of
-  Supercomputing}, vol.~69, no.~1, pp. 98--120, 2014.
-
-\bibitem{lee2013new}
-J.~Lee, W.~Chung, and E.~Kim, ``A new kernelized approach to wireless sensor
-  network localization,'' \emph{Information Sciences}, vol. 243, pp. 20--38,
-  2013.
-
-\bibitem{lee2013novel}
-J.~Lee, B.~Choi, and E.~Kim, ``Novel range-free localization based on
-  multidimensional support vector regression trained in the primal space,''
-  \emph{IEEE transactions on neural networks and learning systems}, vol.~24,
-  no.~7, pp. 1099--1113, 2013.
-
-\bibitem{chatterjee2010fletcher}
-A.~Chatterjee, ``A fletcher--reeves conjugate gradient neural-network-based
-  localization algorithm for wireless sensor networks,'' \emph{IEEE
-  transactions on vehicular technology}, vol.~59, no.~2, pp. 823--830, 2010.
-
-\bibitem{samadian2011probabilistic}
-R.~Samadian and S.~M. Noorhosseini, ``Probabilistic support vector machine
-  localization in wireless sensor networks,'' \emph{ETRI Journal}, vol.~33,
-  no.~6, pp. 924--934, 2011.
-
-\bibitem{chenna2004state}
-S.~K. Chenna, Y.~K. Jain, H.~Kapoor, R.~S. Bapi, N.~Yadaiah, A.~Negi, V.~S.
-  Rao, and B.~L. Deekshatulu, ``State estimation and tracking problems: A
-  comparison between kalman filter and recurrent neural networks,'' in
-  \emph{International Conference on Neural Information Processing}.\hskip 1em
-  plus 0.5em minus 0.4em\relax Springer, 2004, pp. 275--281.
-
-\bibitem{shareef2008localization}
-A.~Shareef, Y.~Zhu, and M.~Musavi, ``Localization using neural networks in
-  wireless sensor networks,'' in \emph{Proceedings of the 1st international
-  conference on MOBILe Wireless MiddleWARE, Operating Systems, and
-  Applications}.\hskip 1em plus 0.5em minus 0.4em\relax ICST (Institute for
-  Computer Sciences, Social-Informatics and~…, 2008, p.~4.
-
-\bibitem{elman1990finding}
-J.~L. Elman, ``Finding structure in time,'' \emph{Cognitive science}, vol.~14,
-  no.~2, pp. 179--211, 1990.
-
-\bibitem{walch2017image}
-F.~Walch, C.~Hazirbas, L.~Leal-Taixe, T.~Sattler, S.~Hilsenbeck, and
-  D.~Cremers, ``Image-based localization using lstms for structured feature
-  correlation,'' in \emph{Int. Conf. Comput. Vis.(ICCV)}, 2017, pp. 627--637.
+\bibitem{kendall2015posenet}
+A.~Kendall, M.~Grimes, and R.~Cipolla, ``Posenet: A convolutional network for
+  real-time 6-dof camera relocalization,'' in \emph{Proceedings of the IEEE
+  international conference on computer vision}, 2015, pp. 2938--2946.
 
 \bibitem{gladh2016deep}
 S.~Gladh, M.~Danelljan, F.~S. Khan, and M.~Felsberg, ``Deep motion features for
@@ -179,79 +123,82 @@ S.~Gladh, M.~Danelljan, F.~S. Khan, and M.~Felsberg, ``Deep motion features for
   International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE,
   2016, pp. 1243--1248.
 
+\bibitem{elman1990finding}
+J.~L. Elman, ``Finding structure in time,'' \emph{Cognitive science}, vol.~14,
+  no.~2, pp. 179--211, 1990.
+
+\bibitem{hochreiter1997long}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
+  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
+
+\bibitem{clark2017vinet}
+R.~Clark, S.~Wang, H.~Wen, A.~Markham, and N.~Trigoni, ``Vinet: Visual-inertial
+  odometry as a sequence-to-sequence learning problem.'' in \emph{AAAI}, 2017,
+  pp. 3995--4001.
+
+\bibitem{patel2018contextualnet}
+M.~Patel, B.~Emery, and Y.-Y. Chen, ``Contextualnet: Exploiting contextual
+  information using lstms to improve image-based localization,'' in \emph{2018
+  IEEE International Conference on Robotics and Automation (ICRA)}.\hskip 1em
+  plus 0.5em minus 0.4em\relax IEEE, 2018, pp. 1--7.
+
 \bibitem{wang2017deepvo}
 S.~Wang, R.~Clark, H.~Wen, and N.~Trigoni, ``Deepvo: Towards end-to-end visual
   odometry with deep recurrent convolutional neural networks,'' in
   \emph{Robotics and Automation (ICRA), 2017 IEEE International Conference
   on}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2017, pp. 2043--2050.
 
-\bibitem{kendall2015posenet}
-A.~Kendall, M.~Grimes, and R.~Cipolla, ``Posenet: A convolutional network for
-  real-time 6-dof camera relocalization,'' in \emph{Proceedings of the IEEE
-  international conference on computer vision}, 2015, pp. 2938--2946.
+\bibitem{walch2017image}
+F.~Walch, C.~Hazirbas, L.~Leal-Taixe, T.~Sattler, S.~Hilsenbeck, and
+  D.~Cremers, ``Image-based localization using lstms for structured feature
+  correlation,'' in \emph{Int. Conf. Comput. Vis.(ICCV)}, 2017, pp. 627--637.
 
-\bibitem{turan2018deep}
-M.~Turan, Y.~Almalioglu, H.~Araujo, E.~Konukoglu, and M.~Sitti, ``Deep endovo:
-  A recurrent convolutional neural network (rcnn) based visual odometry
-  approach for endoscopic capsule robots,'' \emph{Neurocomputing}, vol. 275,
-  pp. 1861--1870, 2018.
+\bibitem{song2017end}
+S.~Song, C.~Lan, J.~Xing, W.~Zeng, and J.~Liu, ``An end-to-end spatio-temporal
+  attention model for human action recognition from skeleton data.'' in
+  \emph{AAAI}, vol.~1, no.~2, 2017, pp. 4263--4270.
 
-\bibitem{rahman2009localization}
-M.~S. Rahman, Y.~Park, and K.-D. Kim, ``Localization of wireless sensor network
-  using artificial neural network,'' in \emph{Communications and Information
-  Technology, 2009. ISCIT 2009. 9th International Symposium on}.\hskip 1em plus
-  0.5em minus 0.4em\relax IEEE, 2009, pp. 639--642.
+\bibitem{wang2018deepml}
+X.~Wang, Z.~Yu, and S.~Mao, ``Deepml: Deep lstm for indoor localization with
+  smartphone magnetic and light sensors,'' in \emph{2018 IEEE International
+  Conference on Communications (ICC)}.\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 2018, pp. 1--6.
 
-\bibitem{singh2013tdoa}
-P.~Singh and S.~Agrawal, ``Tdoa based node localization in wsn using neural
-  networks,'' in \emph{Communication Systems and Network Technologies (CSNT),
-  2013 International Conference on}.\hskip 1em plus 0.5em minus 0.4em\relax
-  IEEE, 2013, pp. 400--404.
+\bibitem{chen2018ionet}
+C.~Chen, X.~Lu, A.~Markham, and N.~Trigoni, ``Ionet: Learning to cure the curse
+  of drift in inertial odometry,'' \emph{arXiv preprint arXiv:1802.02209},
+  2018.
 
-\bibitem{abdelhadi2013efficient}
-M.~Abdelhadi, M.~Anan, and M.~Ayyash, ``Efficient artificial intelligent-based
-  localization algorithm for wireless sensor networks,'' \emph{Journal of
-  Selected Areas in Telecommunications}, vol.~3, no.~5, pp. 10--18, 2013.
+\bibitem{luong2015effective}
+M.-T. Luong, H.~Pham, and C.~D. Manning, ``Effective approaches to
+  attention-based neural machine translation,'' \emph{arXiv preprint
+  arXiv:1508.04025}, 2015.
 
-\bibitem{kumar2016localization}
-S.~Kumar, R.~Sharma, and E.~Vans, ``Localization for wireless sensor networks:
-  A neural network approach,'' \emph{arXiv preprint arXiv:1610.04494}, 2016.
+\bibitem{jaderberg2015spatial}
+M.~Jaderberg, K.~Simonyan, A.~Zisserman, \emph{et~al.}, ``Spatial transformer
+  networks,'' in \emph{Advances in neural information processing systems},
+  2015, pp. 2017--2025.
 
-\bibitem{banihashemian2018new}
-S.~S. Banihashemian, F.~Adibnia, and M.~A. Sarram, ``A new range-free and
-  storage-efficient localization algorithm using neural networks in wireless
-  sensor networks,'' \emph{Wireless Personal Communications}, vol.~98, no.~1,
-  pp. 1547--1568, 2018.
+\bibitem{parisotto2018global}
+E.~Parisotto, D.~S. Chaplot, J.~Zhang, and R.~Salakhutdinov, ``Global pose
+  estimation with an attention-based recurrent network,'' \emph{arXiv preprint
+  arXiv:1802.06857}, 2018.
 
-\bibitem{bernas2015fully}
-M.~Bernas and B.~P{\l}aczek, ``Fully connected neural networks ensemble with
-  signal strength clustering for indoor localization in wireless sensor
-  networks,'' \emph{International Journal of Distributed Sensor Networks},
-  vol.~11, no.~12, p. 403242, 2015.
+\bibitem{zhu2018towards}
+X.~Zhu, J.~Dai, L.~Yuan, and Y.~Wei, ``Towards high performance video object
+  detection,'' in \emph{Proceedings of the IEEE Conference on Computer Vision
+  and Pattern Recognition}, 2018, pp. 7210--7218.
 
-\bibitem{hochreiter1997long}
-S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \emph{Neural
-  computation}, vol.~9, no.~8, pp. 1735--1780, 1997.
+\bibitem{xu2017learning}
+J.~Xu, T.~Yao, Y.~Zhang, and T.~Mei, ``Learning multimodal attention lstm
+  networks for video captioning,'' in \emph{Proceedings of the 2017 ACM on
+  Multimedia Conference}.\hskip 1em plus 0.5em minus 0.4em\relax ACM, 2017, pp.
+  537--545.
 
-\bibitem{schuster1997bidirectional}
-M.~Schuster and K.~K. Paliwal, ``Bidirectional recurrent neural networks,''
-  \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
-  2673--2681, 1997.
-
-\bibitem{zhang2017multi}
-F.~Zhang, C.~Hu, Q.~Yin, W.~Li, H.-C. Li, and W.~Hong, ``Multi-aspect-aware
-  bidirectional lstm networks for synthetic aperture radar target
-  recognition,'' \emph{IEEE Access}, vol.~5, pp. 26\,880--26\,891, 2017.
-
-\bibitem{li2018human}
-W.~Li, W.~Nie, and Y.~Su, ``Human action recognition based on selected
-  spatio-temporal features via bidirectional lstm,'' \emph{IEEE Access},
-  vol.~6, pp. 44\,211--44\,220, 2018.
-
-\bibitem{ullah2018action}
-A.~Ullah, J.~Ahmad, K.~Muhammad, M.~Sajjad, and S.~W. Baik, ``Action
-  recognition in video sequences using deep bi-directional lstm with cnn
-  features,'' \emph{IEEE Access}, vol.~6, pp. 1155--1166, 2018.
+\bibitem{wang2017residual}
+F.~Wang, M.~Jiang, C.~Qian, S.~Yang, C.~Li, H.~Zhang, X.~Wang, and X.~Tang,
+  ``Residual attention network for image classification,'' \emph{arXiv preprint
+  arXiv:1704.06904}, 2017.
 
 \bibitem{simonyan2014very}
 K.~Simonyan and A.~Zisserman, ``Very deep convolutional networks for
@@ -273,6 +220,16 @@ A.~Graves, A.-r. Mohamed, and G.~Hinton, ``Speech recognition with deep
   recurrent neural networks,'' in \emph{Acoustics, speech and signal processing
   (icassp), 2013 ieee international conference on}.\hskip 1em plus 0.5em minus
   0.4em\relax IEEE, 2013, pp. 6645--6649.
+
+\bibitem{ullah2018action}
+A.~Ullah, J.~Ahmad, K.~Muhammad, M.~Sajjad, and S.~W. Baik, ``Action
+  recognition in video sequences using deep bi-directional lstm with cnn
+  features,'' \emph{IEEE Access}, vol.~6, pp. 1155--1166, 2018.
+
+\bibitem{schuster1997bidirectional}
+M.~Schuster and K.~K. Paliwal, ``Bidirectional recurrent neural networks,''
+  \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
+  2673--2681, 1997.
 
 \bibitem{pascanu2013difficulty}
 R.~Pascanu, T.~Mikolov, and Y.~Bengio, ``On the difficulty of training

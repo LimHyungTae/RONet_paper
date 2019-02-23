@@ -1,0 +1,125 @@
+\relax 
+\citation{peneda2009trilateration,jung2011indoor}
+\citation{newman2003pure,olson2006robust}
+\citation{li2017novel}
+\citation{fabresse2018efficient}
+\citation{gonzalez2009mobile}
+\citation{rahman2009localization,abdelhadi2013efficient,kumar2016localization,lim2018effective}
+\citation{rahman2009localization,abdelhadi2013efficient,kumar2016localization}
+\citation{lim2018effective}
+\@writefile{toc}{\contentsline {section}{\numberline {I}INTRODUCTION}{1}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{\caption@xref {fig:overview}{ on input line 105}}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Comparison between a conventional probabilistic-based range-only frameworks and our learning-based approach.\relax }}{1}}
+\citation{gonzalez2009mobile,blanco2008pure,shetty2018particle}
+\citation{lecun2015deep}
+\citation{kendall2016modelling,kendall2015posenet,gladh2016deep}
+\citation{elman1990finding}
+\citation{hochreiter1997long}
+\citation{clark2017vinet,patel2018contextualnet,wang2017deepvo}
+\citation{wang2018deepml}
+\citation{chen2018ionet}
+\citation{rahman2009localization,abdelhadi2013efficient,kumar2016localization}
+\citation{lim2018effective}
+\citation{wang2017residual}
+\citation{luong2015effective}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Works}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {II-A}Conventional Range-Only Localization}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {II-B}LSTM-based Sequential Modeling}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {II-C}Deep Learning for Range Only Localization}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {II-D}Attention Layer}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}RONet}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-A}Long Short-Term Memory}{2}}
+\newlabel{eq:forget}{{1}{2}}
+\newlabel{eq:input}{{2}{2}}
+\newlabel{eq:new_cell}{{3}{2}}
+\newlabel{eq:update}{{4}{2}}
+\newlabel{eq:output}{{5}{2}}
+\newlabel{eq:hidden}{{6}{2}}
+\citation{simonyan2014very,he2016deep}
+\citation{graves2013hybrid,graves2013speech,ullah2018action}
+\citation{schuster1997bidirectional}
+\citation{pascanu2013difficulty}
+\citation{nair2010rectified}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Our networks consists of three elements: Bi LSTM, the residual attention module(the blue cuboid), and fully-connected layer(FC layer). Features are fed in to Bi-LSTM and Bi-LSTM reduce feature in half, as 2048-1024-512. Finally, extracted features are fed in to FC layer to estimate position corresponding to each time step\relax }}{3}}
+\newlabel{fig:our_network}{{2}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-B}Stacked Bidirectional LSTM}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Architecture of the Bidirectional LSTM(Bi-LSTM). bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer\relax }}{3}}
+\newlabel{fig:bidirectional_revised}{{3}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-C}Residual Attention layer}{3}}
+\citation{wang2017residual}
+\citation{he2016deep}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-D}Training loss}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental Results}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Experimental environment}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Acquisition of the Train/Test data}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-C}Training the Network}{4}}
+\citation{kumar2016localization}
+\citation{lim2018effective}
+\citation{gonzalez2009mobile}
+\citation{gonzalez2009mobile}
+\citation{kumar2016localization}
+\citation{lim2018effective}
+\newlabel{fig:whole_system}{{4a}{5}}
+\newlabel{sub@fig:whole_system}{{a}{5}}
+\newlabel{fig:Optitrack_figure}{{4b}{5}}
+\newlabel{sub@fig:Optitrack_figure}{{b}{5}}
+\newlabel{fig:Exact_position}{{4c}{5}}
+\newlabel{sub@fig:Exact_position}{{c}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces (a): entire experimental environments, (b): tracked pose from Optitrack motion capture, and (c): exact position of anchor nodes. \relax }}{5}}
+\newlabel{fig:animals22}{{4}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-D}Localization Results}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces RMSE graph of RMSE w.r.t. the sequence length by changing the number of anchors\relax }}{5}}
+\newlabel{fig:seq_length_on_different_anchors}{{5}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {IV-D.1}The Performance according to the sequence length}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {IV-D.2}The Performance comparison of Other Algorithms}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Box plot results with respect to the number of anchors.\relax }}{5}}
+\newlabel{fig:box_plot}{{6}{5}}
+\bibstyle{IEEEtran}
+\bibdata{./IEEEabrv,./IROS_RObib}
+\bibcite{peneda2009trilateration}{1}
+\bibcite{jung2011indoor}{2}
+\bibcite{newman2003pure}{3}
+\bibcite{olson2006robust}{4}
+\bibcite{li2017novel}{5}
+\bibcite{fabresse2018efficient}{6}
+\bibcite{gonzalez2009mobile}{7}
+\bibcite{rahman2009localization}{8}
+\bibcite{abdelhadi2013efficient}{9}
+\bibcite{kumar2016localization}{10}
+\bibcite{lim2018effective}{11}
+\bibcite{blanco2008pure}{12}
+\bibcite{shetty2018particle}{13}
+\bibcite{lecun2015deep}{14}
+\bibcite{kendall2016modelling}{15}
+\bibcite{kendall2015posenet}{16}
+\newlabel{fig:anchor_3}{{7a}{6}}
+\newlabel{sub@fig:anchor_3}{{a}{6}}
+\newlabel{fig:anchor_5}{{7b}{6}}
+\newlabel{sub@fig:anchor_5}{{b}{6}}
+\newlabel{fig:anchor_8}{{7c}{6}}
+\newlabel{sub@fig:anchor_8}{{c}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Trajectories results with respect to the various number of anchors: (a): a trajectory with 3 anchors, (b): a trajectory with 5 anchors, (c): a trajectory with 8 anchors. For clarity, we just drawed PF-based results(organge) and our RONet results(blue).\relax }}{6}}
+\newlabel{fig:trajectories_358}{{7}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Root Mean Square Error of each algorithm w.r.t. the number of anchors\relax }}{6}}
+\newlabel{table:rmse}{{I}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{6}}
+\@writefile{toc}{\contentsline {section}{References}{6}}
+\bibcite{gladh2016deep}{17}
+\bibcite{elman1990finding}{18}
+\bibcite{hochreiter1997long}{19}
+\bibcite{clark2017vinet}{20}
+\bibcite{patel2018contextualnet}{21}
+\bibcite{wang2017deepvo}{22}
+\bibcite{wang2018deepml}{23}
+\bibcite{chen2018ionet}{24}
+\bibcite{wang2017residual}{25}
+\bibcite{luong2015effective}{26}
+\bibcite{simonyan2014very}{27}
+\bibcite{he2016deep}{28}
+\bibcite{graves2013hybrid}{29}
+\bibcite{graves2013speech}{30}
+\bibcite{ullah2018action}{31}
+\bibcite{schuster1997bidirectional}{32}
+\bibcite{pascanu2013difficulty}{33}
+\bibcite{nair2010rectified}{34}

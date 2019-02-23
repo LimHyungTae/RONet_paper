@@ -96,10 +96,9 @@ As verified experimentally, this new proposal represents a significant improveme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
- In recent years, advancement in micro-electo-mechanical systems(MEMS) contributes the improvement of sensors' performance and miniaturization at the same time in such a way as to have enabled the industiral robots to have mobility. Accordingly, studies about techniques for localizing a mobile robot and recognizing surrounding environments, called Simultaneous Localization and Mapping(SLAM)\cite{dissanayake2001solution}, become more important and has been conducted actively. Specifically, Range-only SLAM(RO-SLAM) have addressed the problem of SLAM with a set of range-only measurements between a mobile robot and landmarks obtained from range sensors such as UWB, ultrasonic, laser-based beacon sensors. By virtue of this low-cost, small-size, acceptively accurate performance, and convenience of being installed, RO-SLAM have been suggested as a solution for localization on the indoor environment\cite{peneda2009trilateration, jung2011indoor} where the signals of the Global Positioning Systems(GPS) cannot be received, e.g., indoor environment\cite{peneda2009trilateration, jung2011indoor,raghavan2010accurate} and underwater environment\cite{newman2003pure, olson2006robust}
+In recent years, as demand for localization in indoor environments where the signals of the Global Positioning Systems(GPS) could become imprecise gradually increases, many researchers have conducted various methods for locating obejcts, e.g., magnetic fields, acoustic signals, and laser-based data. Among them, Time of Flight(TOF)-based range beacon sensors are widely utilzed by virture of characteristics of beacon sensors: low-cost, small-size, acceptively accurate performance, and convenience of being installed. As a result, these range measurement-based approaches have been suggested as a solution for localization  not only on the indoor environment\cite{peneda2009trilateration, jung2011indoor}, but also underwater environments\cite{newman2003pure, olson2006robust}
  
- 
- The range measurements are usually measured by Time-of-Flight(TOF) and only consist of single value to represent distance between each landmark and mobile robot respectively. This cause two problems: one is that it is very vulnerable to noise because the distance are measured by only one-dimensionl information and the other one is \textit{rank dificiency} problem\cite{fabresse2018efficient}. In other words, the single value to represent distance between each landmark and mobile robot respectively is deficient to describe exact position or orientation of the landmark. Besides, these measurements could have huge uncertainties caused by multipath fading channel(MPF) problem\cite{li2017novel} in real world. To alleviate these issues, many studies based on Kalman Filter(KF) algorithm or probabilistic approaches are conducted how to estimate state of the mobile robot and landmarks more precisely with covering the uncertainties. 
+Specifically, these range-only approaches has addressed the problem of localization with sets of range-only measurements between object node that we want to localize, called tag node, and landmarks, called anchor node. However, range measurements that only represent distances between each landmark and mobile robot respectively, one the other words, a set of one-dimensional data have two problems:  one is that it tend to be non-linear becasue TOF-based measurement is very vulnerable to noise and has huge uncertainties caused by multipath fading channel(MPF) problem\cite{li2017novel} in real world, and the other one is that these range-only observations have \textit{rank dificiency} problem\cite{fabresse2018efficient}. To be specific, the single value to represent distance between each landmark and mobile robot respectively is deficient to describe exact position or orientation of the landmark so cause multimodal distribution\cite{gonzalez2009mobile}. 
 
 \begin{figure}[h]
 	
@@ -116,131 +115,79 @@ As verified experimentally, this new proposal represents a significant improveme
 	
 \end{figure}
 
-In this paper, we propose a robust stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of the robot. To the best of our knowledge, it is a first approach to apply LSTM-based architecture to localize the mobile robot on the real-world in real-time using range-only measurement. Since it is achieved in an end-to-end mapping between range measurement and robot position, it does not need any preprocessing module used in the conventional RO-SLAM or range-only localization, such as an calibration and outlier rejection. Our contribution is threefold as follows:
+To alleviate these issues, many studies have been conducted based on probabilistic Bayesian inference framework and Monte-Carlo Bayesian filter, but in recent years, there have been attempts to solve these problems based on neural-network-based approaches\cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization, lim2018effective}. With non-linear end-to-end mapping, the authors show feasibility. But most cases, they just utilized Multilayer Perceptron(MLP), which is beginning architecture of deep learning fields\cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}. In \cite{lim2018effective}, they exploit stacked bidireactional Long Short-Term Memory(Bi-LSTM) to cover noise of range observation by utilizing the chracteristics of it that takes temporal sequential value as input, yet they tested on the simulated environment. And all of them are not checked whether their learning-based approaches are real-time or not. 
 
- Using LSTM-based architecture, our structure directly learns the end-to-end mapping between range measurements and robot position. This operation non-linearly maps the relationship not only considering the long-range dependence of sequential distance data by the LSTM, but also using the correlation of the backward information and the forward information of the sequence of each time step by virtue of its bidirectional architecture. \textcolor{red}{Existing RO SLAM needs calibration before filtering, and then, range measurement undergoes outlier rejection, prediction and correction processes are needed.	Furthermorme, it uses low dimensional data to perform localization, there is a disadvantage that estimation is difficult even if the value deviates slightly from the model.} \textcolor{green}{Therefore, we solve this complex algorithm with end-to-end based deep learning. This system overview is shown in the figure below.}
+In this paper, we propose a robust stacked BI-LSTM with residual attention, called RONet. To the best of our knowledge, it is a first approach to apply LSTM-based architecture to localize a mobile robot on the real-world in real-time using range-only measurement. Unlike conventional probabilistic-based algorithms, it does not need any preprocessing module, such as an calibration and outlier rejection.
 
+Our contribution is threefold as follows:
 \begin{itemize}
 	%\setlength{\itemindent}{-.5in}
-	\item Our structure directly learns the end-to-end mapping between sequential range measurements and robot position. Robust with minimal range sensors.
-	\item Using neural networks, performance is higher than traditional method.
-	\item Real-time on the real world
-	 
+	\item We develop 3-stacked Bi-LSTM layers and attach residual attention layer for both improving performance and let the neural network be trained well so that our RONet shows the best performance when comparing the previous approaches.
+	\item We also analyzed how the sequential length of the network affects performance and check robustness of our RONet with minimal number of anchors.
+	\item We operate RONet on the Nvidia Jetson AGX Xavier and check the inference Hz is Real-time, about 32Hz. 
+	
 \end{itemize}
 
 The rest of the paper is organized as follows: Section II overviews the related works. Section III describes our neural network in detail and defines the problem to be considered, and Section IV describes the experimental results. Finally, Section V summarizes our contributions and points to future work.
 
-
-\cite{lim2018effective}
-!!!!
-In the meantime, as deep learning age has come\cite{lecun2015deep},
-
-In this paper, we propose a stacked bidirectional Long Short-Term Memory(stacked Bi-LSTM) with residual attention for more accurate localization of a MN. Our contributions can be summarized as follows. First of all, Using deep learning, our structure directly learns the end-to-end mapping between range data measured by ANs-to-MN distances and the position of MN on three dimensional space. Unlike other approaches whose authors implement MLP-based neural networks, we exploit LSTM architecture in such a way as not only to take present range data but also take previous temporal data as input for estimating the MN's position. Second, we verify that effect of the residual attention in the way that the residual attention layer makes the network better understand context of the feature when dealing with low-dimensional input. Finally, we implement the networks presented at related works and compare which neural architecture perperforms better when real-world data are given as input. As a result, and our networks perform the best performance among other proposed approaches. Our system overview is shown in the figure 
-
-
 \section{Related Works}
-\subsection{Conventional RO SLAM}
+\subsection{Conventional Range-Only Localization}
 
-has been widely incorporated into robotics fields, especially utilized in the indoor environment to estimate the position of an object by distance measurements obtained from range sensors such as UWB, ultrasonic, laser-based beacon sensors \cite{thomas2005revisiting, cho2010mobile,raghavan2010accurate} due to the convenience of trilateration that estimates the position of a receiver of range sensors if one only knows range measurement. For that reasons, range-only Simultaneous Localization and Mapping(RO-SLAM) methods are utilized popularly, which not only estimate the position of the receiver of range sensors, but also localize the position of range sensors regarded as features on a map, and studies have been conducted continuously in terms of probability-based approach\cite{blanco2008pure,blanco2008efficient,fabresse2013undelayed, shetty2018particle}. communicate with other wiresless sensors efficiently and conveniently. 
+To localize a mobile robot using range measurements, there are two conventional approaches: Kalman Filter(KF)-based method and Particle Filter(PF)-based method. 
 
-In the past few years, researchers have conducted the studies using machine learning-based approaches to reduce computational complexity and localize a mobile node more precisely. One authors utilized support vector machine(SVM) for localizaiton, \cite{tran2008localization, huan2010three, feng2012determination, afzal2014localization}, other author developed method support vector regression(SVR) for localiztion\cite{lee2013new, lee2013novel}. In \cite{tran2008localization}, authors suggested two SVMs for localization, called LSVMs, one LSVM infers x-dimension and the other LSVM infers y-dimension. To employeeing LSVMs, they divide the field into \textit{M-l} x-classes and \textit{M-l} y-classes, like grid, and this deployment has had an impact on succeeding studies\cite{chatterjee2010fletcher, feng2012determination, afzal2014localization}. Samadian \textit{et al.}\cite{samadian2011probabilistic} introduced probablistic support vector machine for localization and they showed that probablistic vector machine has better performance than LSVM. In terms of SVR, Lee \textit{et al.} suggested various types of SVR for localization\cite{lee2013new, lee2013novel}  
+EKF \cite{olson2006robust}
 
-Especially, several works have been studied using neural networks to localize nodes of the range measurement sensors on the indoor space while covering range measurements' uncertainties. Regarding previous proposals, Chenna \textit{et al.} first shows the suitability that Kalman filter could be replaced with the RNN when estimating states and tracking nodes\cite{chenna2004state}. However, they did not provide numerical analysis, so Shareef \textit{et al.} did and conducted their experiment in the real-world. They concluded Radial Basis Function(RBF) may be the best option among the suggested Kalman filter models and RNN\cite{shareef2008localization}. 
+ Besides, these measurements could have huge uncertainties caused by multipath fading channel(MPF) problem\cite{li2017novel} in real world. To alleviate these issues, many studies based on Kalman Filter(KF) algorithm or probabilistic approaches are conducted how to estimate state of the mobile robot and landmarks more precisely with covering the uncertainties. 
 
-\subsection{Deep Learning and LSTM-based Sequential Modeling}
-
-As deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for localization task related to robotics field\cite{kendall2016modelling, kendall2015posenet, gladh2016deep}. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized such as not only speech recognition, but also pose estimation and localization\cite{clark2017vinet, patel2018contextualnet, wang2017deepvo, walch2017image}. In these papers, the authors extract sequential features by using RNN architectures. In \cite{clark2017vinet}, Clark \textit{et al.} estimate the odometry by combination of visual and inertial informations, each informations are from CNN unit that extract spatial features and LSTM unit that extract sequential features. In \cite{patel2018contextualnet, wang2017deepvo}, the architectures combined with CNN and LSTM are proposed for localization and odometry estimation tasks. LSTM unit extract sequential features from the time dependent sequential outputs of CNN units. In \cite{walch2017image}, Walch \textit{et al.} propose the architecture that include CNN and LSTM units to regress camera pose for indoor and outdoor scenes. LSTM unit extract the sequential feature in an output of CNN unit.
-
-\subsection{Deep Learning for Low-dimensional Sensor Data}
+based on Ultra-Wide-Band(UWB), ultrasonic, laser-based beacon sensors. By virtue of this low-cost, small-size, acceptively accurate performance, and convenience of being installed, RO-SLAM 
 
 
-WSNs fields also have introduced various kinds of neural network architectures\cite{rahman2009localization, singh2013tdoa, abdelhadi2013efficient, kumar2016localization, banihashemian2018new}. An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations situation. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible.
+h due to the convenience of trilateration that estimates the position of a receiver of range sensors if one only knows range measurement. For that reasons, range-only Simultaneous Localization and Mapping(RO-SLAM) methods are utilized popularly, which not only estimate the position of the receiver of range sensors, but also localize the position of range sensors regarded as features on a map, and studies have been conducted continuously in terms of probability-based approach\cite{blanco2008pure,blanco2008efficient,fabresse2013undelayed, shetty2018particle}. communicate with other wiresless sensors efficiently and conveniently. 
+
+
+ \begin{figure*}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/network_figure}
+	\caption{Our networks}
+	\label{fig:our_network} 	
+\end{figure*}
+
+\subsection{LSTM-based Sequential Modeling}
+
+As deep learning age has come\cite{lecun2015deep}, various kinds of deep neural architectures have been proposed for localization task related to robotics field\cite{kendall2016modelling, kendall2015posenet, gladh2016deep}. Especially, recurrent neural networks (RNNs), originated from Natural Language Process(NLP) area\cite{elman1990finding}, have been shown to achieve better performance in case of dealing with time variant information, thereby RNNs are widely utilized for sequential modeling such as not only speech recognition, but also pose estimation and localization.
+
+And as Long Short-Term Memory (LSTM) architecture solves the \textit{long-term dependency}, which is the inherent issue to RNNs that become unable to learn the relationship of sequential informations as the time-sequential gap grows\cite{hochreiter1997long}, LSTM are actively introduced to learn longer-term contextual understandings. For example,in \cite{clark2017vinet}, the authors estimate the odometry by combination of RGB images and IMU sensor data and thy utilize the CNN unit for extraction of spatial information by images and LSTM unit for sequential modeling. in \cite{patel2018contextualnet, wang2017deepvo}, the architectures combined with CNN and LSTM are proposed for localization and odometry estimation tasks. LSTM unit extract sequential features from temporal outputs of CNN units. In \cite{walch2017image}, Walch \textit{et al.} propose the architecture that include CNN and LSTM units to regress camera pose for indoor and outdoor scenes. LSTM unit extract the sequential feature in an output of CNN unit. In addition, in \cite{song2017end}, the authors utilize multi-layered LSTM network for sequential action recognition by RGB-D images.
+
+
+\subsection{Deep Learning for Range Only Localization}
+
+Specifically, LSTM are also utilized to model low-dimentional sensor data by itself. In \cite{wang2018deepml}, they exploit LSTM for indoor localization with magnetic and light sensors. And in \cite{chen2018ionet}, they estimate 2D odometry via stacked bidirectional LSTM that takes only IMU sensor data as input. 
+
+Our target, localization using range-only measurement, many authors employee neural networks-based approaches in Wireless Sensor Networks Fields(WSNs)\cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}, yet most networks are based on The Multilayer Perceptron(MLP). Their approach only map a set of range measurment on time $t$ to position so their approaches might have potential to unexpected sensor input. Other paper\cite{lim2018effective}, they utilize stacked bidirectional LSTM for localization a mobile robot takes sequential rnage measurements from anchors and the tag, but they only simulated on a ideal case, that MPF or unexpected noises not occur.
+
+Therefore in this paper, we conduct experiments on a real-world to verify the feasibility to cover all noises of sensors with seqeuntial range data and compare these approaches.
+
+!!!!!!!!!!!!!!!!!!!!!!
+
+ An main advantage of neural networks-based approaches is that the neural networks enables themselves to recognize the position of the MNs quite accurately through the training even if there is no mathematical description. The neural networks also cover all noises that occurs when ANs and MNs interchange their signals. The authors show that their nerual networks-based approach have better performance than traditional approaches or machine learning-based approaches, yet most networks are based on The Multilayer Perceptron(MLP). In addition, the some authors just show the feasibility of their approaches, i.e., they trained and tested on the simulations situation. Plus, some authors let the neural networks infer the estimates on the two-dimensional space, but gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible.
  
 
-\begin{table*}[ht]
-	\centering
-	\caption{Comparison of previous studies with our approach}
-	\begin{tabular}{l|l|l|l|l|l}
-		\toprule
-		\multicolumn{1}{c}{\textbf{Localization method}} & \multicolumn{1}{c}{\textbf{Dimension}} & \multicolumn{1}{c}{\textbf{Type of input}} & \multicolumn{1}{c}{\textbf{Train data}} & \multicolumn{1}{c}{\textbf{Test data mobility}} & \multicolumn{1}{c}{\textbf{Implementation environment}} \\ 
-		\midrule
-		RBF\cite{shareef2008localization}                          & \multicolumn{1}{c}{2D}                 & \multicolumn{1}{c}{Temporary}                        & \multicolumn{1}{c}{Grid}                & 
-		\multicolumn{1}{c}{Dynamic nodes \checkmark}                & \multicolumn{1}{c}{Real-world \checkmark}                          \\ 
-		MLP\cite{rahman2009localization}&        \multicolumn{1}{c}{2D}              &      \multicolumn{1}{c}{Temporary}                                            &   \multicolumn{1}{c}{Grid}                      & \multicolumn{1}{c}{Static nodes}                     &   \multicolumn{1}{c}{Simulation}    \\ 
-		
-		MLBPN\cite{singh2013tdoa}&
-		\multicolumn{1}{c}{2D}                   &      
-		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Grid}                   & 
-		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Simulation}   \\ 
-		
-		MLP\cite{abdelhadi2013efficient}& 
-		\multicolumn{1}{c}{3D  \checkmark}                   &      
-		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Spread \checkmark}                   & 
-		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Simulation}   \\ 
-		
-		c-FCNNs\cite{bernas2015fully}& 
-		\multicolumn{1}{c}{2D}                   &      
-		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Spread \checkmark}                   & 
-		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Real-world  \checkmark}   \\ 
-		
-		MLP\cite{kumar2016localization}& 
-		\multicolumn{1}{c}{2D}                   &      
-		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Grid}                   & 
-		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Real-world  \checkmark}   \\ 
-		LPSONN\cite{banihashemian2018new}&     
-		\multicolumn{1}{c}{2D}                   &      
-		\multicolumn{1}{c}{Temporary}                 &   \multicolumn{1}{c}{Spread  \checkmark}                   & 
-		\multicolumn{1}{c}{Static nodes}        &   \multicolumn{1}{c}{Simulation}   \\ 
-		
-		Ours&
-		\multicolumn{1}{c}{3D \checkmark}                   &      
-		\multicolumn{1}{c}{Sequential \checkmark}                 &   \multicolumn{1}{c}{Spread \checkmark}                   & 
-		\multicolumn{1}{c}{Dynamic nodes \checkmark}        &   \multicolumn{1}{c}{Real-world \checkmark}   \\ 
-		\bottomrule
-	\end{tabular}
-	\label{table:related_worsk}
-	
-\end{table*}
 
-%\begin{figure*}[h]
-%	\centering
-%	\includegraphics[width=.9\textwidth]{image/networks}
-%	\caption{Our proposed network architecture.}
-%	\label{fig:our_network}
-%\end{figure*}
+\subsection{Residual Attention Layer}
 
-Similarly, many researchers also have achived considerable improvement to localize position of mobile node by exploiting MLP in WSNs fields\cite{shareef2008localization, rahman2009localization, singh2013tdoa,abdelhadi2013efficient,bernas2015fully, kumar2016localization, banihashemian2018new}. In case of range-based method, Rahman \textit{et al.} \cite{rahman2009localization} have considered the neural networks for mapping between RSS and corresponding position of sensor nodes and let neural networks be trained by the train data gathered by the sensor nodes that are eqaully spaced over x-axis and y-axis. In \cite{singh2013tdoa}, Singh \textit{et al.} compared that performance of Multilayer Back propagation Network Model(MLBPN) and Radial Basis Function Network Model(RBFN) and the authors show that RBFN performs better than MLBPN when the number of the sensor nodes is larger than 220. Abdelhadi \textit{et al.}  \cite{abdelhadi2013efficient} presented two artificial intelligence techniques: Sugeno-type fuzzy system and neural networks system. In addition, the authors conducted experiment on three-dimensional space in such a way as verified the feasibility of localization by utilizing nueral networks in 3D space. Kumar \textit{et al.} \cite{kumar2016localization} also introduced the neural networks and evaluated five different training techniques,e.g., Levenberg-Marquardt (LM), Bayesian Regularization
-(BR), Resilient Back-propagation (RP), Scaled Conjugate Gradient (SCG) and Gradient
-Descent (GD), to find optimal way to train neural networks with the best accuracy. Recently, \cite{banihashemian2018new} have proposed the neural networks with novel training technique, called Particle Swarm Optimization(PSO) and prove thire nerwork, called LPSONN, has better localization accuracy than previous machine learning method, soft computing method, and previously proposed network.
+A Attention layer is powerful module nowadays and mostly improves performance of neural network. Originally, neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. At the first time, attention is utilized at natural language processing area for improving translation performance\cite{luong2015effective}. But nowadays, attention layer is employed in many areas to improve the performance of the networks. For example, Jaderbeg \textit{et al.}\cite{jaderberg2015spatial} introduced the attention layer to let the neural networks attend to spatial information. In addition, attention is even utilized to pose estimation and optimization\cite{parisotto2018global}, detection\cite{zhu2018towards}, and video captioning\cite{xu2017learning} 
 
-However, there are some points that could have been better. First of all, in some cases, their networks were trained by range measurement data corresponding position of mobile node in simulation environment\cite{chatterjee2010fletcher, shareef2008localization, rahman2009localization, singh2013tdoa, banihashemian2018new}. The simulation situation is almost ideal in the point that the NLOS or MPF problem does not occur. Even though in \cite{rahman2009localization}, they artificially generate NLOS data, but the gap of complexity between real-world and artificially generated data exists, since the generated data has less noise than those of real-world necessarily. For these reasons, it is hard to say that their networks also works well on real world situation. Therefore, to test on whether it is possible for neural networks to estimate position with covering all disturbance, the experiment should be conducted on real-world. 
-Second, some studies was conducted on the two-dimensional space to simplify their problem definition\cite{shareef2008localization, rahman2009localization, singh2013tdoa,bernas2015fully, kumar2016localization, banihashemian2018new}. However, gap of the complexity of estimating position between on two-dimensional space and on three-dimensional using \textit{rank-deficient} measurements cannot be negligible. Finally, in previous studies \cite{shareef2008localization, rahman2009localization, singh2013tdoa,kumar2016localization}, it has a possibility of overfitting because the authors generate the grid-map as train data in such a way as to restrict their ground truth region. That is to say, their finite groud truth indicates where the sensors are placed at the equal distance interval so that nerual networks may recognize the only locations included in the grid are correct even when the position of MN to be tested is quite far from the grid. Therefore their grid map train impedes the optimization of nueral netorks to cover all over the region.
+To precisely estimate the position of the tag node, it is important for the network to distinguish which is more meaningful context on time step \textit{T} to help contextual understanding of our  networks. So, we add the attention layer between the LSTM and the attention layer take on a role of a feature selector\cite{wang2017residual}. The equation of the attention machanism is as follows: 
 
+ 
 \section{RONet}
 
 In this chapter, we explain how our proposed residual attention-based stacked Bi-LSTM is implemented, as illustrated in Fig. \ref{fig:our_network}. 
-In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and the describe the reason why we let the neural network infer in three-dimensional space even though experiment is conducted on the mobile robot. Finally, we explain how to set the loss function of our neural network and then compare to those of other previous works.
+In detail, we introduce the neural networks concepts that we choose for localizaing the tag node and then compare to those of other previous works. Finally, we describe how to set the loss function of our neural network 
 
-
-\subsection{long short-Term Memory}
-
-
-Recurrent Neural Networks(RNN) is a special artificial neural networks in the way that it has a loop, so that RNN can deal with temporal information for sequential modeling. It originally used in the natural language processing, speech recognition, and image captioning area. By virtue of a loop, RNN can remember past data and past situation and respond appropriately to the present situation based on these past information. 
-
-But unfortunately, as the time-sequential gap grows, RNNs become unable to learn the relationship of these sequential information. This issue is called the problem of \textit{Long-Term Dependency},which fail to propagate the previous matter into present tasks so that long-term dependency lead to a failure of learning. In other words, RNNs are not able to learn to store appropriate internal states and operate on long-term trends. That is the reason why the Long Short-Term Memory (LSTM) architecture is introduced to solve this long-term dependency problem and make the networks possible to learn longer-term contextual
-understandings \cite{hochreiter1997long}. That's why LSTM have been actively studied for many tasks in a wide area of science and engineering.in most of the deep learning research areas and numerous variations of LSTM architecutres have been studied.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=.4\textwidth]{image/basic_LSTM_revised}
-	\caption{Architecture of the LSTM. It consists of 3 gates, forget gate(the part inside the red box), input gate(the part inside the blue box), and output gate. And output gate is divided into cell state layer(the part inside the green box) and output gate layer(the part inside the cyan box) 
-	}
-	\label{fig:basic_lstm}
-\end{figure}
+\subsection{Long Short-Term Memory}
 
 Unlike RNN that consist only of hidden state, in LSTM, cell state is added on the network. The cell state consists of the 3 gates to preserve the previous information and control the cell state: forget gate, input gate, and output gate and equations of those are as follows:
-
-
 
 
 \begin{align}
@@ -254,123 +201,132 @@ h_{t} & =o_{t}\odot \tanh\big(c_{t}\big)\label{eq:hidden}
 
 where $\sigma _{s}$ is a kind of activation function, called \textit{sigmoid},  $f_{t}$, $i_{t}$, and $o_{t}$ respectively indicates the forget gate, input gate, and output gates, and $c_{t}$ denotes cell states. And $\odot$ denotes element-wise multiplication, called \textit{Hadamard product}. Entire gates are activated by sigmoid function and cell states are activated by $\tanh$ function.
 
-The Forget gate layer, $f_{t}$, decides how much information to forget. The sigmoid layer, which is the activation function of $f_{t}$, takes previous hidden state, $h_{t}$, and present input, $x_{t}$ and outputs a number between 0 and 1. Note that 1 indicates "totally keep the previous cell state, $C_{t-1}$" and 0 indicate "totally forget $C_{t-1}$" \eqref{eq:forget}. Next, the input gate, $i_{t}$, decides how much information to embrace when updating the cell state. $i_{t}$ are also from the sigmoid function layer \eqref{eq:input} and $tanh$ generates the new candidate cell state, $\tilde{c}_{t}$, which ranges from -1 to 1 \eqref{eq:new_cell}. After that, $c_{t}$ is updated by the cell state layer based on $f_{t}$, $i_{t}$, and $\tilde{c}_{t}$ \eqref{eq:update}. In addition, output gate layer, $o_{t}$, sereves as a filter, which means $o_{t}$ determine what values are going to output \eqref{eq:output} in such a way as that present hidden state, $h_{t}$, is updated based on $o_{t}$ updated cell state, $c_{t}$ \eqref{eq:hidden}. 
+The Forget gate layer, $f_{t}$, decides how much information to forget based on previous hidden state, $h_{t-1}$, and present input, $x_{t}$. Next, the input gate, $i_{t}$, decides how much information to embrace when updating the cell state. After that, $c_{t}$ is updated by the cell state layer based on $f_{t}$, $i_{t}$, and candidate cell state, $\tilde{c}_{t}$ \eqref{eq:update}. In addition, output gate layer, $o_{t}$, sereves as a filter, which means $o_{t}$ determine what values are going to output \eqref{eq:output} in such a way as that $h_{t}$, is updated based on $o_{t}$ updated cell state, $c_{t}$ \eqref{eq:hidden}. 
 
-
-\subsection{Bidirectional LSTM}
+\subsection{Stacked Bidirectional LSTM}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=.9\linewidth]{image/bidirectional_LSTM_revised}
-	\caption{Architecture of the Bidirectional LSTM(Bi-LSTM)}
+	\caption{Architecture of the Bidirectional LSTM(Bi-LSTM). bidirectional LSTM consist of 2 LSTMs:  one forward LSTM layer}
+	
+	%$\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$}
 	\label{fig:bidirectional_revised}	
 \end{figure}
 
+Like the fact that the deeper the architecture of neural networks, the better their performance\cite{simonyan2014very, he2016deep}, many authors have analyzed variations of LSTM architecture and find out that stacking multiple layers of the LSTM improve the performance for many tasks\cite{graves2013hybrid, graves2013speech,ullah2018action}. Besides, Bidirectional RNNs are introduced\cite{schuster1997bidirectional} to extract well-described context. It has one forward LSTM, $\overrightarrow{LSTM}$, and one backward LSTM, $\overleftarrow{LSTM}$, running in reverse time so that the network exploits not only previous forward context to up update $h_{t}$ and $c_{t}$ but also future backward context as well, as FIGURE. \ref{fig:bidirectional_revised} shown. 
 
-One shortcoming of conventional RNNs is that they only exploit previous context to update $h_{t}$ and $c_{t}$. However, in many cases dealing with sequential data, it could be efficient to extract well-discribed context by utilizing future context as well. Bidirectional RNNs are introduced\cite{schuster1997bidirectional} for that reason and bidirectional RNNs process the data in both directions with two separate hidden layers. Especially, bidirectional LSTM, which we employee, has one forward LSTM and one backward LSTM running in reverse time and their features are combined at the output layer, $y_{t}$. As a result, bidirectional LSTM can produce more appropriate context considering both past and future at the same time. By virtue of this characteristics, bidirectional LSTM is popularly utilized for many tasks to model their sequentional systems \cite{zhang2017multi,li2018human,ullah2018action}. 
+For these reasons, we adopt stacked bidirectional LSTM architecture to model the system. By virtue of these increased non-lineary caused by a number of stacked layers, the network could model more complex localization taking UWB-rangings as input including unexpected noise and MPF problems. And, we judge that Bi-LSTM would be more helpful to produce more appropriate context considering both past and future at the same time
 
+Therefore, we construct our networks by stacking three LSTM to increase the non-linearity. Note that stacking over than three LSTM doesn't show the improvement of performance. We deem that this problem could comes from the sigmoid function and $tanh$ function that compose the part of LSTM. These activation functions cause the \textit{vanishing gradient problem}\cite{pascanu2013difficulty}, which the networks fail to training due to the fact that the gradient is getting closer to zero during the backpropagation. Consequently, we put the ReLu function between LSTMs to avoid the vanishing gradient problem\cite{nair2010rectified}, instead of stacking more LSTM to increas non-linearity. And experiments shows that reducing the hidden size of next LSTM layer when the features are fed into the LSTM layer slightly increases preformance, but reducing dramatically rather cause underfitting. In conclusion we decide to set the size of the layers as 1024-512-128. Note that we adopt Bi-LSTM, acutual feature size is 2048-1024-256. And end part of the LSTMs, fully connected layers are attached to predict the mobile robot's position based on the sequential features processed by the LSTMs.  
 
-As FIGURE. \ref{fig:bidirectional_revised} shown, bidirectional LSTM consist of 2 LSTMs: one forward LSTM layer, $\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$. Let assume the hidden state of $\overrightarrow{LSTM}$ at the time step $t$  be $h^{f}_{t}$ and $\overleftarrow{LSTM}$ at the time step $t$  be $h^{b}_{t}$, the hidden states and output sequence, $y_{t}$ are calcaulated as follows:
+\subsection{Residual Attention layer}
 
-\begin{align}
-h^{f}_{t} & =\overrightarrow{LSTM}\big(x_{t}, h^{f}_{t-1}\big)\\
-h^{b}_{t} & =\overleftarrow{LSTM}\big(x_{t}, h^{b}_{t+1}\big)\\
-y_{t} & =\sigma _{R}\big(W_{h^{f}y}\cdot h^{f}_{t}+W_{h^{b}y}\cdot h^{b}_{t}+b_{y}\big)
-\end{align}
+A Attention layer is powerful module nowadays and mostly improves performance of neural network. Originally, neural networks treats information equally. But, using attention layer, neural networks can be ATTENDED what it should be examined closely. In other words, attention layer take on a role of a feature selector\cite{wang2017residual}. To precisely estimate the position of the tag node, it is important for the network to distinguish which is more meaningful context on time step \textit{T} to help contextual understanding of our networks. The equation of original attention machanism is as follows:  
 
-where $\sigma _{R}$ denotes activation function called ReLu. Note that in our case, we concatenate $h^{f}_{t}$ and $h^{b}_{t}$ to preverse their contexts seperately as our range measurement, which is gathered by the tag node and each anchor node, suffer from the \textit{rank-dificiency},which means range-based measurement consist of one-dimensional data\cite{fabresse2013undelayed}. Hence, we judge that it would be more helpful to increase the number of features naturally by concatenating two hidden states rather than adding them and when the network infer the position  .
+\begin{equation}
+H(x)=M(x)\odot x
+\end{equation} 
 
-\subsection{Stacked Architecture}
+where $x$ denotes the output of previous neural network layer, $H(x)$ denotes the output of the attention layer to be passed to the next neural network layer and $M(x)$ denotes the attention mask. By element-wise multiplying $x$ by $M(x)$, attention layer makes the network weight more crutial information. 
 
-Recently, researchers show that the deeper the architecture of neural networks, the better their performance\cite{simonyan2014very, he2016deep} and their demonstrations has opened a deep learning area. Likewise, many authors have analyzed variations of LSTM architecture and find out that stacking multiple layers of the LSTM improve the performance for many tasks\cite{graves2013hybrid, graves2013speech,ullah2018action}. In other words, as the number of stacked layers is getting large, the more activation functions which rise the non-linearity within the networks are stacked  in such a way as that complexity of networks increases. As a results, networks could model more complex system by virture of these increased non-linerity.
+Despite of the improvement of the performance, the attention layer has potential risks that it may dilutes the features because attention mask ranges over 0 to 1. So we adopt residual attention layer to alleviate this problem as follows\cite{wang2017residual}:
 
-Therefore, we also construct our networks by stacking two LSTM to increase the non-linearity. Note that stacking more than three LSTM doesn't show the improvement of performance. We suppose that activation funtions within the LSTM cause the \textit{vanishing gradient problem}\cite{pascanu2013difficulty}, which the networks fail to training due to the fact that the gradient is getting closer to zero during the backpropagation. We deem that this problem could comes from the sigmoid function and $tanh$ function that compose the part of LSTM. Consequently, we put the ReLu function between LSTMs to avoid the vanishing gradient problem\cite{nair2010rectified}, instead of stacking LSTM.    
+\begin{equation}
+H(x)=\left(1+M(x)\right)\odot x
+\end{equation} 
 
+As blue cuboid shape in the FIGURE \ref{fig:our_network} shown, this idea is originated from the Residual Net(ResNet)\cite{he2016deep} that has skip connection in such a way as to mitigate aforementioned dilution problem and help the network to be trained well. Likewise the ResNet, residual attention also has other branch to calculate how much to attend and the branch is joined with original feature vector $x$. Each hidden state has each residual attention layer so that these attention modules can determine which time stamp has more fruitful meaning and deliver the output to next bidirectional LSTM.
 
 \subsection{Training loss}
 
-In this section, we describe the method for training our network. Generally, let $n$ be the number of anchor nodes, data set measured by each anchor node and tag node are represented on the time step $t$ as follows:
+In this section, we describe the method for training our network. Generally, let $n$ be the number of anchor nodes, data set, $L_{t}$, measured by each anchor node and tag node and ground truth of 2D position, $Y_t$, are represented on the time step $t$ as follows:
 
 \begin{equation}
 L_{t} = (l_{1}, l_{2}, ..., l_{n})_{t}
 \end{equation}
+\begin{equation}
+Y_t = (x_t, y_t)
+\end{equation}
 
-where $l_{i}$ denotes the the distance between $i^{th}$ anchor node and the tag node. Note that our neural network does not only take a set of distance data at the time $t$ but takes sets of distacne data based on the sequential length of input to our network, $T$. In other words, train data consist of $T$ sets of distance data  corresponding to the position of mobile nodes. Let $\mathbb{L}_t$ be 
+where $l_{i}$ denotes the the distance between $i^{th}$ anchor node and the tag node. Note that our neural network does not only take a set at the time $t$ but takes sets based on the sequential length of input to our network, $T$ as follows:
 
 \begin{equation}
 %$L = \left\{(X_t, Y_t)\right \}$ 
 \mathbb{L}_t = \left\{L_{t-T+1}, L_{t-T+2}, ..., L_t\right\} 
 \end{equation}
+\begin{equation}
+\mathbb{Y}_t = \left\{Y_{t-T+1}, Y_{t-T+2}, ..., Y_t\right\}
+\end{equation}
 
-Conseqeuntly, neural network  could be optimized to be able to localize the mobile node when take distance sets as input. Train data $\mathbb{D}$ are formulated as follows:
+Conseqeuntly, neural network could be optimized to be able to localize the mobile node by being trained using the train data set $\mathbb{D}$ as follows:  
 
 \begin{equation}
 %$L = \left\{(X_t, Y_t)\right \}$ 
-\mathbb{D} = {(\mathfrak{N}(\mathbb{L}_t), \mathfrak{N}(Y_t))} 
+\mathbb{D} = \left\{(\mathbb{L}_{T-1}, \mathbb{Y}_{T-1}),...,(\mathbb{L}_t, \mathbb{Y}_t),...\right\} 
 \end{equation}
 
-where $Y_t$ denotes the ground truth of the robot's 2D position, which is denoted as $Y_t = (x_t, y_t)$ and $\mathfrak{N}$ denotes normalization function that transforms data to min-max scaling 0 to 1. Note that range measurements mesured by each range sensor are processed by each min-max scaling because each range sensor has own characteristic, as one calibrate range sensors respectively.  
-
-Let $\Theta$ be the parameters of our network model and assume that the trained network model could be expressed as conditional probability as follows:
-
-\begin{multline}
-P(\mathfrak{N}(Y_t)|\mathfrak{N}(\mathbb{L}_t)) = p((x_t, y_t)|\left\{L_{t-T+1}, L_{t-T+2}, ..., L_t\right\})
-\end{multline}  
-
-Note that our approach takes sequential range data on the sequence length $T$ so that extract temporal features to map sets of the range measurements to position and also learn how to cover the noises and outliers, which temporarily caused by the MPF problem or unstable signal conditions. Then, our final goal is to find optimal parameters $\Theta^{*}$ for localization by minimizing $L_2$ loss term. The $L_2$ loss term indicates mean square error(MSE) of Euclidean distance between the normalized ground truth position $\mathfrak{N}(Y_k)$ and estimated position $\hat{Y_k}$ as follows:
+Therefore, Let $\Theta$ be the parameters of our network model and our final goal is to find optimal parameters $\Theta^{*}$ for precise localization by minimizing $L_2$ loss term. The $L_2$ loss term indicates mean square error(MSE) of Euclidean distance between the normalized ground truth position $\mathfrak{N}(Y_k)$ and estimated position $\hat{Y_k}$ as follows:
 
 \begin{equation}
-\Theta^{*} = \underset{\Theta}{\mathrm{argmin}} \frac{1}{N} \sum_{k=1}^N \parallel \mathfrak{N}(Y_k) - \hat{Y_k} \parallel^{2}
+\Theta^{*} = \underset{\Theta}{\mathrm{argmin}} \frac{1}{N}\frac{1}{T} \sum_{k=T-1}^N\sum_{m=k-T+1}^k \parallel \mathfrak{N}(Y_m) - \hat{Y_m} \parallel^{2}
 \end{equation}  
 
+\begin{figure*}[h]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{image/system_whole_picture}
+		\caption{A gull}
+		\label{fig:whole_system}
+	\end{subfigure}
+	%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{image/system_mocap}
+		\caption{A tiger}
+		\label{fig:Optitrack_figure}
+	\end{subfigure}
+	%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{image/system_exact_position}
+		\caption{A mouse}
+		\label{fig:Exact_position}
+	\end{subfigure}
+	\caption{Pictures of animals}\label{fig:animals22}
+\end{figure*}
 
-\section{Experiments}
+\section{Experimental Results}
 \subsection{Experimental environment}
 
-Our experimental system consists of a UWB(ultra wideband) sensor tag node attached on the mobile robot platform and eight anchor nodes that have a UWB transceiver, the motion capture system with 12 cameras, and a SFF(small-form-factor) computer.
+Our experimental system consists of a UWB sensor tag node attached on the mobile robot platform  and eight anchor nodes that take roles of a UWB transceiver, 6 Optitrack Prime 13 motion capture cameras, a Nvidia Jetson AGX Xavier, which is a SFF(small-form-factor) computer that has a GPU. Fig. \ref{fig:whole_system} shows our experimental environment briefly and how to the anchor nodes and the tag node are attatched. And we use the mobile platform, called iClebo Kobuki from Yujinrobot.
 
-UWB sensor anchors are attached to landmarks. These become the end points of the range measurements. The anchor nodes transmit the UWB signal. A UWB sensor tag is attached to a robot. It becomes the opposite side end point of the measurements. The tag node receives the signal and measures the range between two devices. Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in centimeter-level accuracy. Fig. \ref{fig:anchor_tag_nodes} shows our experimental environment briefly and how to the anchor nodes and the tag node are attatched.
+The tag node receives the signal and measures the range between two devices based on time of flight(TOF) and Received Signal Strengh Indication(RSSI). Each UWB transceiver, DW1000 UWB-chip made by Decawave, supports 6 RF bands from 3.5 GHz to 6.5 GHz. It measures in cm-level accuracy.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=.9\linewidth]{image/anchor_tag_nodes}
-	\caption{our experimental environment briefly and how to the anchor nodes and the tag node are attatched.}
-	\label{fig:anchor_tag_nodes}
-\end{figure}
+ Deep learning framework used for our network is tensorflow-gpu 1.7.0 on python 3.5.2
+ 
+\subsection{Acquisition of the Train/Test data}
+UWB sensor anchors are installed randomly in the region where motion capture camaras are acceptable, as Fig. \ref{fig:Exact_position} shown. These anchor nodes transmit the UWB signal to tag node that is attached to the mobile robot and the Optitrack motion capture cameras also transmit the ground truth data to the SSF computer by utilizing Robot Operating System(ROS).
 
-We inference the position of a robot with our network. To train the network and test the results, the ground truths are needed. We get the ground truth by using the motion capture system. The system is Eagle Digital Realtime system of motion analysis corporation that operates with the principle of stereo pattern recognition that is a kind of photogrammetry based on the epipolar geometry and the triangulation methodology. We attach four markers to a robot. The system gives us the location of these markers and has < 1mm accuracy.
+Note that these two dat are transmitted by different frequency: range measurements are gathered with a frequency of almost 27Hz, yet the ground truth data are 120Hz. So we synchronize these two data based on the range measurements' Hz. More specifically, we set an independent thread so that this thread select the ground truth data of the nearest time based on the UWB-range measurements, concatenates and saves these data at the same time.
 
-A mobile robot used in experiment is iClebo Kobuki from Yujinrobot that has 70 cm/s maximum velocity.The SFF computer is a gigabyte Ultra compact PC. Deep learning framework used for our network is pytorch 0.4.0 on python 3.6. The network inferences on the same setting.
+And the mobile robot moves in this sapce by manually. All the trajectories are different. After collecting whole datasets, we separate the entire dataset to three types: one are the training datasets, another are for the validation datasets, and the other is for test dataset. On the test dataset, only range measurements are taken as input to the network.
 
-The UWB tag is attached to mobile robot that has a SFF computer. The UWB anchors are attached to stands that have two different heights. The anchors are positioned randomly in the square space where the motion capture system can measure the position. The robot moves in this sapce also. As you can see in Fig. \ref{fig:paths}, a mobile robot manually goes on various random trajectories by experimenters.
+\subsection{Training the Network}
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.9\linewidth]{image/paths_1}
-	\caption{Four example of the trajectories}
-	\label{fig:paths} 
-\end{figure}
+To train our network, the Adam optimizr is exploited to train the
+network during 1000 epochs with 0.0002 learning rate, 0.7
+decay rate, and 5 decay step. Besides, Dropout is introduced
+to prevent the models from overfitting.
 
-\subsection{Data syncronization for Train/Test data}
-During the robot is going on, the data is saved in the computer. The distance data used for input data is measured by the UWB sensors. The global position data used for ground truth is measured by the motion capture system. These two kinds of data are paired in a dataset. Because these two data are transmitted by different frequency, we need to syncronize these. This process is conducted in a SFF computer. The computer receives these two kinds of data respectively and syncronizes these by time. To synchronize, we make an independent thread that concatenates and saves these data at the same time. The data is saved at 20Hz frequency. Each trajectory becomes one dataset. All the trajectories are different. Fig. \ref{fig:dataset} shows this process. After collecting whole datasets, we separate the entire dataset to two types, some are the training datasets and others are test datasets.
-
-Ground truth data is robot's position measured by eagle eye motion capturer, whose error is in mm units.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.9\linewidth]{image/data_sync}
-	\caption{the process that makes dataset}
-	\label{fig:dataset} 	
-\end{figure}
-
-\subsection{Training the Networks}
+\subsection{Localization Results}
 
 Pass
 
-\section{Results}
 
 To improve the performance of our proposed networks, we check which seqeunce length is optimal for localization of MN. And then, we implemented and trained other previous networks to compare their performance when our real-world data are given as input. We set three test trajectory cases: a square path, a verical and horizontal winding path, and a diagonal winding path. 
 
-\subsection{Performance according to the sequence length}
+\subsubsection{Performance according to the sequence length}
 
 Even though LSTM solve the long term dependency problem, we thought that it would not always make neural network perform better as sequence length become more longer. So, as part of turning hyperparameters, we modified sequence length of our network in a variety of numbers to find optimal sequence length.   
 
@@ -378,7 +334,7 @@ As illustrated in FIGURE. \ref{fig:paths}, The train data are gathered by the ro
 
 As a result, we found that there is a trade-off between robustness and improvement of general performance according to the sequence length. Figure. \ref{fig:seq_length} show that as longer the sequence length, as more inaccurate the mean performance. This is because it is hard for the neural architecture to train the chracteristics of the sequential data. In other words, as sequence length become longer, the tendency of the values may be different due to accumulation of different patterns of system noises even if the data is acquired by moving to a similar path in the train data. Note that network with longer sequence length tend to have less error variance and more a ability to generalize the situation since they could utilize more extended temporal information. By doing so, the nerual network have the ability to suppress the disturbance caused by noises.
 
-Similarily, as sequence length become shorter, it is less difficult for the neural architecture to understand the chracteristics of the sequential data by virtue of the less accumulation of different patterns of system noises. Note that in most cases, the network constructed by the shorter sequential length tend to estimate the position more precisely than those with longer sequential lengths. However, it becomes a double-edged sword because temporal information is also reduced accordingly in such a way as to week to the noises, having larger error variance.
+%Similarily, as sequence length become shorter, it is less difficult for the neural architecture to understand the chracteristics of the sequential data by virtue of the less accumulation of different patterns of system noises. Note that in most cases, the network constructed by the shorter sequential length tend to estimate the position more precisely than those with longer sequential lengths. However, 생t becomes a double-edged sword because temporal information is also reduced accordingly in such a way as to week to the noises, having larger error variance.
 
 
 
@@ -387,14 +343,23 @@ Similarily, as sequence length become shorter, it is less difficult for the neur
 %길이가 길어짐에 따라 noise에 대한 방해를 더 길어진 temporal information을 활용해서 억누를 수 있다.
 %On the other hand, 짧아질수록 좋지만 경향성을 학습?
 
-
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\linewidth]{image/seq_result_prototype}
+	\includegraphics[width=0.9\linewidth]{image/be_updated}
 	\caption{Error bar graph of RMSE with respect to sequence length}
 	\label{fig:seq_length} 	
 \end{figure}
-
+\begin{table}[]
+	\centering
+	\begin{tabular}{ccccc}
+		\hline
+		\multicolumn{5}{c}{The results of RMSE {[}cm{]}}   \\ \hline
+		\# of anchors & EKF RO-SLAM & MLP & Bi-LSTM & Ours \\ \cline{2-5} 
+		3             & 1           & 2   & 3       & 4    \\
+		5             & a           & b   & c       & d    \\
+		8             & A           & B   & C       & D    \\ \hline
+	\end{tabular}
+\end{table}
 
 \begin{table}[h]
 	\centering
@@ -415,7 +380,7 @@ Similarily, as sequence length become shorter, it is less difficult for the neur
 	\label{table:RMSE_sequence}
 \end{table}
 
-\subsection{Performance comparison result}
+\subsection{Performance comparison Result}
 
 The results of trajectory prediction are shown in Fig. 3(a) and Fig. 3(d) and
 Root-Mean-Squared Error (RMSE) are shown in Table 1. Performance is better
@@ -432,6 +397,30 @@ is better than Bi-LSTM. As a result, the stacked Bi-LSTM showed the best
 performance among unit RNN architectures. Therefore, we can conclude that
 the performance improves as the non-linearity of the architecture increases.
 
+
+\begin{figure*}[h]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{image/be_updated}
+		\caption{A gull}
+		\label{fig:gull2342}
+	\end{subfigure}
+	%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{image/be_updated}
+		\caption{A tiger}
+		\label{fig:tige234r2}
+	\end{subfigure}
+	%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{image/be_updated}
+		\caption{A mouse}
+		\label{fig:mous234e2}
+	\end{subfigure}
+	\caption{Pictures of animals}\label{fig:a234nimals22}
+\end{figure*}
 
 !!!!!!!!!!!!!!!!!
 We also verified effectiveness of attention layer. It was confirmed that the performance of the networks with the attention layer is improved compared to the networks without the attention layer.
