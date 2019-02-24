@@ -9,14 +9,6 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: ./IEEEabrv.bib
 Database file #2: ./IROS_RObib.bib
-Repeated entry---line 235 of file ./IROS_RObib.bib
- : @article{ullah2018action
- :                         ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 377 of file ./IROS_RObib.bib
- : @inproceedings{jung2011indoor
- :                              ,
-I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -63,4 +55,3 @@ warning$ -- 0
 while$ -- 151
 width$ -- 39
 write$ -- 368
-(There were 2 error messages)

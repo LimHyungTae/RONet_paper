@@ -70,7 +70,6 @@ RONet: Real-time Range-only Indoor Localization via Stacked Bidirectional LSTM w
 \thispagestyle{empty}
 \pagestyle{empty}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
@@ -81,7 +80,7 @@ In this study, a three-layered bidirectional Long Short-term Memory (Bi--LSTM) w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
-Given the increasing demand in recent years to achieve localization in indoor environments without global positioning systems (GPS) attributed to the fact that signals from these systems are denied or could become imprecise, numerous researchers have proposed various methods for locating objects based on the use of magnetic fields, acoustic signals, or laser-based data\cite{jung2015magnetic,medina2013ultrasound,li2014lidar}. Among them, beacon sensors based on the time-of-flight (TOF) have been extensively utilized by virtue of their characteristics, including their low cost, small size, accurate performance, and convenience of installation. As a result, these range measurement-based approaches have been suggested as a solution for localization in indoor \cite{peneda2009trilateration,jung2011indoor} and underwater environments \cite{newman2003pure, olson2006robust}.
+Given the increasing demand in recent years to achieve localization in indoor environments without global positioning systems (GPS) attributed to the fact that signals from these systems are denied or could become imprecise, numerous researchers have proposed various methods for locating objects based on the use of magnetic fields, acoustic signals, or laser-based data\cite{jung2015magnetic2,medina2013ultrasound,li2014lidar}. Among them, beacon sensors based on the time-of-flight (TOF) have been extensively utilized by virtue of their characteristics, including their low cost, small size, accurate performance, and convenience of installation. As a result, these range measurement-based approaches have been suggested as a solution for localization in indoor \cite{peneda2009trilateration,jung2011indoor} and underwater environments \cite{newman2003pure, olson2006robust}.
 
 Specifically, these range-only approaches have addressed the problem of localization with sets of range-only measurements between object nodes that need to be localized, referred to as the tag nodes, and landmarks, referred to as anchor nodes. However, range measurements only represent distances between each landmark and the mobile robot. In other words, one-dimensional data (range-only observations) are associated with two problems: a) they tend to be nonlinear because TOF-based measurements are vulnerable to noise and are highly uncertain owing to the multipath fading channel (MPF) problem \cite{li2017novel} in real-world applications, and b) they are associated with a \textit{rank deficiency} problem \cite{fabresse2018efficient}. Specifically, the single value used to represent the distance between each landmark and the mobile robot is deficient in describing the exact position or orientation of the landmark, thereby leading to a multimodal distribution \cite{gonzalez2009mobile}. 
 
@@ -368,7 +367,7 @@ In future work, this approach should be improved for arbitrary placement of anch
 
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{./IEEEabrv,./IROS_RObib}
+\bibliography{./IROS_RObib,./IEEEabrv}
 
 
 \end{document}
