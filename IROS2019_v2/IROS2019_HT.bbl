@@ -198,10 +198,19 @@ M.~Schuster and K.~K. Paliwal, ``{Bidirectional recurrent neural networks},''
   \emph{IEEE Transactions on Signal Processing}, vol.~45, no.~11, pp.
   2673--2681, 1997.
 
+\bibitem{hochreiter2001gradient}
+S.~Hochreiter, Y.~Bengio, P.~Frasconi, J.~Schmidhuber, \emph{et~al.},
+  ``Gradient flow in recurrent nets: the difficulty of learning long-term
+  dependencies,'' 2001.
+
 \bibitem{pascanu2013difficulty}
 R.~Pascanu, T.~Mikolov, and Y.~Bengio, ``{On the difficulty of training
   recurrent neural networks},'' in \emph{In Proc.\ IMLS International
   Conference on Machine Learning (ICML)}, 2013, pp. 1310--1318.
+
+\bibitem{pascanu2012understanding}
+------, ``Understanding the exploding gradient problem,'' \emph{CoRR,
+  abs/1211.5063}, vol.~2, 2012.
 
 \bibitem{nair2010rectified}
 V.~Nair and G.~E. Hinton, ``{Rectified linear units improve restricted

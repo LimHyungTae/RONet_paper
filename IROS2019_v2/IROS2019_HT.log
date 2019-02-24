@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.29)  24 FEB 2019 20:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.29)  25 FEB 2019 00:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -852,12 +852,18 @@ Underfull \hbox (badness 2875) in paragraph at lines 166--169
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--215
+Underfull \hbox (badness 2582) in paragraph at lines 212--214
+[]\T1/ptm/m/n/8 ------, ``Un-der-stand-ing the ex-plod-ing gra-di-ent prob-lem,
+'' \T1/ptm/m/it/8 CoRR,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--224
 []\T1/ptm/m/n/8 ``Jetson AGX Xavier De-vel-oper Kit,''
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--215
+Underfull \hbox (badness 10000) in paragraph at lines 221--224
 \T1/ptm/m/n/8 https://developer.nvidia.com/embedded/dlc/jetson-agx-xavier-
  []
 
@@ -878,10 +884,10 @@ Before submitting the final camera ready copy, remember to:
 
 [7] (./IROS2019_HT.aux) ) 
 Here is how much of TeX's memory you used:
- 6937 strings out of 492649
- 103435 string characters out of 6129622
- 182129 words of memory out of 5000000
- 10638 multiletter control sequences out of 15000+600000
+ 6939 strings out of 492649
+ 103485 string characters out of 6129622
+ 182137 words of memory out of 5000000
+ 10640 multiletter control sequences out of 15000+600000
  120045 words of font info for 149 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,14n,94p,1367b,579s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -902,7 +908,7 @@ l/texlive/2018/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/
 2018/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2018/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2018/texmf-dist/fon
 ts/type1/urw/times/utmri8a.pfb>
-Output written on IROS2019_HT.pdf (7 pages, 1976728 bytes).
+Output written on IROS2019_HT.pdf (7 pages, 1976976 bytes).
 PDF statistics:
  368 PDF objects out of 1000 (max. 8388607)
  106 compressed objects within 2 object streams
