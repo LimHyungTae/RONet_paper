@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2018/W32TeX)
+This is BibTeX, Version 0.99d (TeX Live 2018)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: IROS2019_HT.aux
 The style file: IEEEtran.bst
@@ -7,51 +7,51 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Database file #1: ./IEEEabrv.bib
-Database file #2: ./IROS_RObib.bib
+Database file #1: ./IROS_RObib.bib
+Database file #2: ./IEEEabrv.bib
 -- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 37 entries,
+You've used 40 entries,
             3975 wiz_defined-function locations,
-            1336 strings with 20883 characters,
-and the built_in function-call counts, 30893 in all, are:
-= -- 2438
-> -- 753
-< -- 290
-+ -- 422
+            1336 strings with 20908 characters,
+and the built_in function-call counts, 31828 in all, are:
+= -- 2525
+> -- 757
+< -- 291
++ -- 425
 - -- 120
-* -- 1476
-:= -- 4420
-add.period$ -- 88
-call.type$ -- 37
-change.case$ -- 37
-chr.to.int$ -- 714
-cite$ -- 37
-duplicate$ -- 2177
-empty$ -- 2553
+* -- 1498
+:= -- 4570
+add.period$ -- 80
+call.type$ -- 40
+change.case$ -- 43
+chr.to.int$ -- 717
+cite$ -- 40
+duplicate$ -- 2260
+empty$ -- 2635
 format.name$ -- 155
-if$ -- 7211
+if$ -- 7417
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 359
-newline$ -- 131
+int.to.str$ -- 40
+missing$ -- 380
+newline$ -- 140
 num.names$ -- 37
-pop$ -- 857
+pop$ -- 917
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2402
+skip$ -- 2518
 stack$ -- 0
-substring$ -- 1713
-swap$ -- 1811
+substring$ -- 1728
+swap$ -- 1850
 text.length$ -- 52
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
 warning$ -- 0
 while$ -- 151
-width$ -- 39
-write$ -- 368
+width$ -- 42
+write$ -- 392
