@@ -73,7 +73,7 @@ RONet: Real-time Range-only Indoor Localization via Stacked Bidirectional LSTM w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-In this study, a three-layered bidirectional Long Short-term Memory (Bi--LSTM) with residual attention, named as RONet, is proposed to achieve localization using range measurements. Accordingly, we acquired our own datasets and tested RONet using realistic conditions. It is shown that the RONet can estimate the position of the mobile robot in real time using the Nvidia Jetson AGX Xavier based only on range measurements. We also analyzed the sequence length of LSTM as a type of hyperparameters. We found that a sequence with a length equal to eight is optimal compared to sequences with different lengths, given that construction of the network with the optimal sequence length estimates the position precisely and accounts for uncertainties. As verified experimentally, RONet yields a better and more precise performance, and results in an increased robustness against outliers compared to a conventional range-only approach based on a particle filtering and the other conventional deep-learning-based approaches. We set three cases, reduced the number of anchors, and verified that the RONet was a robust solution. We also confirmed that it is the best solution that yields the smallest Root-Mean-Square Error (RMSE) values, equal to 4.466 cm, 3.210 cm, and 3.090 cm, in the cases where three, five, and eight anchors were deployed, respectively.   
+In this study, a three-layered bidirectional Long Short-term Memory (Bi--LSTM) with residual attention, named as RONet, is proposed to achieve localization using range measurements. Accordingly, we acquired our own datasets and tested RONet using realistic conditions. It is shown that the RONet can estimate the position of the mobile robot in real time using the Nvidia Jetson AGX Xavier based only on range measurements. We also analyzed the sequence length of LSTM as a type of hyperparameters. We found that a sequence with a length equal to eight is optimal compared to sequences with different lengths, given that construction of the network with the optimal sequence length estimates the position precisely and accounts for uncertainties. As verified experimentally, RONet yields better and more precise performance and results in increased robustness against outliers compared to a conventional range-only approach based on a particle filtering and the other conventional deep-learning-based approaches. We set three cases, reduced the number of anchors, and verified that the RONet was a robust solution. We also confirmed that it is the best solution that yields the smallest Root-Mean-Square-Error (RMSE) values, equal to 4.466 cm, 3.210 cm, and 3.090 cm, in the cases where three, five, and eight anchors were deployed, respectively.   
 
 \end{abstract}
 
@@ -82,7 +82,7 @@ In this study, a three-layered bidirectional Long Short-term Memory (Bi--LSTM) w
 
 Given the increasing demand in recent years to achieve localization in indoor environments without global positioning systems (GPS) attributed to the fact that signals from these systems are denied or could become imprecise, numerous researchers have proposed various methods for locating objects based on the use of magnetic fields, acoustic signals, or laser-based data\cite{jung2015magnetic,medina2013ultrasound,li2014lidar}. Among them, beacon sensors based on the time-of-flight (TOF) have been extensively utilized by virtue of their characteristics, including their low cost, small size, accurate performance, and convenience of installation. As a result, these range measurement-based approaches have been suggested as a solution for localization in indoor \cite{peneda2009trilateration,jung2011indoor} and underwater environments \cite{newman2003pure, olson2006robust}.
 
-Specifically, these range-only approaches have addressed the problem of localization with sets of range-only measurements between object nodes that need to be localized, referred to as the tag nodes, and landmarks, referred to as anchor nodes. However, range measurements only represent distances between each landmark and the mobile robot. In other words, one-dimensional data (range-only observations) are associated with two problems: a) they tend to be nonlinear because TOF-based measurements are vulnerable to noise and are highly uncertain owing to the multipath fading channel (MPF) problem \cite{li2017novel} in real-world applications, and b) they are associated with a \textit{rank deficiency} problem \cite{fabresse2018efficient}. Specifically, the single value used to represent the distance between each landmark and the mobile robot is deficient in describing the exact position or orientation of the landmark, thereby leading to a multimodal distribution \cite{gonzalez2009mobile}. 
+Specifically, these range-only approaches have addressed the problem of localization with sets of range-only measurements between object nodes that need to be localized, referred to as the tag nodes, and landmarks referred to as anchor nodes. However, range measurements only represent distances between each landmark and the mobile robot. In other words, one-dimensional data (range-only observations) are associated with two problems: a) they tend to be nonlinear because TOF-based measurements are vulnerable to noise and are highly uncertain owing to the multipath fading channel (MPF) problem \cite{li2017novel} in real-world applications, and b) they are associated with a \textit{rank deficiency} problem \cite{fabresse2018efficient}. Specifically, the single value used to represent the distance between each landmark and the mobile robot is deficient in describing the exact position or orientation of the landmark, thereby leading to a multimodal distribution \cite{gonzalez2009mobile}. 
 
 \begin{figure}[h]	
 	\centering
@@ -94,18 +94,18 @@ Specifically, these range-only approaches have addressed the problem of localiza
 	\label{fig:overview}
 	%	}
 	
-	\caption{Comparison between a conventional probabilistic-based range-only frameworks and our learning-based approach.}
+	\caption{Comparison between a conventional probabilistic-based range-only framework and our learning-based approach.}
 	
 \end{figure}
 
-To alleviate these issues, many studies have been conducted based on probabilistic Bayesian inference frameworks and Monte-Carlo Bayesian filters. However, in recent years, numerous attempts have been extended to solve these problems based on neural network-based approaches \cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization, lim2018effective}. With nonlinear end-to-end mapping, prior studies showed feasibility. However, in most cases, researchers only utilized multilayer perceptrons (MLP) that constitute the front-end architecture in deep learning fields \cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}. In \cite{lim2018effective}, a stacked bidirectional long short-term memory (Bi--LSTM) layer was implemented to account for the noise of range observations based on the network’s  characteristics that accepted temporal sequential values as input. However, they only tested this formulation in a simulated environment\cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}. Additionally, none of the prior studies investigated whether their learning-based approaches could be executed in real time or not. 
+To alleviate these issues, many studies have been conducted based on probabilistic Bayesian inference frameworks and Monte-Carlo Bayesian filters. However, in recent years, numerous attempts have been extended to solve these problems based on neural network-based approaches \cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization, lim2018effective}. With nonlinear end-to-end mapping, prior studies showed feasibility. However, in most cases, researchers only utilized multilayer perceptrons (MLP) that constitute the front-end architecture in deep learning fields \cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}. In \cite{lim2018effective}, a stacked bidirectional long short-term memory (Bi--LSTM) layer was implemented to account for the noise of range observations based on the network’s characteristics that accepted temporal sequential values as input. However, they only tested this formulation in a simulated environment\cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}. Additionally, none of the prior studies investigated whether their learning-based approaches could be executed in real time or not. 
 
-In this study, we propose a robust stacked Bi--LSTM network with residual attention, named as RONet. To the best of our knowledge, it is the first approach that applies an LSTM-based architecture to localize a mobile robot in real time using only range measurements in realistic environments. Unlike conventional probabilistic-based algorithms, it does not need any preprocessing modules, such as calibration, or outlier rejection. Besides, RONet yields a better and more precise performance, and results in an increased robustness against outliers compared to the conventional range-only approach based on a particle filtering and the use of deep learning-based approaches.
+In this study, we propose a robust stacked Bi--LSTM network with residual attention, named as RONet. To the best of our knowledge, it is the first approach that applies an LSTM-based architecture to localize a mobile robot in real time using only range measurements in realistic environments. Unlike conventional probabilistic-based algorithms, it does not need any preprocessing modules, such as calibration, or outlier rejection. Besides, RONet yields better and more precise performance and results in increased robustness against outliers compared to the conventional range-only approach based on a particle filtering and the use of deep learning-based approaches.
 
 Our contribution is threefold:
 \begin{itemize}
 	%\setlength{\itemindent}{-.5in}
-	\item Three-stacked Bi--LSTM layers on which residual attention layers are attached are proposed to allow the neural network be trained well so that the RONet yields the best performance compared to previous approaches.
+	\item Three-stacked Bi--LSTM layers on which residual attention layers are attached are proposed to allow the neural network to be trained well so that the RONet yields the best performance compared to previous approaches.
 	\item We also analyze how the sequential length of the network affects performance and evaluate the robustness of the RONet with a minimum number of anchors.
 	\item We operate the RONet on Nvidia Jetson AGX Xavier and confirm whether the inference frequency (which is approximately 32 Hz) complies with real-time. 
 \end{itemize}
@@ -117,7 +117,7 @@ The rest of the study is organized as follows: Section II overviews related, pre
 
 There are two conventional approaches to localize a mobile robot using range measurements: methods based on a) Kalman filtering (KF) or b) particle filtering (PF). However, unlike other sensors, it is difficult to approximate range measurements using linear models owing to MPF or non-line-of-sight issues (NLOS). Thus, some authors insisted that PF-based approaches could be better than KF-based approaches because PF can cope with complex nonlinear models and also cover multimodal distributions \cite{gonzalez2009mobile, blanco2008pure, shetty2018particle}. 
 
-Fig. 1 shows the general steps used by the conventional probabilistic approaches. First, each range of measurements needs to be calibrated. After initialization, the algorithm checks whether an input value is an outlier or not, and then eliminates unexpectedly large noise values. Subsequently, it predicts the present states, including the mobile robot's pose and anchor locations, and finally it corrects its prediction using range observations.
+Fig. 1 shows the general steps used by the conventional probabilistic approaches. First, each range of measurements needs to be calibrated. After initialization, the algorithm checks whether an input value is an outlier or not, and then eliminates unexpectedly large noise values. Subsequently, it predicts the present states, including the mobile robot's pose and anchor locations, and finally, it corrects its prediction using range observations.
 
  \begin{figure*}[h]
 	\centering
@@ -128,7 +128,7 @@ Fig. 1 shows the general steps used by the conventional probabilistic approaches
 
 \subsection{LSTM-based Sequential Modeling}
 
-In view of rapid development of deep learning approaches \cite{lecun2015deep}, various types of deep neural architectures have been proposed for localization tasks \cite{kendall2016modelling, kendall2015posenet, gladh2016deep}. Specifically, recurrent neural networks (RNNs) that originated from the natural language process (NLP) area \cite{elman1990finding} have been shown to achieve better performance in cases associated with time variant information. 
+In view of the rapid development of deep learning approaches \cite{lecun2015deep}, various types of deep neural architectures have been proposed for localization tasks \cite{kendall2016modelling, kendall2015posenet, gladh2016deep}. Specifically, recurrent neural networks (RNNs) that originated from the natural language process (NLP) area \cite{elman1990finding} have been shown to achieve better performance in cases associated with time-variant information. 
 
 Additionally, despite the fact that long short-term memory (LSTM) architecture solves the \textit{long-term dependency} issue that is inherent to RNNs, it is unable to learn the relationship of sequential information as the time-sequential gap grows \cite{hochreiter1997long}. Accordingly, LSTM is actively introduced to learn longer-term contextual understandings. Therefore, many researchers exploited LSTM for sequential modeling after feature extraction by Convolutional Neural Networks (CNN) \cite{clark2017vinet,patel2018contextualnet, wang2017deepvo}. 
 
@@ -137,7 +137,7 @@ Additionally, despite the fact that long short-term memory (LSTM) architecture s
 
 LSTM is also utilized to model low-dimensional sensor data by itself. In \cite{wang2018deepml}, they exploited LSTM for indoor localization with magnetic and light sensors. In \cite{chen2018ionet}, they estimated two-dimensional (2D) Odometries via stacked Bi--LSTM that utilized Inertial Measurement Unit (IMU) sensor data only as input. 
 
-Regarding our objective for localization using range-only measurements, we note that many researchers had previously employed neural network-based approaches in wireless sensor networks fields (WSNs) \cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}, yet most networks had been based on the MLP. Their approaches only mapped a set of range observations without temporal context to achieve localization. Accordingly, their approaches may be more potentially week to unexpected noise that are not included in the train data. Another study \cite{lim2018effective} implemented stacked Bi--LSTM for localization of a mobile robot that obtained sequential range measurements from anchors and tags. However, the researchers conducted only simulations in which there were no MPFs or unexpected noise. Therefore, in this study, we conducted realistic experiments to verify the feasibility of the approaches to account for all the noise sources from all sensors with sequential range information followed by the comparison of these approaches.
+Regarding our objective for localization using range-only measurements, we note that many researchers had previously employed neural network-based approaches in wireless sensor networks fields (WSNs) \cite{rahman2009localization, abdelhadi2013efficient, kumar2016localization}, yet most networks had been based on the MLP. Their approaches only mapped a set of range observations without temporal context to achieve localization. Accordingly, their approaches may be more potentially week to unexpected noise that is not included in the train data. Another study \cite{lim2018effective} implemented stacked Bi--LSTM for localization of a mobile robot that obtained sequential range measurements from anchors and tags. However, the researchers conducted only simulations in which there were no MPFs or unexpected noise. Therefore, in this study, we conducted realistic experiments to verify the feasibility of the approaches to account for all the noise sources from all sensors with sequential range information followed by the comparison of these approaches.
 
 \subsection{Attention Layer}
 
@@ -169,7 +169,7 @@ The forget gate layer, $f_{t}$, determines how much information to forget based 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=.9\linewidth]{image/bidirectional_LSTM}
-	\caption{Architecture of the bidirectional LSTM (Bi--LSTM). The bidirectional LSTM consists of two LSTMs: one forward (right arrow) and one backward (left arrow) LSTM layer.}
+	\caption{The architecture of the bidirectional LSTM (Bi--LSTM). The bidirectional LSTM consists of two LSTMs: one forward (right arrow) and one backward (left arrow) LSTM layer.}
 	
 	%$\overrightarrow{LSTM}$, and one backward LSTM layer, $\overleftarrow{LSTM}$}
 	\label{fig:bidirectional_revised}	
@@ -179,7 +179,7 @@ Based on the fact that the deeper the architectures of the neural networks are, 
 
 For these reasons, we decided to implement the stacked Bi--LSTM architecture to model the system. By virtue of the increased nonlinearity caused by the number of stacked layers, the network could model more complex localization schemes by considering the UWB-ranging observations as the input that contain unexpected noise and MPF problems. Furthermore, we determined that Bi--LSTM would be more helpful in the production of more appropriate context by concurrently considering both the past and the future.
 
-Therefore, we constructed our networks by stacking three Bi--LSTM networks to increase the nonlinearity. Note that simply stacking more than three LSTM layers does not result in additional performance improvements and is hard to train. It is caused by the \textit{vanishing and exploding gradient problem} \cite{hochreiter2001gradient, pascanu2013difficulty, pascanu2012understanding} according to which the networks fail to perform training owing to the fact that the gradient is getting closer to zero or explodes out of prefixed memory during the backpropagation. Consequently, the Rectified Linear Unit (ReLu) function is placed between the LSTMs \cite{nair2010rectified} instead of stacking more LSTM layers to increase nonlinearity. In addition, experiments showed that reducing the hidden size of the next LSTM layer when the features are input into the LSTM layer slightly increases performance. In conclusion, we decided to set the respective sizes of the three layers to 1024, 512, and 128. Note that when adopting the Bi--LSTM, the actual feature sizes were set to 2048, 1024, and 256, respectively. At the end-part of the LSTM, fully connected layers were attached to predict the position of the mobile robot based on the sequential features processed by the LSTMs.  
+Therefore, we constructed our networks by stacking three Bi--LSTM networks to increase the nonlinearity. Note that simply stacking more than three LSTM layers does not result in additional performance improvements and is hard to train. It is caused by the \textit{vanishing and exploding gradient problem} \cite{hochreiter2001gradient, pascanu2013difficulty, pascanu2012understanding} according to which the networks fail to perform training owing to the fact that the gradient is getting closer to zero or explodes out of prefixed memory during the backpropagation. Consequently, the Rectified Linear Unit (ReLu) function is placed between the LSTMs \cite{nair2010rectified} instead of stacking more LSTM layers to increase nonlinearity. In addition, experiments showed that reducing the hidden size of the next LSTM layer when the features are input into the LSTM layer slightly increases performance. In conclusion, we decided to set the respective sizes of the three layers to 1024, 512, and 128. Note that when adopting the Bi--LSTM, the actual feature sizes were set to 2048, 1024, and 256, respectively. At the end part of the LSTM, fully connected layers were attached to predict the position of the mobile robot based on the sequential features processed by the LSTMs.  
 
 \subsection{Residual Attention Layer}
 
@@ -196,7 +196,7 @@ Despite the improvement of the performance, the attention layer is associated wi
 H(x)=\left(1+M(x)\right)\odot x.
 \end{equation} 
 
-As shown by the blue cuboid shape in Fig. \ref{fig:our_network}, this idea is originated from ResNet \cite{he2016deep} that contains skip connections in such a way so as to mitigate the aforementioned dilution problem and help the network to be properly trained. Similar to the ResNet, residual attention also contains other branches which are used to calculate how much attention is required. These branches are joined by the original feature vectors $x$. Each hidden state consists of a residual attention layer so that these attention modules can a) determine which time stamp is more meaningful   and b) deliver the output to the next bidirectional LSTM.
+As shown by the blue cuboid shape in Fig. \ref{fig:our_network}, this idea is originated from ResNet \cite{he2016deep} that contains skip connections in such a way so as to mitigate the aforementioned dilution problem and help the network to be properly trained. Similar to the ResNet, residual attention also contains other branches which are used to calculate how much attention is required. These branches are joined by the original feature vectors $x$. Each hidden state consists of a residual attention layer so that these attention modules can a) determine which time stamp is more meaningful and b) deliver the output to the next bidirectional LSTM.
 
 \subsection{Training Loss}
 
@@ -258,7 +258,7 @@ Therefore, let $\Theta$ be the parameters of our network model. Our final goal i
 \section{Experimental Results and Discussion}
 \subsection{Experimental Environment}
 
-Our experimental system consists of a Ultra-Wide Band (UWB)  sensor tag node attached on the mobile robot platform and eight anchor nodes that act as UWB transceivers. There are six Optitrack Prime 13 motion capture cameras for ground truth position measurement. We utilize an Nvidia Jetson AGX Xavier Developer Kit\cite{xavier2018}, which is a small-form-factor (SFF) computer that has a graphics processing unit (GPU). Fig. \ref{fig:whole_system} shows our experimental environment and indicates how the anchor and tag nodes are attached. In addition, we used the mobile platform TurtleBot2\cite{turtlebot22013}.
+Our experimental system consists of an Ultra-Wide Band (UWB)  sensor tag node attached on the mobile robot platform and eight anchor nodes that act as UWB transceivers. There are six Optitrack Prime 13 motion capture cameras for ground truth position measurement. We utilize an Nvidia Jetson AGX Xavier Developer Kit\cite{xavier2018}, which is a small-form-factor (SFF) computer that has a graphics processing unit (GPU). Fig. \ref{fig:whole_system} shows our experimental environment and indicates how the anchor and tag nodes are attached. In addition, we used the mobile platform TurtleBot2\cite{turtlebot22013}.
 
 The tag node receives the signal and measures the range between two devices based on the time-of-flight (TOF) and the received signal strength indication (RSSI). UWB transceivers are a Pozyx developer tag and Pozyx anchors\cite{pozyx2018}, comprising a DW1000 UWB-chip made by Decawave. The measurement accuracies are at the cm level.
  
@@ -268,11 +268,11 @@ UWB sensor anchors are installed randomly in the region where motion capture cam
 
 Note that these two datasets are transmitted at different frequencies: range measurements are obtained at a frequency of about 27 Hz, yet the ground truth data are obtained at 120 Hz. Thus, we synchronized these two data based on the range measurements. Specifically, we set an independent thread so that it a) selected the ground truth data of the closest time instant based on the UWB range measurements, b) concatenated, and c) saved these data.
 
-Moreover, the mobile robot moved within this space controlled by a keyboard manually. All the trajectories are thus different. After collecting complete datasets, we separated the entire dataset to three types: one of them to the training dataset, another to the validation dataset, and the rest to the test dataset. In the case of the test dataset, only range measurements were conducted and used as input to the network.
+Moreover, the mobile robot moved within this space controlled by a keyboard manually. All the trajectories are thus different. After collecting complete datasets, we separated the entire dataset into three types: one of them to the training dataset, another to the validation dataset, and the rest to the test dataset. In the case of the test dataset, only range measurements were conducted and used as input to the network.
 
 \subsection{Training the Network}
 
-To train our network, the Adam optimizer is exploited during 1,200 epochs with learning rate of 0.001, decay rate of 0.9, and five decay steps. Additionally, we found that the network was influenced by batch size. When the batch size was too large, the network tended to be insensitive to the unexpected noise attributed to the sensors, causing over-generalizing response. Conversely, when the batch size was too small, the network tended to overfit to train the specific noise patterns associated with the data. Therefore, we set moderate batch size of 6,355.
+To train our network, the Adam optimizer is exploited during 1,200 epochs with learning rate of 0.001, decay rate of 0.9, and five decay steps. Additionally, we found that the network was influenced by batch size. When the batch size was too large, the network tended to be insensitive to the unexpected noise attributed to the sensors, causing the over-generalizing response. Conversely, when the batch size was too small, the network tended to overfit to train the specific noise patterns associated with the data. Therefore, we set moderate batch size of 6,355.
 
 \subsection{Localization Results}
 
@@ -281,7 +281,7 @@ To train our network, the Adam optimizer is exploited during 1,200 epochs with l
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\linewidth]{image/RMSE_error}
-	\caption{Plot of root-mean-square error (RMSE) with respect to (w.r.t.) the sequence length for various numbers of anchors.}
+	\caption{The plot of Root-Mean-Square-Error (RMSE) with respect to the sequence length for various numbers of anchors.}
 	\label{fig:seq_length_on_different_anchors} 	
 \end{figure}
 
@@ -315,7 +315,7 @@ As a result, the networks with longer sequence lengths tend to have smaller erro
 
 \begin{table*}[h]
 	\centering
-	\caption{Root Mean Square Error of each algorithm w.r.t. the number of anchors}
+	\caption{Root-Mean-Square-Error of each algorithm w.r.t. the number of anchors}
 	\begin{tabular}{ccccc}
 		\toprule
 		\multicolumn{5}{c}{RMSE {[}cm{]}}   \\ \midrule
@@ -327,7 +327,7 @@ As a result, the networks with longer sequence lengths tend to have smaller erro
 	\label{table:rmse}
 \end{table*}
 
-However, note that the performance of the network becomes inaccurate when sequence lengths is set to 12 compared to sequence lengths equal to eight. This might be because of the accumulations of different patterns of sensor noise levels as the number of anchors increases. In other words, the tendency of the domain values may vary owing to the accumulation of different patterns of sensor noise levels, even though a part of the test data path is similar to the path of the train data. This is the reason why range observations included in test data are not correctly or easily mapped following training as sequence length increases.
+However, note that the performance of the network becomes inaccurate when sequence length is set to 12 compared to sequence lengths equal to eight. This might be because of the accumulations of different patterns of sensor noise levels as the number of anchors increases. In other words, the tendency of the domain values may vary owing to the accumulation of different patterns of sensor noise levels, even though a part of the test data path is similar to the path of the train data. This is the reason why range observations included in test data are not correctly or easily mapped following training as sequence length increases.
 
 
 For these reasons, we set the optimal sequence length to eight. Accordingly, we could somehow address uncertainty issues based on the use of additional temporal information for more precise estimated position.
@@ -349,7 +349,7 @@ We also compared our network with recently presented learning-based approaches: 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{image/boxcompare}
-	\caption{Box plot results w.r.t. the number of anchors.}
+	\caption{Box plot of results w.r.t. the number of anchors.}
 	\label{fig:box_plot} 	
 \end{figure}
 
